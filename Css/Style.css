@@ -67,7 +67,6 @@
   border-top: solid 1px #dfdfdf;
 }
 .lastNewsSecBody div header {
-  display: flex;
 }
 .lastNewsSecBody div header span {
   padding: 1%;
@@ -230,7 +229,7 @@ footer div ul li a:hover {
 #MyActionsCard .alert {
   height: 65px;
 }
-#OnMobileNavbar{
+#OnMobileNavbar {
   display: none;
 }
 @media screen and (max-width: 560px) {
@@ -246,7 +245,7 @@ footer div ul li a:hover {
   #ProfileSideBar {
     display: none;
   }
-  #OnMobileNavbar{
+  #OnMobileNavbar {
     display: block;
   }
   .lastNewsSecBody div header img {
@@ -254,7 +253,6 @@ footer div ul li a:hover {
     height: 80px !important;
     margin: 8px 5px 0 5px;
   }
-
 }
 @media screen and (max-width: 880px) {
   #ProfileSideBar:hover {
