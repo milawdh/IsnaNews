@@ -1,0 +1,206 @@
+@font-face {
+  font-family: "MyFont";
+  src: url("/Font/Yekan.eot");
+  src: url("/Font/Yekan.eot?#iefix") format("embedded-opentype"),
+    url("/Font/Yekan.woff2") format("woff2"),
+    url("/Font/Yekan.woff") format("woff");
+
+  font-weight: normal;
+  font-style: normal;
+}
+._MyFont {
+  font-family: MyFont;
+}
+._indexNavbar {
+  background-color: #446fb4;
+}
+._IndexSubNav {
+  margin-top: -17px;
+  height: 35px;
+  background-color: rgb(13, 74, 131);
+}
+._btnlogin {
+  border: 1px solid rgb(0, 251, 255);
+  padding: 4px;
+  height: 40px;
+  width: 120px;
+  text-align: center;
+  margin-top: 15px;
+  border-radius: 15px;
+  transition: all ease 0.5s;
+}
+._btnlogin:hover {
+  background-color: rgb(21, 206, 209);
+  border-color: rgb(21, 206, 209);
+}
+._scaleHover {
+  transition: 0.2s all ease;
+}
+._scaleHover:hover {
+  transform: scaleY(1.05);
+}
+.w-80 {
+  width: 80%;
+}
+._hover-red {
+  transition: 0.3s all ease;
+  color: black;
+}
+._hover-red:hover {
+  color: red;
+}
+.lastNewsSec {
+  border: solid 1px #dfdfdf;
+  width: 85%;
+}
+.lastNewsSecBody {
+  padding: 0;
+}
+.lastNewsSecBody div {
+  padding: 0;
+}
+
+.lastNewsSecBody div {
+  display: grid;
+  padding: 2%;
+  border-top: solid 1px #dfdfdf;
+}
+.lastNewsSecBody div header {
+  display: flex;
+}
+.lastNewsSecBody div header span {
+  padding: 1%;
+}
+.lastNewsSecBody div header span a {
+  text-decoration: none;
+  color: #7a7979;
+  font-family: MyFont;
+  font-weight: 700;
+}
+.lastNewsSecBody div header span a:hover {
+  color: rgb(13, 74, 131);
+}
+
+.lastNewsSecBody div header img {
+  width: 150px;
+  height: 150px;
+  display: block;
+}
+._hover-green:hover {
+  color: green;
+}
+._cursor-pointor {
+  cursor: pointer;
+}
+footer {
+  border-top: solid 3px rgb(13, 74, 131);
+  background-color: #446fb4;
+  margin-top: 5%;
+  color: rgb(13, 74, 131);
+}
+footer div ul li a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s all ease;
+}
+footer div ul li a:hover {
+  margin-right: 12px;
+  color: rgb(13, 74, 131);
+  text-decoration: none;
+}
+._SingleHeader {
+  border: solid 2px #dfdfdf;
+  padding: 8px;
+  font-family: MyFont;
+  margin: 0 10px 0 10px;
+  border-radius: 6px;
+  width: 75%;
+}
+._SingleBody {
+  border: solid 2px #dfdfdf;
+  padding: 8px;
+  display: grid;
+  font-family: MyFont;
+  margin: 0 10px 0 10px;
+  border-radius: 6px;
+  width: 75%;
+  line-height: 23px;
+  text-align: justify;
+  color: #6b6a6a;
+}
+._SingleBody h5 {
+  font-family: MyFont;
+  color: black;
+  font-weight: bold;
+}
+._loginForm {
+  width: 70%;
+  border-radius: 25px;
+}
+
+._ProfileSideBar {
+  width: 80px;
+  overflow: scroll;
+  height: 100%;
+  background-color: #161616;
+}
+._ProfileSideBar ul li {
+  margin-top: 25px;
+  margin-left: 12px;
+}
+._ProfileSideBar ul li a {
+  text-decoration: none;
+  font-family: MyFont;
+  color: #dfdfdf;
+  width: 100%;
+  transition: 0.3s all ease;
+}
+._ProfileSideBar ul li a ._sidebarTitle {
+  margin-left: 8px;
+  color: #dfdfdf;
+  transition: 0.2s all ease;
+}
+._ProfileSideBar ul li a:hover ._sidebarTitle {
+  color: white;
+  font-weight: 500;
+  font-family: MyFont;
+  text-decoration: none;
+  margin-left: 16px;
+}
+._ProfileSideBar ul li a:hover ._sidebarStrokedIcon path {
+  stroke: #446fb4;
+}
+._ProfileSideBar ul li a:hover ._sidebarFilledIcon path {
+  fill: #446fb4;
+}
+
+._ProfileSideBar ul li a ._sidebarStrokedIcon path {
+  transition: 0.2s all ease;
+}
+._ProfileSideBar ul li a ._sidebarFilledIcon path {
+  transition: 0.2s all ease;
+}
+
+._ProfileSideBar:hover {
+  width: 230px;
+}
+._ProfileSideBar:not(:hover) ul li a ._sidebarTitle {
+  display: none;
+}
+@media screen and (max-width: 560px) {
+}
+@media screen and (max-width: 680px) {
+  ._ProfileSideBar {
+    display: none;
+  }
+  .lastNewsSecBody div header img {
+    width: 80px !important;
+    height: 80px !important;
+    margin: 8px 5px 0 5px;
+  }
+}
+@media screen and (min-width: 780px) {
+  ._loginForm {
+    width: 50%;
+  }
+}
