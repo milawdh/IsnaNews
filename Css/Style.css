@@ -230,6 +230,9 @@ footer div ul li a:hover {
 #MyActionsCard .alert {
   height: 65px;
 }
+#OnMobileNavbar{
+  display: none;
+}
 @media screen and (max-width: 560px) {
   #personInfoCard div div span {
     font-size: 14px;
@@ -242,6 +245,9 @@ footer div ul li a:hover {
 @media screen and (max-width: 680px) {
   #ProfileSideBar {
     display: none;
+  }
+  #OnMobileNavbar{
+    display: block;
   }
   .lastNewsSecBody div header img {
     width: 80px !important;
