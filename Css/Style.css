@@ -141,7 +141,7 @@ footer div ul li a:hover {
 
 ._ProfileSideBar {
   width: 80px;
-  height: 800px;
+  height: 100%;
   background-color: #161616;
 }
 ._ProfileSideBar ul li {
@@ -219,9 +219,19 @@ footer div ul li a:hover {
   background-color: #2d1ed2;
   border-radius: 10px;
 }
-
+#MyActionsCard {
+  background-color: rgba(28, 227, 68, 0.3);
+  width: 90%;
+  margin-top: 50px;
+  border: 2px solid rgba(28, 227, 68, 0.3);
+  border-radius: 20px;
+  padding: 25px;
+}
+#MyActionsCard .alert {
+  height: 65px;
+}
 @media screen and (max-width: 560px) {
-  #personInfoCard div div span{
+  #personInfoCard div div span {
     font-size: 14px;
     font-weight: bold;
   }
