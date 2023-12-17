@@ -45,7 +45,7 @@
 <body>
     <div class="d-flex h-100">
         <!--SideBar Start-->
-        <section class="_ProfileSideBar">
+        <section id="ProfileSideBar">
             <a href="#" class="d-flex justify-content-center my-2">
                 <img src="Resources/NoPofile.jpg" style="width: 45px;" class=" rounded-circle">
             </a>
@@ -116,7 +116,8 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="_sidebarTitle" uk-icon="chevron-down" onclick="adminListToggle(this)">
+                        <span class="_sidebarTitle" id="adminListToggler" uk-icon="chevron-down"
+                            onclick="adminListToggle(this)">
                             پنل ادمین
                         </span>
                     </a>
@@ -160,8 +161,8 @@
         <!--SideBar End-->
 
         <!--Body start-->
-        <section class="flex-fill">
-            <div class="">
+        <section class="flex-fill _scrollBar h-100">
+            <div uk-scrollspy="target: > div; cls: uk-animation-scale-up; delay: 300;">
                 <!--Infos Start-->
                 <div class="uk-card uk-card-body mx-auto" id="personInfoCard">
                     <h3 class="text-center _MyFont">اطلاعات فردی</h3>
@@ -208,13 +209,13 @@
                 <!--Infos End-->
                 <!--My Comments Start-->
                 <div class="uk-card uk-card-body mx-auto" id="MyCommentsCard">
-                    <div class="">
+                    <div>
                         <h3 class="text-center _MyFont">نظرات من</h3>
                         <div class="p-1 d-grid _scrollBar">
                             <!--Each Item Start-->
                             <div dir="rtl" class="alert mx-auto w-100 alert-warning _MyFont">
                                 <div class="d-flex flex-column">
-                                    <div class="">
+                                    <div>
                                         <strong class="text-black h5 d-inline _MyFont fw-bold">به خبر</strong>
                                         :
                                         <h6 class="d-inline _MyFont fw-bold uk-text-truncate"
@@ -240,7 +241,7 @@
                             <!--Each Item Start-->
                             <div dir="rtl" class="alert mx-auto w-100 alert-warning _MyFont">
                                 <div class="d-flex flex-column">
-                                    <div class="">
+                                    <div>
                                         <strong class="text-black h5 d-inline _MyFont fw-bold">به خبر</strong>
                                         :
                                         <h6 class="d-inline _MyFont fw-bold uk-text-truncate"
@@ -266,7 +267,7 @@
                             <!--Each Item Start-->
                             <div dir="rtl" class="alert mx-auto w-100 alert-warning _MyFont">
                                 <div class="d-flex flex-column">
-                                    <div class="">
+                                    <div>
                                         <strong class="text-black h5 d-inline _MyFont fw-bold">به خبر</strong>
                                         :
                                         <h6 class="d-inline _MyFont fw-bold uk-text-truncate"
@@ -293,7 +294,76 @@
                     </div>
                 </div>
                 <!--My Comments End-->
-
+                <div id="MyActionsCard" class="mx-auto uk-card uk-card-body">
+                    <h3 class="text-center _MyFont">فعالیت های من</h3>
+                    <div class="p-1 d-grid _scrollBar">
+                        <!--Each Item Start-->
+                        <div dir="rtl" class="alert mx-auto w-100 alert-success _MyFont">
+                            <div dir="rtl" class="d-flex justify-content-between text-black me-auto">
+                                <span>
+                                    ورود در
+                                </span>
+                                <span dir="ltr">
+                                    <span uk-icon="calendar"></span>
+                                    <span>1402/9/12 <strong>20:24:32</strong></span>
+                                </span>
+                            </div>
+                        </div>
+                        <!--Each Item End-->
+                        <!--Each Item Start-->
+                        <div dir="rtl" class="alert mx-auto w-100 alert-success _MyFont">
+                            <div dir="rtl" class="d-flex justify-content-between text-black me-auto">
+                                <span>
+                                    خروج در
+                                </span>
+                                <span dir="ltr">
+                                    <span uk-icon="calendar"></span>
+                                    <span>1402/9/12 <strong>20:24:32</strong></span>
+                                </span>
+                            </div>
+                        </div>
+                        <!--Each Item End-->
+                        <!--Each Item Start-->
+                        <div dir="rtl" class="alert mx-auto w-100 alert-success _MyFont">
+                            <div dir="rtl" class="d-flex justify-content-between text-black me-auto">
+                                <span>
+                                    خروج در
+                                </span>
+                                <span dir="ltr">
+                                    <span uk-icon="calendar"></span>
+                                    <span>1402/9/12 <strong>20:24:32</strong></span>
+                                </span>
+                            </div>
+                        </div>
+                        <!--Each Item End-->
+                        <!--Each Item Start-->
+                        <div dir="rtl" class="alert mx-auto w-100 alert-success _MyFont">
+                            <div dir="rtl" class="d-flex justify-content-between text-black me-auto">
+                                <span>
+                                    خروج در
+                                </span>
+                                <span dir="ltr">
+                                    <span uk-icon="calendar"></span>
+                                    <span>1402/9/12 <strong>20:24:32</strong></span>
+                                </span>
+                            </div>
+                        </div>
+                        <!--Each Item End-->
+                        <!--Each Item Start-->
+                        <div dir="rtl" class="alert mx-auto w-100 alert-success _MyFont">
+                            <div dir="rtl" class="d-flex justify-content-between text-black me-auto">
+                                <span>
+                                    خروج در
+                                </span>
+                                <span dir="ltr">
+                                    <span uk-icon="calendar"></span>
+                                    <span>1402/9/12 <strong>20:24:32</strong></span>
+                                </span>
+                            </div>
+                        </div>
+                        <!--Each Item End-->
+                    </div>
+                </div>
             </div>
         </section>
         <!--Body End-->
@@ -353,6 +423,12 @@
             }
 
         }
+        var ProfileSideBar = document.getElementById('ProfileSideBar')
+        ProfileSideBar.addEventListener('mouseleave', function () {
+            document.getElementById('adminList').style.display = 'none'
+            adminListToggler.setAttribute('uk-icon', 'chevron-down')
+            Flag = true
+        })
     </script>
     <!--AdminPanelToggle Script End-->
 </body>

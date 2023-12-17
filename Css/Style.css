@@ -139,52 +139,52 @@ footer div ul li a:hover {
   border-radius: 25px;
 }
 
-._ProfileSideBar {
+#ProfileSideBar {
   width: 80px;
   height: 100%;
   background-color: #161616;
 }
-._ProfileSideBar ul li {
+#ProfileSideBar ul li {
   margin-top: 25px;
   margin-left: 12px;
 }
-._ProfileSideBar ul li a {
+#ProfileSideBar ul li a {
   text-decoration: none;
   font-family: MyFont;
   color: #dfdfdf;
   width: 100%;
   transition: 0.3s all ease;
 }
-._ProfileSideBar ul li a ._sidebarTitle {
+#ProfileSideBar ul li a ._sidebarTitle {
   margin-left: 8px;
   color: #dfdfdf;
   transition: 0.2s all ease;
 }
-._ProfileSideBar ul li a:hover ._sidebarTitle {
+#ProfileSideBar ul li a:hover ._sidebarTitle {
   color: white;
   font-weight: 500;
   font-family: MyFont;
   text-decoration: none;
   margin-left: 16px;
 }
-._ProfileSideBar ul li a:hover ._sidebarStrokedIcon path {
+#ProfileSideBar ul li a:hover ._sidebarStrokedIcon path {
   stroke: #446fb4;
 }
-._ProfileSideBar ul li a:hover ._sidebarFilledIcon path {
+#ProfileSideBar ul li a:hover ._sidebarFilledIcon path {
   fill: #446fb4;
 }
 
-._ProfileSideBar ul li a ._sidebarStrokedIcon path {
+#ProfileSideBar ul li a ._sidebarStrokedIcon path {
   transition: 0.2s all ease;
 }
-._ProfileSideBar ul li a ._sidebarFilledIcon path {
+#ProfileSideBar ul li a ._sidebarFilledIcon path {
   transition: 0.2s all ease;
 }
 
-._ProfileSideBar:hover {
+#ProfileSideBar:hover {
   width: 230px;
 }
-._ProfileSideBar:not(:hover) ul li a ._sidebarTitle {
+#ProfileSideBar:not(:hover) ul li a ._sidebarTitle {
   display: none;
 }
 #personInfoCard {
@@ -240,13 +240,19 @@ footer div ul li a:hover {
   }
 }
 @media screen and (max-width: 680px) {
-  ._ProfileSideBar {
+  #ProfileSideBar {
     display: none;
   }
   .lastNewsSecBody div header img {
     width: 80px !important;
     height: 80px !important;
     margin: 8px 5px 0 5px;
+  }
+
+}
+@media screen and (max-width: 880px) {
+  #ProfileSideBar:hover {
+    width: 280px;
   }
 }
 @media screen and (min-width: 780px) {
