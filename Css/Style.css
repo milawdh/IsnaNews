@@ -66,8 +66,6 @@
   padding: 2%;
   border-top: solid 1px #dfdfdf;
 }
-.lastNewsSecBody div header {
-}
 .lastNewsSecBody div header span {
   padding: 1%;
 }
@@ -232,6 +230,7 @@ footer div ul li a:hover {
 #OnMobileNavbar {
   display: none;
 }
+
 @media screen and (max-width: 560px) {
   #personInfoCard div div span {
     font-size: 14px;
