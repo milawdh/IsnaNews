@@ -20,11 +20,12 @@
   background-color: rgb(13, 74, 131);
 }
 ._btnlogin {
-  border: 1px solid rgb(0, 251, 255);
+  border: 2px solid rgb(0, 251, 255);
   padding: 4px;
   height: 40px;
   width: 120px;
   text-align: center;
+  background-color: transparent;
   margin-top: 15px;
   border-radius: 15px;
   transition: all ease 0.5s;
@@ -140,8 +141,7 @@ footer div ul li a:hover {
 
 ._ProfileSideBar {
   width: 80px;
-  overflow: scroll;
-  height: 100%;
+  height: 800px;
   background-color: #161616;
 }
 ._ProfileSideBar ul li {
@@ -187,7 +187,49 @@ footer div ul li a:hover {
 ._ProfileSideBar:not(:hover) ul li a ._sidebarTitle {
   display: none;
 }
+#personInfoCard {
+  background-color: rgba(79, 115, 191, 0.3);
+  width: 90%;
+  margin-top: 50px;
+  border: 2px solid rgba(79, 115, 191, 0.3);
+  border-radius: 20px;
+  padding: 25px;
+}
+#MyCommentsCard {
+  background-color: rgba(227, 217, 28, 0.3);
+  width: 90%;
+  margin-top: 50px;
+  border: 2px solid rgba(227, 217, 28, 0.3);
+  border-radius: 20px;
+  padding: 25px;
+}
+._scrollBar {
+  overflow-y: scroll;
+  height: 240px;
+}
+._scrollBar::-webkit-scrollbar {
+  width: 3px;
+}
+
+._scrollBar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+._scrollBar::-webkit-scrollbar-thumb {
+  background-color: #2d1ed2;
+  border-radius: 10px;
+}
+
+#MyCommentsCard div .alert{
+}
 @media screen and (max-width: 560px) {
+  #personInfoCard div div span{
+    font-size: 14px;
+    font-weight: bold;
+  }
+  #personInfoCard {
+    padding: 8px !important;
+  }
 }
 @media screen and (max-width: 680px) {
   ._ProfileSideBar {
