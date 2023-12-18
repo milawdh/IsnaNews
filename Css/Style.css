@@ -230,7 +230,12 @@ footer div ul li a:hover {
 #OnMobileNavbar {
   display: none;
 }
-
+._hover-blue{
+  transition: 0.2s all ease;
+}
+._hover-blue:hover{
+  color: #2d1ed2;
+}
 @media screen and (max-width: 560px) {
   #personInfoCard div div span {
     font-size: 14px;
