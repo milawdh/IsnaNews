@@ -280,6 +280,7 @@ footer div ul li a:hover {
 .AddCommentSec div{
   margin-top: 12px;
 }
+
 @media screen and (max-width: 560px) {
   #personInfoCard div div span {
     font-size: 14px;
