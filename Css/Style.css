@@ -267,20 +267,19 @@ footer div ul li a:hover {
 }
 
 .CommentsSecBody div header img {
-  width: 80px;
-  height: 80px;
-  border-radius: 80px;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
   display: block;
 }
-.AddCommentSec{
+.AddCommentSec {
   border: solid 1px #e1f127;
   width: 85%;
   height: 400px;
 }
-.AddCommentSec div{
+.AddCommentSec div {
   margin-top: 12px;
 }
-
 @media screen and (max-width: 560px) {
   #personInfoCard div div span {
     font-size: 14px;
