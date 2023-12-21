@@ -281,6 +281,9 @@ footer div ul li a:hover {
   margin-top: 12px;
 }
 @media screen and (max-width: 560px) {
+  ._SingleBodyHeadersDiv {
+    flex-direction: column;
+  }
   #personInfoCard div div span {
     font-size: 14px;
     font-weight: bold;

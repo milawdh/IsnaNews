@@ -125,8 +125,9 @@
         <div class="uk-width-1-1 uk-width-3-4@l">
             <!--BreadCrumbs Start-->
             <div class="mx-auto my-2 _SingleHeader d-flex justify-content-end">
-                <ul class="uk-subnav uk-subnav-divider m-0 p-0 ">
-                    <li class="uk-active"><a class="text-decoration-none" href="#">خبر یمتبمکیستبلهیسحخبهح</a></li>
+                <ul class="uk-subnav uk-subnav-divider m-0 p-0">
+                    <li class="uk-active d-sm-flex d-none"><a class="text-decoration-none" href="#">خبر
+                            یمتبمکیستبلهیسحخبهح</a></li>
                     <li><a class="text-decoration-none" href="#">دسته بندی</a></li>
                     <li><a class="text-decoration-none" href="#">اخبار</a></li>
                     <li><a class="text-decoration-none" href="#">خانه</a></li>
@@ -135,7 +136,8 @@
             <!--BreadCrumbs End-->
             <!--Body Start-->
             <div dir="rtl" class="mx-auto _SingleBody my-2 p-3">
-                <div style="border-bottom:solid 1px;" class="p-2 d-flex justify-content-between">
+                <div style="border-bottom:solid 1px;"
+                    class="p-2 _SingleBodyHeadersDiv d-flex justify-content-sm-between">
                     <span>
                         <span>خبرنگار</span>
                         :
@@ -350,119 +352,318 @@
             </div>
         </div>
         <!--Body End-->
-        <!--Comments Start-->
-        <section dir="rtl" class="ps-0 _scrollBar CommentsSec mx-auto">
-            <div class="d-flex p-2 justify-content-between">
-                <h4 class="text-danger d-inline _MyFont fw-bold"> دیدگاه ها</h4>
-                <span>
-                    <svg width="32px" height="32px" viewBox="-0.5 0 32 32" version="1.1"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <title>comments</title>
-                            <desc>Created with Sketch Beta.</desc>
-                            <defs> </defs>
-                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
-                                sketch:type="MSPage">
-                                <g id="Icon-Set-Filled" sketch:type="MSLayerGroup"
-                                    transform="translate(-259.000000, -257.000000)" fill="#446fb4">
-                                    <path
-                                        d="M265.5,267 C266.329,267 267,267.672 267,268.5 C267,269.329 266.329,270 265.5,270 C264.671,270 264,269.329 264,268.5 C264,267.672 264.671,267 265.5,267 L265.5,267 Z M271.5,267 C272.329,267 273,267.672 273,268.5 C273,269.329 272.329,270 271.5,270 C270.671,270 270,269.329 270,268.5 C270,267.672 270.671,267 271.5,267 L271.5,267 Z M277.5,267 C278.329,267 279,267.672 279,268.5 C279,269.329 278.329,270 277.5,270 C276.671,270 276,269.329 276,268.5 C276,267.672 276.671,267 277.5,267 L277.5,267 Z M268.637,279.736 C269.414,279.863 271.181,280 272,280 C279.18,280 284,274.657 284,268.375 C284,262.093 277.977,257 272,257 C264.811,257 259,262.093 259,268.375 C259,272.015 260.387,275.104 263,277.329 L263,283 L268.637,279.736 L268.637,279.736 Z M285.949,266.139 L286,267 C286.008,267.817 286,267.742 286,268.5 C286,276.475 279.716,282 271,282 L268,282 C270.38,284.328 273.149,285.75 277,285.75 C277.819,285.75 278.618,285.676 279.395,285.549 L285,289 L285,283.329 C288.04,281.246 290,278.015 290,274.375 C290,271.131 288.439,268.211 285.949,266.139 L285.949,266.139 Z"
-                                        id="comments" sketch:type="MSShapeGroup"> </path>
-                                </g>
+        <!--MostViewdNews Start-->
+        <section uk-scrollspy="target: > div; cls: uk-animation-scale-up; delay: 300;repeat: true" dir="rtl"
+            uk-match-height class="uk-width-1-5@l ms-auto flex-column d-flex">
+            <div class="d-flex justify-content-between">
+                <hr class="w-25">
+                <h6 style="font-weight: 700;" uk-scrollspy-class="cls:;" class="_hover-red _MyFont text-center">
+                    پربازدیدترین اخبار</h6>
+                <hr class="w-25">
+            </div>
+            <!--each item start-->
+            <div class="d-flex d-xl-grid uk-child-width-1-2 uk-child-width-1-1@l">
+                <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
+                            _scaleHover rounded">
+                    <div class="uk-text-right d-flex">
+                        <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
+                            <a class="text-decoration-none _hover-red" href="">
+                                سلام خوب هستی من میلاد هستم برنامه نویس درجه یک این شهر حتی اگه باور نداشته باشن
+                                یه
+                                روزی
+                                به زودی
+                                میشم!
+                            </a>
+                        </h5>
+                    </div>
+                    <hr class="mt-1 p-0">
+                    <div class="uk-card-body d-flex justify-content-between m-0 pt-0 px-1 pb-1">
+                        <span class="pb-0 m-0 me-auto d-flex" dir="rtl">
+                            <span class="_hover-green _cursor-pointor _MyFont">1402/8/12</span>
+                            <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
+                        _scaleHover rounded">
+                    <div class="uk-text-right d-flex">
+                        <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
+                            <a class="text-decoration-none _hover-red" href="">
+                                سلام خوب هستی من میلاد هستم برنامه نویس درجه یک این شهر حتی اگه باور نداشته باشن
+                                یه
+                                روزی
+                                به زودی
+                                میشم!
+                            </a>
+                        </h5>
+                    </div>
+                    <hr class="mt-1 p-0">
+                    <div class="uk-card-body d-flex justify-content-between m-0 pt-0 px-1 pb-1">
+                        <span class="pb-0 m-0 me-auto d-flex" dir="rtl">
+                            <span class="_hover-green _cursor-pointor _MyFont">1402/8/12</span>
+                            <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--each item end-->
+            <!--each item start-->
+            <div class="d-flex d-xl-grid uk-child-width-1-2 uk-child-width-1-1@l">
+                <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
+                            _scaleHover rounded">
+                    <div class="uk-text-right d-flex">
+                        <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
+                            <a class="text-decoration-none _hover-red" href="">
+                                سلام خوب هستی من میلاد هستم برنامه نویس درجه یک این شهر حتی اگه باور نداشته باشن
+                                یه
+                                روزی
+                                به زودی
+                                میشم!
+                            </a>
+                        </h5>
+                    </div>
+                    <hr class="mt-1 p-0">
+                    <div class="uk-card-body d-flex justify-content-between m-0 pt-0 px-1 pb-0">
+                        <span class="pb-0 m-0 me-auto d-flex" dir="rtl">
+                            <span class="_hover-green _cursor-pointor _MyFont">1402/8/12</span>
+                            <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
+                        _scaleHover rounded">
+                    <div class="uk-text-right d-flex">
+                        <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
+                            <a class="text-decoration-none _hover-red" href="">
+                                سلام خوب هستی من میلاد هستم برنامه نویس درجه یک این شهر حتی اگه باور نداشته باشن
+                                یه
+                                روزی
+                                به زودی
+                                میشم!
+                            </a>
+                        </h5>
+                    </div>
+                    <hr class="mt-1 p-0">
+                    <div class="uk-card-body d-flex justify-content-between m-0 pt-0 px-1 pb-1">
+                        <span class="pb-0 m-0 me-auto d-flex" dir="rtl">
+                            <span class="_hover-green _cursor-pointor _MyFont">1402/8/12</span>
+                            <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--each item end-->
+            <!--each item start-->
+            <div class="d-flex d-xl-grid uk-child-width-1-2 uk-child-width-1-1@l">
+                <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
+                            _scaleHover rounded">
+                    <div class="uk-text-right d-flex">
+                        <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
+                            <a class="text-decoration-none _hover-red" href="">
+                                سلام خوب هستی من میلاد هستم برنامه نویس درجه یک این شهر حتی اگه باور نداشته باشن
+                                یه
+                                روزی
+                                به زودی
+                                میشم!
+                            </a>
+                        </h5>
+                    </div>
+                    <hr class="mt-1 p-0">
+                    <div class="uk-card-body d-flex justify-content-between m-0 pt-0 px-1 pb-0">
+                        <span class="pb-0 m-0 me-auto d-flex" dir="rtl">
+                            <span class="_hover-green _cursor-pointor _MyFont">1402/8/12</span>
+                            <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
+                        _scaleHover rounded">
+                    <div class="uk-text-right d-flex">
+                        <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
+                            <a class="text-decoration-none _hover-red" href="">
+                                سلام خوب هستی من میلاد هستم برنامه نویس درجه یک این شهر حتی اگه باور نداشته باشن
+                                یه
+                                روزی
+                                به زودی
+                                میشم!
+                            </a>
+                        </h5>
+                    </div>
+                    <hr class="mt-1 p-0">
+                    <div class="uk-card-body d-flex justify-content-between m-0 pt-0 px-1 pb-1">
+                        <span class="pb-0 m-0 me-auto d-flex" dir="rtl">
+                            <span class="_hover-green _cursor-pointor _MyFont">1402/8/12</span>
+                            <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--each item end-->
+            <!--Ads Start-->
+            <section uk-scrollspy="target: > div; cls: uk-animation-scale-up; delay: 500;repeat: true" dir="rtl"
+                class="text-center w-100 my-2 uk-child-width-1-1 d-grid mx-auto">
+                <div class="my-1 uk-child-width-1-2 d-flex d-md-block">
+                    <a class="mx-1" href="">
+                        <img class="rounded-4 my-1" src="Resources/62812665.gif" alt="">
+                    </a>
+                    <a href="" class="mx-1">
+                        <img class="rounded-4 my-1" src="Resources/62812665.gif" alt="">
+                    </a>
+                </div>
+                <div class="my-1 uk-child-width-1-2 d-flex d-md-block">
+                    <a class="mx-1" href="">
+                        <img class="rounded-4 my-1" src="Resources/62812665.gif" alt="">
+                    </a>
+                    <a href="" class="mx-1">
+                        <img class="rounded-4 my-1" src="Resources/62812665.gif" alt="">
+                    </a>
+                </div>
+            </section>
+            <!--Ads End-->
+        </section>
+        <!--MostViewdNews End-->
+    </div>
+
+    <!--Comments Start-->
+    <section dir="rtl" class="ps-0 _scrollBar CommentsSec mx-auto">
+        <div class="d-flex p-2 justify-content-between">
+            <h4 class="text-danger d-inline _MyFont fw-bold"> دیدگاه ها</h4>
+            <span>
+                <svg width="32px" height="32px" viewBox="-0.5 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                    fill="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <title>comments</title>
+                        <desc>Created with Sketch Beta.</desc>
+                        <defs> </defs>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                            sketch:type="MSPage">
+                            <g id="Icon-Set-Filled" sketch:type="MSLayerGroup"
+                                transform="translate(-259.000000, -257.000000)" fill="#446fb4">
+                                <path
+                                    d="M265.5,267 C266.329,267 267,267.672 267,268.5 C267,269.329 266.329,270 265.5,270 C264.671,270 264,269.329 264,268.5 C264,267.672 264.671,267 265.5,267 L265.5,267 Z M271.5,267 C272.329,267 273,267.672 273,268.5 C273,269.329 272.329,270 271.5,270 C270.671,270 270,269.329 270,268.5 C270,267.672 270.671,267 271.5,267 L271.5,267 Z M277.5,267 C278.329,267 279,267.672 279,268.5 C279,269.329 278.329,270 277.5,270 C276.671,270 276,269.329 276,268.5 C276,267.672 276.671,267 277.5,267 L277.5,267 Z M268.637,279.736 C269.414,279.863 271.181,280 272,280 C279.18,280 284,274.657 284,268.375 C284,262.093 277.977,257 272,257 C264.811,257 259,262.093 259,268.375 C259,272.015 260.387,275.104 263,277.329 L263,283 L268.637,279.736 L268.637,279.736 Z M285.949,266.139 L286,267 C286.008,267.817 286,267.742 286,268.5 C286,276.475 279.716,282 271,282 L268,282 C270.38,284.328 273.149,285.75 277,285.75 C277.819,285.75 278.618,285.676 279.395,285.549 L285,289 L285,283.329 C288.04,281.246 290,278.015 290,274.375 C290,271.131 288.439,268.211 285.949,266.139 L285.949,266.139 Z"
+                                    id="comments" sketch:type="MSShapeGroup"> </path>
                             </g>
                         </g>
-                    </svg>
-                </span>
+                    </g>
+                </svg>
+            </span>
+        </div>
+        <div class="CommentsSecBody" uk-scrollspy="target: > div; cls: uk-animation-slide-right; delay: 300;" dir="rtl">
+            <!--Each Item start-->
+            <div class="uk-child-width-1-1">
+                <header class="d-flex">
+                    <img class=" d-inline-block" src="Resources/NoPofile.jpg">
+                    <span class="d-inline-block flex-fill">
+                        <h6 class="w-100 d-flex">
+                            <a href="" class="text-break">
+                                MiLASQWISJFKAAAOWAL
+                            </a>
+                        </h6>
+                        <p>یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
+                            یبخهعلادهخجیبجخهت</p>
+                    </span>
+                </header>
+                <div class="d-flex justify-content-between">
+                    <span class="text-danger">
+                        تاریخ انتشار :
+                    </span>
+                    <span class="me-auto text-truncate d-flex">
+                        <span class="_hover-green _cursor-pointor _MyFont">1402/8/12 20:58</span>
+                        <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                    </span>
+                </div>
             </div>
-            <div class="CommentsSecBody" uk-scrollspy="target: > div; cls: uk-animation-slide-right; delay: 300;"
-                dir="rtl">
-                <!--Each Item start-->
-                <div class="uk-child-width-1-1">
-                    <header class="d-flex">
-                        <img class=" d-inline-block" src="Resources/NoPofile.jpg">
-                        <span class="d-inline-block flex-fill">
-                            <h6 class="w-100 d-flex">
-                                <a href="" class="text-break">
-                                    MiLASQWISJFKAAAOWAL
-                                </a>
-                            </h6>
-                            <p>یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
-                                یبخهعلادهخجیبجخهت</p>
-                        </span>
-                    </header>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-danger">
-                            تاریخ انتشار :
-                        </span>
-                        <span class="me-auto text-truncate d-flex">
-                            <span class="_hover-green _cursor-pointor _MyFont">1402/8/12 20:58</span>
-                            <span uk-icon="icon:calendar;ratio:1.2;"></span>
-                        </span>
-                    </div>
+            <!--Each Item end-->
+            <!--Each Item start-->
+            <div class="uk-child-width-1-1">
+                <header class="d-flex">
+                    <img class=" d-inline-block" src="Resources/NoPofile.jpg">
+                    <span class="d-inline-block flex-fill">
+                        <h6 class="w-100 d-flex">
+                            <a href="" class="text-break">
+                                MiLASQWISJFKAAAOWAL
+                            </a>
+                        </h6>
+                        <p>یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
+                            یبخهعلادهخجیبجخهت</p>
+                    </span>
+                </header>
+                <div class="d-flex justify-content-between">
+                    <span class="text-danger">
+                        تاریخ انتشار :
+                    </span>
+                    <span class="me-auto text-truncate d-flex">
+                        <span class="_hover-green _cursor-pointor _MyFont">1402/8/12 20:58</span>
+                        <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                    </span>
                 </div>
-                <!--Each Item end-->
-                <!--Each Item start-->
-                <div class="uk-child-width-1-1">
-                    <header class="d-flex">
-                        <img class=" d-inline-block" src="Resources/NoPofile.jpg">
-                        <span class="d-inline-block flex-fill">
-                            <h6 class="w-100 d-flex">
-                                <a href="" class="text-break">
-                                    MiLASQWISJFKAAAOWAL
-                                </a>
-                            </h6>
-                            <p>یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
-                                یبخهعلادهخجیبجخهت</p>
-                        </span>
-                    </header>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-danger">
-                            تاریخ انتشار :
-                        </span>
-                        <span class="me-auto text-truncate d-flex">
-                            <span class="_hover-green _cursor-pointor _MyFont">1402/8/12 20:58</span>
-                            <span uk-icon="icon:calendar;ratio:1.2;"></span>
-                        </span>
-                    </div>
+            </div>
+            <!--Each Item end-->
+            <!--Each Item start-->
+            <div class="uk-child-width-1-1">
+                <header class="d-flex">
+                    <img class=" d-inline-block" src="Resources/NoPofile.jpg">
+                    <span class="d-inline-block flex-fill">
+                        <h6 class="w-100 d-flex">
+                            <a href="" class="text-break">
+                                MiLASQWISJFKAAAOWAL
+                            </a>
+                        </h6>
+                        <p>یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
+                            یبخهعلادهخجیبجخهت</p>
+                    </span>
+                </header>
+                <div class="d-flex justify-content-between">
+                    <span class="text-danger">
+                        تاریخ انتشار :
+                    </span>
+                    <span class="me-auto text-truncate d-flex">
+                        <span class="_hover-green _cursor-pointor _MyFont">1402/8/12 20:58</span>
+                        <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                    </span>
                 </div>
-                <!--Each Item end-->
-                <!--Each Item start-->
-                <div class="uk-child-width-1-1">
-                    <header class="d-flex">
-                        <img class=" d-inline-block" src="Resources/NoPofile.jpg">
-                        <span class="d-inline-block flex-fill">
-                            <h6 class="w-100 d-flex">
-                                <a href="" class="text-break">
-                                    MiLASQWISJFKAAAOWAL
-                                </a>
-                            </h6>
-                            <p>یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
-                                یبخهعلادهخجیبجخهت</p>
-                        </span>
-                    </header>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-danger">
-                            تاریخ انتشار :
-                        </span>
-                        <span class="me-auto text-truncate d-flex">
-                            <span class="_hover-green _cursor-pointor _MyFont">1402/8/12 20:58</span>
-                            <span uk-icon="icon:calendar;ratio:1.2;"></span>
-                        </span>
-                    </div>
+            </div>
+            <!--Each Item end-->
+            <!--Each Item start-->
+            <div class="uk-child-width-1-1">
+                <header class="d-flex">
+                    <img class=" d-inline-block" src="Resources/NoPofile.jpg">
+                    <span class="d-inline-block flex-fill">
+                        <h6 class="w-100 d-flex">
+                            <a href="" class="text-break">
+                                MiLASQWISJFKAAAOWAL
+                            </a>
+                        </h6>
+                        <p>
+                            یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
+                            یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
+                            یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
+                            یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
+                            یبخهعلادهخجیبجخهت
+                        </p>
+                    </span>
+                </header>
+                <div class="d-flex justify-content-between">
+                    <span class="text-danger">
+                        تاریخ انتشار :
+                    </span>
+                    <span class="me-auto text-truncate d-flex">
+                        <span class="_hover-green _cursor-pointor _MyFont">1402/8/12 20:58</span>
+                        <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                    </span>
                 </div>
-                <!--Each Item end-->
-                <!--Each Item start-->
-                <div class="uk-child-width-1-1">
+                <!--Admin Reply Start-->
+                <div class="w-75 p-3 mx-auto">
                     <header class="d-flex">
-                        <img class=" d-inline-block" src="Resources/NoPofile.jpg">
                         <span class="d-inline-block flex-fill">
-                            <h6 class="w-100 d-flex">
-                                <a href="" class="text-break">
-                                    MiLASQWISJFKAAAOWAL
-                                </a>
+                            <h6 class="w-100 d-flex text-warning">
+                                <span uk-icon="user" class="text-warning uk-icon-button"></span>
+                                <span class=" _MyFont fw-bold fs-5 text-break">
+                                    پاسخ ادمین
+                                </span>
                             </h6>
                             <p>
                                 یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
@@ -473,292 +674,79 @@
                             </p>
                         </span>
                     </header>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-danger">
-                            تاریخ انتشار :
-                        </span>
-                        <span class="me-auto text-truncate d-flex">
-                            <span class="_hover-green _cursor-pointor _MyFont">1402/8/12 20:58</span>
-                            <span uk-icon="icon:calendar;ratio:1.2;"></span>
-                        </span>
-                    </div>
-                    <!--Admin Reply Start-->
-                    <div class="w-75 p-3 mx-auto">
-                        <header class="d-flex">
-                            <span class="d-inline-block flex-fill">
-                                <h6 class="w-100 d-flex text-warning">
-                                    <span uk-icon="user" class="text-warning uk-icon-button"></span>
-                                    <span class=" _MyFont fw-bold fs-5 text-break">
-                                        پاسخ ادمین
-                                    </span>
-                                </h6>
-                                <p>
-                                    یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
-                                    یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
-                                    یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
-                                    یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
-                                    یبخهعلادهخجیبجخهت
-                                </p>
-                            </span>
-                        </header>
-                    </div>
-                    <!--Admin Reply End-->
                 </div>
-                <!--Each Item end-->
-                <!--Each Item start-->
-                <div class="uk-child-width-1-1">
-                    <header class="d-flex">
-                        <img class=" d-inline-block" src="Resources/NoPofile.jpg">
-                        <span class="d-inline-block flex-fill">
-                            <h6 class="w-100 d-flex">
-                                <a href="" class="text-break">
-                                    MiLASQWISJFKAAAOWAL
-                                </a>
-                            </h6>
-                            <p>یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
-                                یبخهعلادهخجیبجخهت</p>
-                        </span>
-                    </header>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-danger">
-                            تاریخ انتشار :
-                        </span>
-                        <span class="me-auto text-truncate d-flex">
-                            <span class="_hover-green _cursor-pointor _MyFont">1402/8/12 20:58</span>
-                            <span uk-icon="icon:calendar;ratio:1.2;"></span>
-                        </span>
-                    </div>
-                </div>
-                <!--Each Item end-->
+                <!--Admin Reply End-->
             </div>
-        </section>
-        <!--Comments End-->
+            <!--Each Item end-->
+            <!--Each Item start-->
+            <div class="uk-child-width-1-1">
+                <header class="d-flex">
+                    <img class=" d-inline-block" src="Resources/NoPofile.jpg">
+                    <span class="d-inline-block flex-fill">
+                        <h6 class="w-100 d-flex">
+                            <a href="" class="text-break">
+                                MiLASQWISJFKAAAOWAL
+                            </a>
+                        </h6>
+                        <p>یمتبمکیستبلهیسحخبهح حهبعدخهسیعخهبلعیخهس یب9لعیب یبجعلجیبدخلعخبهیلعخه
+                            یبخهعلادهخجیبجخهت</p>
+                    </span>
+                </header>
+                <div class="d-flex justify-content-between">
+                    <span class="text-danger">
+                        تاریخ انتشار :
+                    </span>
+                    <span class="me-auto text-truncate d-flex">
+                        <span class="_hover-green _cursor-pointor _MyFont">1402/8/12 20:58</span>
+                        <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                    </span>
+                </div>
+            </div>
+            <!--Each Item end-->
+        </div>
+    </section>
+    <!--Comments End-->
 
-        <!--Add Comment Start-->
-        <section class="AddCommentSec my-3 p-2 d-grid mx-auto" dir="rtl">
-            <div class="d-flex justify-content-between ">
-                <h6 class="_MyFont">ارسال دیدگاه شما</h6>
-                <span>
-                    <svg width="32px" height="32px" viewBox="-0.5 0 32 32" version="1.1"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <title>comments</title>
-                            <desc>Created with Sketch Beta.</desc>
-                            <defs> </defs>
-                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
-                                sketch:type="MSPage">
-                                <g id="Icon-Set-Filled" sketch:type="MSLayerGroup"
-                                    transform="translate(-259.000000, -257.000000)" fill="#446fb4">
-                                    <path
-                                        d="M265.5,267 C266.329,267 267,267.672 267,268.5 C267,269.329 266.329,270 265.5,270 C264.671,270 264,269.329 264,268.5 C264,267.672 264.671,267 265.5,267 L265.5,267 Z M271.5,267 C272.329,267 273,267.672 273,268.5 C273,269.329 272.329,270 271.5,270 C270.671,270 270,269.329 270,268.5 C270,267.672 270.671,267 271.5,267 L271.5,267 Z M277.5,267 C278.329,267 279,267.672 279,268.5 C279,269.329 278.329,270 277.5,270 C276.671,270 276,269.329 276,268.5 C276,267.672 276.671,267 277.5,267 L277.5,267 Z M268.637,279.736 C269.414,279.863 271.181,280 272,280 C279.18,280 284,274.657 284,268.375 C284,262.093 277.977,257 272,257 C264.811,257 259,262.093 259,268.375 C259,272.015 260.387,275.104 263,277.329 L263,283 L268.637,279.736 L268.637,279.736 Z M285.949,266.139 L286,267 C286.008,267.817 286,267.742 286,268.5 C286,276.475 279.716,282 271,282 L268,282 C270.38,284.328 273.149,285.75 277,285.75 C277.819,285.75 278.618,285.676 279.395,285.549 L285,289 L285,283.329 C288.04,281.246 290,278.015 290,274.375 C290,271.131 288.439,268.211 285.949,266.139 L285.949,266.139 Z"
-                                        id="comments" sketch:type="MSShapeGroup"> </path>
-                                </g>
+    <!--Add Comment Start-->
+    <section class="AddCommentSec my-3 p-2 d-grid mx-auto" dir="rtl">
+        <div class="d-flex justify-content-between ">
+            <h6 class="_MyFont">ارسال دیدگاه شما</h6>
+            <span>
+                <svg width="32px" height="32px" viewBox="-0.5 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                    fill="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <title>comments</title>
+                        <desc>Created with Sketch Beta.</desc>
+                        <defs> </defs>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                            sketch:type="MSPage">
+                            <g id="Icon-Set-Filled" sketch:type="MSLayerGroup"
+                                transform="translate(-259.000000, -257.000000)" fill="#446fb4">
+                                <path
+                                    d="M265.5,267 C266.329,267 267,267.672 267,268.5 C267,269.329 266.329,270 265.5,270 C264.671,270 264,269.329 264,268.5 C264,267.672 264.671,267 265.5,267 L265.5,267 Z M271.5,267 C272.329,267 273,267.672 273,268.5 C273,269.329 272.329,270 271.5,270 C270.671,270 270,269.329 270,268.5 C270,267.672 270.671,267 271.5,267 L271.5,267 Z M277.5,267 C278.329,267 279,267.672 279,268.5 C279,269.329 278.329,270 277.5,270 C276.671,270 276,269.329 276,268.5 C276,267.672 276.671,267 277.5,267 L277.5,267 Z M268.637,279.736 C269.414,279.863 271.181,280 272,280 C279.18,280 284,274.657 284,268.375 C284,262.093 277.977,257 272,257 C264.811,257 259,262.093 259,268.375 C259,272.015 260.387,275.104 263,277.329 L263,283 L268.637,279.736 L268.637,279.736 Z M285.949,266.139 L286,267 C286.008,267.817 286,267.742 286,268.5 C286,276.475 279.716,282 271,282 L268,282 C270.38,284.328 273.149,285.75 277,285.75 C277.819,285.75 278.618,285.676 279.395,285.549 L285,289 L285,283.329 C288.04,281.246 290,278.015 290,274.375 C290,271.131 288.439,268.211 285.949,266.139 L285.949,266.139 Z"
+                                    id="comments" sketch:type="MSShapeGroup"> </path>
                             </g>
                         </g>
-                    </svg>
-                    <span uk-icon="icon:plus;ratio:1" style="background-color:#446fb4;
+                    </g>
+                </svg>
+                <span uk-icon="icon:plus;ratio:1" style="background-color:#446fb4;
                         color: white; height: 24px; width: 24px; border-radius: 24px;" class="uk-icon-button"></span>
-                </span>
-            </div>
-            <div class="form-floating">
-                <textarea id="AddCommentBody" placeholder="متن دیدگاه..." class="_MyFont uk-textarea" cols="30"
-                    rows="10"></textarea>
-            </div>
-            <div class="text-center">
-                <button class="btn btn-outline-primary _MyFont">ارسال دیدگاه</button>
-            </div>
-        </section>
-        <!--Add Comment End-->
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-    <!--MostViewdNews Start-->
-    <section uk-scrollspy="target: > div; cls: uk-animation-scale-up; delay: 300;repeat: true" dir="rtl" uk-match-height
-        class="uk-width-1-5@l ms-auto d-flex flex-column">
-        <div class="d-flex justify-content-between">
-            <hr class="w-25">
-            <h6 style="font-weight: 700;" uk-scrollspy-class="cls:;" class="_hover-red _MyFont text-center">
-                پربازدیدترین اخبار</h6>
-            <hr class="w-25">
+            </span>
         </div>
-
-
-        <!--each item start-->
-        <div class="d-flex d-xl-grid uk-child-width-1-2 uk-child-width-1-1@l">
-            <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
-                            _scaleHover rounded">
-                <div class="uk-text-right d-flex">
-                    <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
-                        <a class="text-decoration-none _hover-red" href="">
-                            سلام خوب هستی من میلاد هستم برنامه نویس درجه یک این شهر حتی اگه باور نداشته باشن
-                            یه
-                            روزی
-                            به زودی
-                            میشم!
-                        </a>
-                    </h5>
-                </div>
-                <hr class="mt-1 p-0">
-                <div class="uk-card-body d-flex justify-content-between m-0 pt-0 px-1 pb-1">
-                    <span class="pb-0 m-0 me-auto d-flex" dir="rtl">
-                        <span class="_hover-green _cursor-pointor _MyFont">1402/8/12</span>
-                        <span uk-icon="icon:calendar;ratio:1.2;"></span>
-                    </span>
-                </div>
-            </div>
-            <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
-                        _scaleHover rounded">
-                <div class="uk-text-right d-flex">
-                    <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
-                        <a class="text-decoration-none _hover-red" href="">
-                            سلام خوب هستی من میلاد هستم برنامه نویس درجه یک این شهر حتی اگه باور نداشته باشن
-                            یه
-                            روزی
-                            به زودی
-                            میشم!
-                        </a>
-                    </h5>
-                </div>
-                <hr class="mt-1 p-0">
-                <div class="uk-card-body m-0 pt-0 px-1 pb-1">
-                    <span class="pb-0 m-0 me-auto d-flex" dir="ltr">
-                        <span class="_hover-green _cursor-pointor _MyFont">1402/8/12</span>
-                        <span uk-icon="icon:calendar;ratio:1.2;"></span>
-                    </span>
-                </div>
-            </div>
+        <div class="form-floating">
+            <textarea id="AddCommentBody" placeholder="متن دیدگاه..." class="_MyFont uk-textarea" cols="30"
+                rows="10"></textarea>
         </div>
-        <!--each item end-->
-        <!--each item start-->
-        <div class="d-flex d-xl-grid uk-child-width-1-2 uk-child-width-1-1@l">
-            <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
-                            _scaleHover rounded">
-                <div class="uk-text-right d-flex">
-                    <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
-                        <a class="text-decoration-none _hover-red" href="">
-                            سلام خوب هستی من میلاد هستم برنامه نویس درجه یک این شهر حتی اگه باور نداشته باشن
-                            یه
-                            روزی
-                            به زودی
-                            میشم!
-                        </a>
-                    </h5>
-                </div>
-                <hr class="mt-1 p-0">
-                <div class="uk-card-body d-flex justify-content-between m-0 pt-0 px-1 pb-0">
-                    <span class="pb-0 m-0 me-auto d-flex" dir="rtl">
-                        <span class="_hover-green _cursor-pointor _MyFont">1402/8/12</span>
-                        <span uk-icon="icon:calendar;ratio:1.2;"></span>
-                    </span>
-                </div>
-            </div>
-            <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
-                        _scaleHover rounded">
-                <div class="uk-text-right d-flex">
-                    <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
-                        <a class="text-decoration-none _hover-red" href="">
-                            سلام خوب هستی من میلاد هستم برنامه نویس درجه یک این شهر حتی اگه باور نداشته باشن
-                            یه
-                            روزی
-                            به زودی
-                            میشم!
-                        </a>
-                    </h5>
-                </div>
-                <hr class="mt-1 p-0">
-                <div class="uk-card-body m-0 pt-0 px-1 pb-1">
-                    <span class="pb-0 m-0 me-auto d-flex" dir="ltr">
-                        <span class="_hover-green _cursor-pointor _MyFont">1402/8/12</span>
-                        <span uk-icon="icon:calendar;ratio:1.2;"></span>
-                    </span>
-                </div>
-            </div>
+        <div class="text-center">
+            <button class="btn btn-outline-primary _MyFont">ارسال دیدگاه</button>
         </div>
-        <!--each item end-->
-        <!--each item start-->
-        <div class="d-flex d-xl-grid uk-child-width-1-2 uk-child-width-1-1@l">
-            <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
-                            _scaleHover rounded">
-                <div class="uk-text-right d-flex">
-                    <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
-                        <a class="text-decoration-none _hover-red" href="">
-                            سلام خوب هستی من میلاد هستم برنامه نویس درجه یک این شهر حتی اگه باور نداشته باشن
-                            یه
-                            روزی
-                            به زودی
-                            میشم!
-                        </a>
-                    </h5>
-                </div>
-                <hr class="mt-1 p-0">
-                <div class="uk-card-body d-flex justify-content-between m-0 pt-0 px-1 pb-0">
-                    <span class="pb-0 m-0 me-auto d-flex" dir="rtl">
-                        <span class="_hover-green _cursor-pointor _MyFont">1402/8/12</span>
-                        <span uk-icon="icon:calendar;ratio:1.2;"></span>
-                    </span>
-                </div>
-            </div>
-            <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
-                        _scaleHover rounded">
-                <div class="uk-text-right d-flex">
-                    <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
-                        <a class="text-decoration-none _hover-red" href="">
-                            سلام خوب هستی من میلاد هستم برنامه نویس درجه یک این شهر حتی اگه باور نداشته باشن
-                            یه
-                            روزی
-                            به زودی
-                            میشم!
-                        </a>
-                    </h5>
-                </div>
-                <hr class="mt-1 p-0">
-                <div class="uk-card-body m-0 pt-0 px-1 p-1">
-                    <span class="pb-0 m-0 me-auto d-flex" dir="ltr">
-                        <span class="_hover-green _cursor-pointor _MyFont">1402/8/12</span>
-                        <span uk-icon="icon:calendar;ratio:1.2;"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <!--each item end-->
-        <!--Ads Start-->
-        <section uk-scrollspy="target: > div; cls: uk-animation-scale-up; delay: 500;repeat: true" dir="rtl"
-            class="text-center w-100 my-2 uk-child-width-1-1 d-grid mx-auto">
-            <div class="my-1 uk-child-width-1-2 d-flex d-md-block">
-                <a class="mx-1" href="">
-                    <img class="rounded-4 my-1" src="Resources/62812665.gif" alt="">
-                </a>
-                <a href="" class="mx-1">
-                    <img class="rounded-4 my-1" src="Resources/62812665.gif" alt="">
-                </a>
-            </div>
-            <div class="my-1 uk-child-width-1-2 d-flex d-md-block">
-                <a class="mx-1" href="">
-                    <img class="rounded-4 my-1" src="Resources/62812665.gif" alt="">
-                </a>
-                <a href="" class="mx-1">
-                    <img class="rounded-4 my-1" src="Resources/62812665.gif" alt="">
-                </a>
-            </div>
-        </section>
-        <!--Ads End-->
     </section>
-    <!--MostViewdNews End-->
+    <!--Add Comment End-->
+
     </div>
-
-
 
 
 
