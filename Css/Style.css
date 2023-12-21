@@ -280,7 +280,12 @@ footer div ul li a:hover {
 .AddCommentSec div {
   margin-top: 12px;
 }
+._logo{
+  height: 85px;
+  margin: 5px 0 5px 0;
+}
 @media screen and (max-width: 560px) {
+
   ._SingleBodyHeadersDiv {
     flex-direction: column;
   }
@@ -295,6 +300,9 @@ footer div ul li a:hover {
 @media screen and (max-width: 680px) {
   #ProfileSideBar {
     display: none;
+  }
+  ._logo{
+    height: 65px;
   }
   #OnMobileNavbar {
     display: block;
