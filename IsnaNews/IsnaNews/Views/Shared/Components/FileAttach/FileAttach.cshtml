@@ -1,0 +1,18 @@
+﻿@model List<(string Title,string Url)>
+@{
+    int rows = Convert.ToInt32(Math.Ceiling((double)Model.Count / 4));
+    @for (int j = 0; j < rows; j++)
+    {
+        int TagCount = rows - 1 == j ? Model.Count % 4 == 0 ? 4 : Model.Count : 4;
+        <div class="text-center my-2">
+            @for (int i = j * 4; i < j * 4 + TagCount; i++)
+            {
+                <span class="text-center my-1">
+                    <a asp-controller="Single" asp-action="DownloadAttach" asp-route-Name="@Model[i].Url" class="btn text-decoration-none m-2 btn-sm btn-outline-info">
+                        @Model[i].Title
+                    </a>
+                </span>
+            }
+        </div>
+    }
+}

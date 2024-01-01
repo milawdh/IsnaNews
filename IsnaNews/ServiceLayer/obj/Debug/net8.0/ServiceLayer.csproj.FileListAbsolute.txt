@@ -1,0 +1,17 @@
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\bin\Debug\net8.0\ServiceLayer.deps.json
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\bin\Debug\net8.0\ServiceLayer.runtimeconfig.json
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\bin\Debug\net8.0\ServiceLayer.dll
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\bin\Debug\net8.0\ServiceLayer.pdb
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\bin\Debug\net8.0\DataLayer.dll
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\bin\Debug\net8.0\DataLayer.pdb
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.csproj.AssemblyReference.cache
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.AssemblyInfoInputs.cache
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.AssemblyInfo.cs
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.csproj.CoreCompileInputs.cache
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.csproj.CopyComplete
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.dll
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\refint\ServiceLayer.dll
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.pdb
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.genruntimeconfig.cache
+C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ref\ServiceLayer.dll

@@ -1,0 +1,33 @@
+﻿@model List<string>
+<hr>
+<section class="_VideoContainer" dir="ltr">
+    <h5 class="_MyFont text-muted text-end" dir="rtl">- ویدئو ها</h5>
+
+    <div class="d-grid gap-2 uk-child-width-1-1">
+        <div class="uk-position-relative uk-visible-toggle uk-light" uk-slider="center: true">
+
+            <ul class="uk-slider-items uk-grid uk-grid-match"
+                uk-height-viewport="offset-top: true; offset-bottom: 30">
+                @{
+                    foreach (var i in Model)
+                    {
+                        <!--Each Item Start-->
+                        <li class="uk-width-3-4">
+                            <div class="uk-cover-container">
+                                <video src="~/Resources/@i.ToString()" uk-video="false"
+                                       controls></video>
+                            </div>
+                        </li>
+                        <!--Each Item End-->
+                    }
+                }
+            </ul>
+
+            <a class="bg-dark rounded-circle uk-position-bottom-left uk-position-small" href
+               uk-slidenav-previous uk-slider-item="previous"></a>
+            <a class="bg-dark rounded-circle uk-position-bottom-right uk-position-small" href
+               uk-slidenav-next uk-slider-item="next"></a>
+
+        </div>
+    </div>
+</section>

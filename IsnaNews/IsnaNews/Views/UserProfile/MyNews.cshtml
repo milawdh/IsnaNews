@@ -1,0 +1,40 @@
+﻿@{
+    @model List<(string newsTitle, string newsBody, string DatePosted, long newsId,string MainImage)>
+    Layout = "ProfileLayout";
+}
+@using ServiceLayer.Utils;
+<div class="lastNewsSec _scrollBar my-5 overflow-x-hidden h-100 mx-auto" dir="rtl">
+    <div dir="rtl">
+        <span uk-icon="icon:file-text;ratio:1.4" class="m-2"></span>
+        <h4 class="text-danger d-inline _MyFont fw-bold"> اخبار ارسالی من</h4>
+    </div>
+    <div class="lastNewsSecBody" uk-scrollspy="target: > div; cls: uk-animation-slide-right; delay: 300;"
+    @foreach (var i in Model)
+    {
+                <!--Each Item start-->
+                <div class="uk-child-width-1-1">
+                    <header class="d-flex">
+                        <img class="rounded d-inline-block" src="../../Resources/@i.MainImage" alt="">
+                        <span class="d-inline-block flex-fill">
+                            <h6 class="w-100 d-flex">
+                                <a href="" class="text-break">@i.newsTitle</a>
+                                <span class="me-auto d-flex uk-text-truncate">
+                                    <span class="_hover-green  mx-1 d-flex _MyFont">@i.DatePosted</span>
+                                    <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                                </span>
+                            </h6>
+                            <p class="_MyFont">
+                        @i.newsBody.ToShortBody(15)
+                            </p>
+                        </span>
+                    </header>
+                </div>
+                <div class="d-flex justify-content-around _MyFont">
+                    <button class="_MyFont btn btn-outline-primary">ویرایش</button>
+                    <button class="_MyFont btn btn-outline-danger">حذف</button>
+                </div>
+                <!--Each Item end-->
+    }
+
+    </div>
+</div>

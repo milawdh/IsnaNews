@@ -1,0 +1,129 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\10_SlicingStrings.mp4",
+      "PackagePath": "staticwebassets\\Resources\\10_SlicingStrings.mp4"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\62812665.gif",
+      "PackagePath": "staticwebassets\\Resources\\62812665.gif"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\NoPofile.jpg",
+      "PackagePath": "staticwebassets\\Resources\\NoPofile.jpg"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\icons8-user-32.png",
+      "PackagePath": "staticwebassets\\Resources\\icons8-user-32.png"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\logo.png",
+      "PackagePath": "staticwebassets\\Resources\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\onboarding.pdf",
+      "PackagePath": "staticwebassets\\Resources\\onboarding.pdf"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\thumb.png",
+      "PackagePath": "staticwebassets\\Resources\\thumb.png"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\Css\\Bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\Css\\Bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.eot",
+      "PackagePath": "staticwebassets\\lib\\Css\\Site\\Font\\Yekan.eot"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.svg",
+      "PackagePath": "staticwebassets\\lib\\Css\\Site\\Font\\Yekan.svg"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.ttf",
+      "PackagePath": "staticwebassets\\lib\\Css\\Site\\Font\\Yekan.ttf"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.woff",
+      "PackagePath": "staticwebassets\\lib\\Css\\Site\\Font\\Yekan.woff"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.woff2",
+      "PackagePath": "staticwebassets\\lib\\Css\\Site\\Font\\Yekan.woff2"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\yekan.css",
+      "PackagePath": "staticwebassets\\lib\\Css\\Site\\Font\\yekan.css"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Style.css",
+      "PackagePath": "staticwebassets\\lib\\Css\\Site\\Style.css"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\UIKit\\uikit.css",
+      "PackagePath": "staticwebassets\\lib\\Css\\UIKit\\uikit.css"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\UIKit\\uikit.min.css",
+      "PackagePath": "staticwebassets\\lib\\Css\\UIKit\\uikit.min.css"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\UIKit\\uikit-icons.js",
+      "PackagePath": "staticwebassets\\lib\\Js\\UIKit\\uikit-icons.js"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\UIKit\\uikit-icons.min.js",
+      "PackagePath": "staticwebassets\\lib\\Js\\UIKit\\uikit-icons.min.js"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\UIKit\\uikit.js",
+      "PackagePath": "staticwebassets\\lib\\Js\\UIKit\\uikit.js"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\UIKit\\uikit.min.js",
+      "PackagePath": "staticwebassets\\lib\\Js\\UIKit\\uikit.min.js"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\Js\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\Js\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\Js\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\Js\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.IsnaNews.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.IsnaNews.props",
+      "PackagePath": "build\\IsnaNews.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.IsnaNews.props",
+      "PackagePath": "buildMultiTargeting\\IsnaNews.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.IsnaNews.props",
+      "PackagePath": "buildTransitive\\IsnaNews.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
