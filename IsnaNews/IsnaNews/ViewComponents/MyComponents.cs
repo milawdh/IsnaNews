@@ -92,4 +92,12 @@ namespace IsnaNews.ViewComponents
             return View("AdminList",permissions);
         }
     }
+    [ViewComponent(Name ="AdminAdvertisementModal")]
+    public class AdminAdvertisementModal : ViewComponent
+    {
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            return View("AdminAdvertisementModal");
+        }
+    }
 }

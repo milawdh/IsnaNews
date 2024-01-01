@@ -1,0 +1,131 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- This is a button toggling the modal -->
+<a class="uk-button uk-button-primary" href="#modal-sections" uk-toggle>Open</a>
+
+
+<div id="modal-sections" class="" uk-modal dir="rtl">
+    <div class="uk-modal-dialog">
+        <!--Header Start-->
+        <div class="uk-modal-header _MyFont" dir="rtl">
+            <button class="uk-modal-close-outside" type="button" uk-close></button>
+
+            <h2 class="mt-2 _MyFont">
+                <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                <span class="uk-modal-title">
+                    تبلیغ جدید
+                </span>
+            </h2>
+        </div>
+        <!--Header End-->
+        <!--Body Start-->
+        <div class="uk-modal-body  _MyFont">
+            <!--Form Start-->
+            <form class="_MyFont" enctype="multipart/form-data" id="MyForm1">
+                <div uk-form-custom class="text-end">
+                    <input required type="file" name="File" accept="image/gif,image/png,image/jpeg,image/webp" id="MainBrandImageInput">
+                    <button class="uk-button uk-button-default" type="button">انتخاب بنر</button>
+                </div>
+                <div class="my-2 text-center" id="MainBrandImagePreview">
+                </div>
+                <label class="_MyFont fw-bold text-danger">لینک تبلیغ ...</label>
+                <textarea name="name" id="Link" class="uk-textarea my-2 mx-2" rows="10" value="" required></textarea>
+            </form>
+            <!--Form End-->
+            <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+        </div>
+        <!--Body End-->
+        <!--Footer Start-->
+        <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+            <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+            <button class="uk-button uk-button-primary" type="submit" onclick="send()">ثبت</button>
+        </div>
+        <div class="progress uk-hidden" id="progressDiv">
+            <div class="progress-bar"></div>
+        </div>
+        <!--Footer End-->
+    </div>
+
+</div>
+<script>
+    var fileInput = document.getElementById('MainBrandImageInput');
+    var preview = document.getElementById('MainBrandImagePreview');
+
+    fileInput.addEventListener('change', function (event) {
+        preview.innerHTML = ''
+        var file = event.target.files[0];
+
+        if (file.type.endsWith('png') ||
+            file.type.endsWith('jpeg') ||
+            file.type.endsWith('jpg') ||
+            file.type.endsWith('gif') ||
+            file.type.endsWith('webp')) {
+            IsFileValid = true;
+            var reader = new FileReader();
+            reader.addEventListener('load', function (event) {
+                var img = document.createElement('img');
+                img.src = event.target.result;
+                img.width = 240;
+                img.height = 240;
+                img.classList.add('d-inline-block', 'rounded-3', 'm-2')
+                preview.appendChild(img);
+            });
+
+            reader.readAsDataURL(file);
+        }
+        else {
+            event.target.value = ''
+            UIkit.notification({
+                message: '<span class="_MyFont">فرمت فایل مورد نظر فقط عکس میتواند باشد</span>',
+                status: 'danger',
+                pos: 'top-right',
+                timeout: 5000
+            });
+
+        }
+    });
+
+    function send() {
+        var MyForm = document.getElementById('MyForm1')
+
+        if (!MyForm.checkValidity()) {
+            var tmpSubmit = document.createElement('button')
+            MyForm.appendChild(tmpSubmit)
+            tmpSubmit.click()
+            MyForm.removeChild(tmpSubmit)
+        }
+        else {
+            document.getElementById('progressDiv').classList.remove('uk-hidden')
+            var data = new FormData(MyForm1);
+            $.ajax({
+                url: '/Home/File',
+                type: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                xhr: function () {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = evt.loaded / evt.total;
+                            $('.progress-bar').css({
+                                width: percentComplete * 100 + '%'
+                            });
+                            if (percentComplete === 1) {
+                                $('.progress-bar').addClass('bg-success');
+                            }
+                        }
+                    }, false);
+                    return xhr;
+                },
+                success: function (data) {
+                },
+                error: function (data) {
+                }
+            });
+        }
+    }
+
+</script>

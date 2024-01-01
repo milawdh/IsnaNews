@@ -1,24 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using Services.Services;
-using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using ServiceLayer.MiddleWares;
-using System.Configuration;
 using ServiceLayer.Middlewares;
-using System.Linq;
-using ServiceLayer.Filters;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Antiforgery;
-using Newtonsoft.Json;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text.Json.Serialization;
-using System.Text.Json;
-using System.Text.Json.Serialization.Metadata;
-using System.Buffers;
-using Microsoft.AspNetCore.Http;
-using DataLayer.Dtos;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<Core>();
