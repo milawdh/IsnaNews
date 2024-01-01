@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/IsnaNews/.vs/IsnaNews/FileContentIndex/6b0ac305-8d7f-46bb-9bdc-96c8b6ece16f.vsidx
+/IsnaNews/.vs/IsnaNews/FileContentIndex/7b16618f-35e5-4205-8428-c8e4473c8b96.vsidx
+/IsnaNews/.vs/IsnaNews/FileContentIndex/365aef71-26f9-4d1d-ba57-d4017a589766.vsidx
+/IsnaNews/.vs/IsnaNews/FileContentIndex/708fe53e-22c5-4866-ab76-81ba16a15664.vsidx
+*.vsidx
+/IsnaNews/.vs/IsnaNews/FileContentIndex/f238d3fd-f027-476c-a0c2-f4acca512f32.vsidx
+/IsnaNews/.vs/IsnaNews/v17/.suo
