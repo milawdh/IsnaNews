@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IgsN/KXM9QFzgqK44yQt2UDCO3ahcIYQvXatXllZ/sF4VU2qNrAVkXbiolK4KHcixlI/qZu/QY0lZdI9Dcbj9w==",
+  "dgSpecHash": "mlRuvyujcSq8PFspK4BiIdyC1Nkb98ypiuhwO1xw32s3UwFjla4OOArzPRpGdwvxchOLzcfOkMjYrLoqJQtoyg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\IsnaNews.csproj",
+  "projectFilePath": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\IsnaNews.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\V I S I O N\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\V I S I O N\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",

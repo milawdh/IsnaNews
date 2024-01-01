@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9GtrPiFEGkDToqemHlmYZP66BeiTLuUO8AhoDYktFKY=",
+  "Hash": "UBsSV2mlP9LAZqdLrHn1WbyBL/xhZqXA0eZdJ2q0AQs=",
   "Source": "IsnaNews",
   "BasePath": "_content/IsnaNews",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "IsnaNews\\wwwroot",
       "Source": "IsnaNews",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "Pattern": "**"
     }
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "C:\\Users\\V I S I O N\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.0\\staticwebassets\\QuickGrid.razor.js"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\obj\\Debug\\net8.0\\scopedcss\\bundle\\IsnaNews.styles.css",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\obj\\Debug\\net8.0\\scopedcss\\bundle\\IsnaNews.styles.css",
       "SourceId": "IsnaNews",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "IsnaNews.styles.css",
       "AssetKind": "All",
@@ -71,13 +71,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\obj\\Debug\\net8.0\\scopedcss\\bundle\\IsnaNews.styles.css"
+      "OriginalItemSpec": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\obj\\Debug\\net8.0\\scopedcss\\bundle\\IsnaNews.styles.css"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\favicon.ico",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\favicon.ico",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Css/Bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Css\\Bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Css/Bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Css\\Bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\yekan.css",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\yekan.css",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Css/Site/Font/yekan.css",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Css\\Site\\Font\\yekan.css"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.eot",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.eot",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Css/Site/Font/Yekan.eot",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Css\\Site\\Font\\Yekan.eot"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.svg",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.svg",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Css/Site/Font/Yekan.svg",
       "AssetKind": "All",
@@ -188,10 +188,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Css\\Site\\Font\\Yekan.svg"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.ttf",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.ttf",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Css/Site/Font/Yekan.ttf",
       "AssetKind": "All",
@@ -207,10 +207,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Css\\Site\\Font\\Yekan.ttf"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.woff",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.woff",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Css/Site/Font/Yekan.woff",
       "AssetKind": "All",
@@ -226,10 +226,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Css\\Site\\Font\\Yekan.woff"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.woff2",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Font\\Yekan.woff2",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Css/Site/Font/Yekan.woff2",
       "AssetKind": "All",
@@ -245,10 +245,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Css\\Site\\Font\\Yekan.woff2"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Style.css",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\Site\\Style.css",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Css/Site/Style.css",
       "AssetKind": "All",
@@ -264,10 +264,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Css\\Site\\Style.css"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\UIKit\\uikit.css",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\UIKit\\uikit.css",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Css/UIKit/uikit.css",
       "AssetKind": "All",
@@ -283,10 +283,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Css\\UIKit\\uikit.css"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\UIKit\\uikit.min.css",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Css\\UIKit\\uikit.min.css",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Css/UIKit/uikit.min.css",
       "AssetKind": "All",
@@ -302,10 +302,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Css\\UIKit\\uikit.min.css"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\jquery\\dist\\jquery.js",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\jquery\\dist\\jquery.js",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Js/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -321,10 +321,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Js\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\jquery\\dist\\jquery.min.js",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\jquery\\dist\\jquery.min.js",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Js/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -340,10 +340,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Js\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\jquery\\dist\\jquery.min.map",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\jquery\\dist\\jquery.min.map",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Js/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -359,10 +359,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Js\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\jquery\\LICENSE.txt",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\jquery\\LICENSE.txt",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Js/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -378,10 +378,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Js\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\UIKit\\uikit.js",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\UIKit\\uikit.js",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Js/UIKit/uikit.js",
       "AssetKind": "All",
@@ -397,10 +397,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Js\\UIKit\\uikit.js"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\UIKit\\uikit.min.js",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\UIKit\\uikit.min.js",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Js/UIKit/uikit.min.js",
       "AssetKind": "All",
@@ -416,10 +416,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Js\\UIKit\\uikit.min.js"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\UIKit\\uikit-icons.js",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\UIKit\\uikit-icons.js",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Js/UIKit/uikit-icons.js",
       "AssetKind": "All",
@@ -435,10 +435,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Js\\UIKit\\uikit-icons.js"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\UIKit\\uikit-icons.min.js",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\lib\\Js\\UIKit\\uikit-icons.min.js",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "lib/Js/UIKit/uikit-icons.min.js",
       "AssetKind": "All",
@@ -454,10 +454,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\Js\\UIKit\\uikit-icons.min.js"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\10_SlicingStrings.mp4",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\10_SlicingStrings.mp4",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "Resources/10_SlicingStrings.mp4",
       "AssetKind": "All",
@@ -473,10 +473,10 @@
       "OriginalItemSpec": "wwwroot\\Resources\\10_SlicingStrings.mp4"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\62812665.gif",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\62812665.gif",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "Resources/62812665.gif",
       "AssetKind": "All",
@@ -492,10 +492,10 @@
       "OriginalItemSpec": "wwwroot\\Resources\\62812665.gif"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\icons8-user-32.png",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\icons8-user-32.png",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "Resources/icons8-user-32.png",
       "AssetKind": "All",
@@ -511,10 +511,10 @@
       "OriginalItemSpec": "wwwroot\\Resources\\icons8-user-32.png"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\logo.png",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\logo.png",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "Resources/logo.png",
       "AssetKind": "All",
@@ -530,10 +530,10 @@
       "OriginalItemSpec": "wwwroot\\Resources\\logo.png"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\NoPofile.jpg",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\NoPofile.jpg",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "Resources/NoPofile.jpg",
       "AssetKind": "All",
@@ -549,10 +549,10 @@
       "OriginalItemSpec": "wwwroot\\Resources\\NoPofile.jpg"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\onboarding.pdf",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\onboarding.pdf",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "Resources/onboarding.pdf",
       "AssetKind": "All",
@@ -568,10 +568,10 @@
       "OriginalItemSpec": "wwwroot\\Resources\\onboarding.pdf"
     },
     {
-      "Identity": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\thumb.png",
+      "Identity": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\Resources\\thumb.png",
       "SourceId": "IsnaNews",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\V I S I O N\\Desktop\\IsnaNews\\IsnaNews\\wwwroot\\",
+      "ContentRoot": "E:\\MyIsnaNews\\IsnaNews\\IsnaNews\\IsnaNews\\wwwroot\\",
       "BasePath": "_content/IsnaNews",
       "RelativePath": "Resources/thumb.png",
       "AssetKind": "All",

@@ -12,3 +12,18 @@ C:\Users\V I S I O N\Desktop\IsnaNews\DataLayer\obj\Debug\net8.0\refint\DataLaye
 C:\Users\V I S I O N\Desktop\IsnaNews\DataLayer\obj\Debug\net8.0\DataLayer.pdb
 C:\Users\V I S I O N\Desktop\IsnaNews\DataLayer\obj\Debug\net8.0\DataLayer.genruntimeconfig.cache
 C:\Users\V I S I O N\Desktop\IsnaNews\DataLayer\obj\Debug\net8.0\ref\DataLayer.dll
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\bin\Debug\net8.0\DataLayer.deps.json
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\bin\Debug\net8.0\DataLayer.runtimeconfig.json
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\bin\Debug\net8.0\DataLayer.dll
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\bin\Debug\net8.0\DataLayer.pdb
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\obj\Debug\net8.0\DataLayer.csproj.AssemblyReference.cache
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\obj\Debug\net8.0\DataLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\obj\Debug\net8.0\DataLayer.AssemblyInfoInputs.cache
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\obj\Debug\net8.0\DataLayer.AssemblyInfo.cs
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\obj\Debug\net8.0\DataLayer.csproj.CoreCompileInputs.cache
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\obj\Debug\net8.0\DataLayer.sourcelink.json
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\obj\Debug\net8.0\DataLayer.dll
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\obj\Debug\net8.0\refint\DataLayer.dll
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\obj\Debug\net8.0\DataLayer.pdb
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\obj\Debug\net8.0\DataLayer.genruntimeconfig.cache
+E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\obj\Debug\net8.0\ref\DataLayer.dll

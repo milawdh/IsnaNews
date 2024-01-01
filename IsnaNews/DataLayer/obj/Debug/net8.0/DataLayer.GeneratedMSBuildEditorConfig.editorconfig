@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DataLayer
-build_property.ProjectDir = C:\Users\V I S I O N\Desktop\IsnaNews\DataLayer\
+build_property.ProjectDir = E:\MyIsnaNews\IsnaNews\IsnaNews\DataLayer\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

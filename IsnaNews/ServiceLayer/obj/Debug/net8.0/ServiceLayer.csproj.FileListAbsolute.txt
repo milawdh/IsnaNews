@@ -15,3 +15,21 @@ C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\refint\Servi
 C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.pdb
 C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.genruntimeconfig.cache
 C:\Users\V I S I O N\Desktop\IsnaNews\ServiceLayer\obj\Debug\net8.0\ref\ServiceLayer.dll
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\bin\Debug\net8.0\ServiceLayer.deps.json
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\bin\Debug\net8.0\ServiceLayer.runtimeconfig.json
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\bin\Debug\net8.0\ServiceLayer.dll
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\bin\Debug\net8.0\ServiceLayer.pdb
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\bin\Debug\net8.0\DataLayer.dll
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\bin\Debug\net8.0\DataLayer.pdb
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.csproj.AssemblyReference.cache
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.AssemblyInfoInputs.cache
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.AssemblyInfo.cs
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.csproj.CoreCompileInputs.cache
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.sourcelink.json
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.csproj.CopyComplete
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.dll
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\obj\Debug\net8.0\refint\ServiceLayer.dll
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.pdb
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.genruntimeconfig.cache
+E:\MyIsnaNews\IsnaNews\IsnaNews\ServiceLayer\obj\Debug\net8.0\ref\ServiceLayer.dll

@@ -10,7 +10,7 @@ namespace IsnaNews.Controllers
         public IActionResult Index(long id)
         {
             Core core = new Core();
-            TblNews tblNews = core.News.Get(i => i.Id == id, includes: "Category,MainImage,Reporter,TblNewsFileAttachRel,TblNewsKeyWordRel,TblNewsVideoRel,TblNewsComment").First();
+            TblNews tblNews = core.News.Get(i => i.Id == id, includes: "Category,MainImage,Reporter,TblNewsKeyWordRel,TblNewsVideoRel,TblNewsComment").First();
             NewsPublicDto newsPublicDto = new()
             {
                 Body = tblNews.Body,
