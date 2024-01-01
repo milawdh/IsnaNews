@@ -1,4 +1,7 @@
-﻿@{
+﻿@using System.ComponentModel.DataAnnotations
+@using DataLayer.Dtos.Admin.User
+@using ServiceLayer.Utils
+@{
     ViewData["Title"] = "Home Page";
     Layout = "HomeLayout";
 }
@@ -15,9 +18,9 @@
         @await Component.InvokeAsync("LatestNews")
         <!--LastNews End-->
     </div>
-        <!--MostViewdNews Start-->
-        @await Component.InvokeAsync("MostViewedNews")
-        <!--MostViewdNews End-->
+    <!--MostViewdNews Start-->
+    @await Component.InvokeAsync("MostViewedNews")
+    <!--MostViewdNews End-->
 
 
 </div>

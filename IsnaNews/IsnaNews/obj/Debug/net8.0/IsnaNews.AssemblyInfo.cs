@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IsnaNews")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2dc15d1d72b3aa4d7987488d25d54f54acf62a3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d9cfe749ca517ea7378fa6a3b259535d6f08d1b")]
 [assembly: System.Reflection.AssemblyProductAttribute("IsnaNews")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IsnaNews")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
