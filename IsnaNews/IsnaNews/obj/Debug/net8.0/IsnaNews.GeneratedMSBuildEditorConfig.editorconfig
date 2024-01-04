@@ -34,8 +34,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTmV3c0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Admin/NewsModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTmV3c01vZGFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Admin/Settings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2V0dGluZ3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Admin/UserModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlck1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Admin/UsersList.cshtml]
@@ -100,6 +108,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Shared/Components/MyComments/MyComments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTXlDb21tZW50c1xNeUNvbW1lbnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Shared/Components/OneBodyModal/OneBodyModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcT25lQm9keU1vZGFsXE9uZUJvZHlNb2RhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Shared/Components/ValidationModal/ValidationModal.cshtml]

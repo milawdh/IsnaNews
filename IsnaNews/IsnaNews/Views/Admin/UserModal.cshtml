@@ -1,0 +1,249 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- This is a button toggling the modal -->
+<a class="uk-button uk-button-primary" href="#modal-sections" uk-toggle>Open</a>
+
+
+<div id="modal-sections" class="" uk-modal dir="rtl">
+    <div class="uk-modal-dialog">
+        <!--Header Start-->
+        <div class="uk-modal-header _MyFont" dir="rtl">
+            <button class="uk-modal-close-outside" type="button" uk-close></button>
+            <h2 class="mt-2 _MyFont">
+                <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                <span class="uk-modal-title">
+                    تبلیغ جدید
+                </span>
+            </h2>
+        </div>
+        <!--Header End-->
+        <!--Body Start-->
+        <div class="uk-modal-body _MyFont">
+            <ul uk-tab="animation: uk-animation-fade">
+                <li><a href="#" class="text-decoration-none">مشخصات کاربر</a></li>
+                <li><a href="#" class="text-decoration-none">دسترسی های کاربر</a></li>
+            </ul>
+            <ul class="uk-switcher uk-margin">
+                <!--BodyForm Start-->
+                <li>
+                    <form class="_MyFont" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+
+                        <div class="uk-margin">
+                            <div class="uk-form-controls">
+                                <div uk-form-custom class="text-end">
+                                    <input required type="file" name="ProfileImageUrl" accept="image/png,image/jpeg,image/webp" id="ProfileImageUrlInput">
+                                    <button class="uk-button uk-button-default" type="button">انتخاب عکس پروفایل</button>
+                                </div>
+                                <div class="my-2 text-center" id="ProfileImageUrlPreview">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-horizontal-text">نام</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" name="Name" id="Name" type="text" placeholder="نام کاربر...">
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-horizontal-text">نام کاربری</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" name="UserName" id="UserName" type="text" placeholder="نام کاربری...">
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-horizontal-text">رمز کاربر</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" name="Password" id="Password" type="text" placeholder="رمز جدید کاربر...">
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                <!--BodyForm End-->
+                <li>
+                    <h3 class="_MyFont text-danger fw-bold my-2 text-end" dir="rtl">در حال فعلی نقش کاربر Admin است</h3>
+                    <form class="_MyFont" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+                        <label class="_MyFont fw-bold my-2">ویرایش نقش کاربر</label>
+                        <select name="RoleId" class="uk-select uk-form-controls" id="RoleId">
+                            <option value="1">Admin User</option>
+                            <option value="4">Normal User</option>
+                        </select>
+                    </form>
+                    <label class="uk-form-label text-primary fw-bold _MyFont mt-3">دسترسی های کاربر</label>
+                    <div class="uk-panel _scrollBar my-2 border border-2 rounded-1 border-secondary p-2">
+                        <ul class="uk-list disabled">
+                            <li><label><input class="uk-disabled uk-checkbox" disabled checked type="checkbox"> Category 1</label></li>
+                            <li>
+                                <label><input disabled class="uk-checkbox" type="checkbox"> Category 2</label>
+                                <ul>
+                                    <li><label><input class="uk-checkbox" disabled checked type="checkbox"> Category 2.2</label></li>
+                                    <li>
+                                        <label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3</label>
+                                        <ul>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.1</label></li>
+                                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 2.3.2</label></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><label><input disabled class="uk-checkbox" type="checkbox"> Category 3</label></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--Body End-->
+        <!--Footer Start-->
+        <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+            <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+            <button class="uk-button uk-button-primary" type="submit" onclick="send()">ثبت</button>
+        </div>
+        <div class="progress uk-hidden" id="progressDiv">
+            <div class="progress-bar" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <!--Footer End-->
+    </div>
+
+</div>
+<script>
+    var fileInput = document.getElementById('ProfileImageUrlInput');
+    var preview = document.getElementById('ProfileImageUrlPreview');
+
+    fileInput.addEventListener('change', function (event) {
+        preview.innerHTML = ''
+        var file = event.target.files[0];
+
+        if (file.type.endsWith('png') ||
+            file.type.endsWith('jpeg') ||
+            file.type.endsWith('jpg') ||
+            file.type.endsWith('gif') ||
+            file.type.endsWith('webp')) {
+            IsFileValid = true;
+            var reader = new FileReader();
+            reader.addEventListener('load', function (event) {
+                var img = document.createElement('img');
+                img.src = event.target.result;
+                img.width = 240;
+                img.height = 240;
+                img.classList.add('d-inline-block', 'rounded-3', 'm-2')
+                preview.appendChild(img);
+            });
+
+            reader.readAsDataURL(file);
+        }
+        else {
+            event.target.value = ''
+            UIkit.notification({
+                message: '<span class="_MyFont">فرمت فایل مورد نظر فقط عکس میتواند باشد</span>',
+                status: 'danger',
+                pos: 'top-right',
+                timeout: 5000
+            });
+
+        }
+    });
+
+    function send() {
+        var MyForm = document.getElementById('MyForm1')
+
+        if (!MyForm.checkValidity()) {
+            var tmpSubmit = document.createElement('button')
+            MyForm.appendChild(tmpSubmit)
+            tmpSubmit.click()
+            MyForm.removeChild(tmpSubmit)
+        }
+        else {
+            document.getElementById('progressDiv').classList.remove('uk-hidden')
+            var data = new FormData(MyForm1);
+            $.ajax({
+                url: '/Home/File',
+                type: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                xhr: function () {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = evt.loaded / evt.total;
+                            $('.progress-bar').css({
+                                width: percentComplete * 100 + '%'
+                            });
+                            if (percentComplete === 1) {
+                                $('.progress-bar').addClass('bg-success');
+                            }
+                        }
+                    }, false);
+                    return xhr;
+                },
+                success: function (data) {
+                },
+                error: function (data) {
+                }
+            });
+        }
+    }
+
+</script>
+<script>
+
+    function removeFileFromFileList(index,
+        input = document.getElementById('VideoUrls'),
+        element = null, previewSectionId = 'VideoUrlsPreview',
+        IntitDelegate = InitVideoInputPreview) {
+        const dt = new DataTransfer();
+        const { files } = input;
+
+        for (let i = 0; i < files.length; i++) {
+            if (i !== index) {
+                const file = files[i];
+                dt.items.add(file);
+            }
+        }
+        input.files = dt.files;
+        if (element != null) {
+            element.remove()
+            if (document.getElementById(previewSectionId).children.length == 0) {
+                document.getElementById(previewSectionId).removeAttribute('style')
+            }
+            IntitDelegate()
+        }
+    }
+
+    @*             <form method="post" enctype="multipart/form-data" id="form1">
+        <input type="text" name="name" />
+        </form>
+        <form method="post" enctype="multipart/form-data" id="form2">
+        <div class="form-group">
+        <label for="file">Choose file:</label>
+        <input type="file"  onchange="file.src=this.value" class="form-control-file">
+        <input type="image" id="file" name="file" src="~/css/site.css" />
+        </div>
+        <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <button type="button" class="btn btn-primary" id="upload">Upload</button>
+        </form>
+        <script>
+
+        </script> *@

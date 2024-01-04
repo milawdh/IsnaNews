@@ -100,4 +100,13 @@ namespace IsnaNews.ViewComponents
             return View("AdminAdvertisementModal");
         }
     }
+
+    [ViewComponent(Name = "OneBodyModal")]
+    public class OneBodyModal : ViewComponent
+    {
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            return View("OneBodyModal");
+        }
+    }
 }

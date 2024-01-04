@@ -32,10 +32,9 @@ namespace DataLayer.Dtos.Admin.User
         public string UserName { get; set; } = null!;
 
         [BindProperty]
-        [Required(ErrorMessage = "فیلد {0} خالی است")]
         [DisplayName("رمز")]
-        public string Password { get; set; } = null!;
-        public int? RoleId { get; set; }
+        public string? Password { get; set; }
+        public int RoleId { get; set; }
         [Required(ErrorMessage = "فیلد {0} خالی است", AllowEmptyStrings = false)]
         [DisplayName("عکس کاربر")]
         public string ProfileImageUrl { get; set; }
