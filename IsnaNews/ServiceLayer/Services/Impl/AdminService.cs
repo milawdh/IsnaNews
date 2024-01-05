@@ -90,7 +90,7 @@ namespace ServiceLayer.Services.Impl
                     UserName = user.UserName,
                     Tell = user.Tell,
                     Password = user.Password.HashData(),
-                    RoleId = user.RoleId ?? 1,
+                    RoleId = user.RoleId,
                     ProfileImageId = 1
                 };
                 _core.User.Add(tblUser);
@@ -136,7 +136,7 @@ namespace ServiceLayer.Services.Impl
                     UserName = user.UserName,
                     Tell = user.Tell,
                     Password = user.Password.HashData(),
-                    RoleId = user.RoleId ?? 1,
+                    RoleId = user.RoleId,
                     //TODO
                     ProfileImageId = 1
                 };

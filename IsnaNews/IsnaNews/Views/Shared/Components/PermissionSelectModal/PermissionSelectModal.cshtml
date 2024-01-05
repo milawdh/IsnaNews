@@ -1,0 +1,173 @@
+﻿@using DataLayer.Models
+@model List<TblRolePermissions>
+
+
+<!-- This is a button toggling the modal -->
+<a class="uk-button uk-button-primary" href="#modal-sections" uk-toggle>Open</a>
+
+
+<div id="modal-sections" class="" uk-modal dir="rtl">
+    <div class="uk-modal-dialog">
+        <!--Header Start-->
+        <div class="uk-modal-header _MyFont" dir="rtl">
+            <button class="uk-modal-close-outside" type="button" uk-close></button>
+
+            <h2 class="mt-2 _MyFont">
+                <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                <span class="uk-modal-title">
+                    نقش جدید
+                </span>
+            </h2>
+        </div>
+        <!--Header End-->
+        <!--Body Start-->
+        <div class="uk-modal-body _MyFont">
+            <!--BodyForm Start-->
+            <form class="_MyFont my-2" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+                <label class="my-1 fw-bold _MyFont">نام نقش</label>
+                <input class="uk-input" name="Name" id="Name" placeholder="نام ...." />
+            </form>
+            <!--BodyForm End-->
+            <label class="uk-form-label text-primary fw-bold _MyFont mt-3">دسترسی ها</label>
+            <div class="uk-panel _scrollBar my-2 border border-2 rounded-1 border-secondary p-2" style="height:400px;">
+                <ul class="uk-list">
+                    @{
+                        string MainGroupName = "";
+                    }
+                    @foreach (var i in Model)
+                    {
+                        @if (i.ParentId == null)
+                        {
+                            MainGroupName = "Gr" + i.Name;
+                            <li class="d-flex flex-column"><label data-groupName="@i.Name"><input id="@i.Name" class="uk-checkbox @MainGroupName" onclick="SetPermission(this,true)" type="checkbox" value="@i.Id"> @i.Name</label></li>
+                        }
+                        else
+                        {
+                            @if (i.InverseParent.Count > 0)
+                            {
+                                var ParentGroupName = "Gr" + @i.Name;
+                                <ul class="my-1">
+                                    <li class="d-flex flex-column">
+                                        <label data-groupName="@i.Name"><input id="@i.Name" data-parent="@MainGroupName.Replace("Gr", "")" class="uk-checkbox @MainGroupName" onclick="SetPermission(this,true)" type="checkbox" value="@i.Id"> @i.Name.Replace("Admin.", "").Replace("Permission", " Permission")</label>
+                                        <ul class="d-flex flex-column my-1 ">
+                                            @foreach (var j in i.InverseParent)
+                                            {
+                                                <li>
+                                                    <label data-groupName="@j.Name"><input id="@j.Name" data-parent="@i.Name" class="uk-checkbox @ParentGroupName @MainGroupName" onclick="SetPermission(this)" type="checkbox" value="@j.Id"> @j.Name.Replace(i.Name+".","")</label>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                </ul>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <!--Body End-->
+        <!--Footer Start-->
+        <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+            <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+            <button class="uk-button uk-button-primary" type="submit" onclick="collect()">ثبت</button>
+        </div>
+        <div class="progress uk-hidden" id="progressDiv">
+            <div class="progress-bar" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <!--Footer End-->
+    </div>
+
+</div>
+<script>
+    function SetPermission(element, isGropName = false) {
+        
+        if (isGropName) {
+            disablePermission(element.parentElement.getAttribute('data-groupName'), element.checked)
+            var parentId = element.getAttribute('data-parent')
+            if (parentId != null) {
+                document.getElementById(parentId).checked = true;
+            }
+        }
+        else {
+            if (element.checked) {
+                var parent = document.getElementById(element.getAttribute('data-parent'))
+                parent.checked = true
+                document.getElementById('Admin').checked = true
+            }
+        }
+        var inputs = document.getElementsByClassName('GrAdmin')
+        var checkedInputsCount = 0;
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].checked) {
+                checkedInputsCount++
+            }
+        }
+        if (checkedInputsCount <= 1 && !element.checked) {
+            disablePermission('Admin', false)
+            return;
+        }
+    }
+    function disablePermission(groupName, checkedOrNot) {
+        var groups = document.getElementsByClassName('Gr' + groupName)
+        for (var i = 0; i < groups.length; i++) {
+            var input = groups[i]
+            input.checked = checkedOrNot
+        }
+    }
+</script>
+<script>
+    function collect() {
+        var inputs = document.getElementsByClassName('GrAdmin')
+        var data = []
+        var formData = new FormData();
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].checked) {
+                data.push(Number.parseInt(inputs[i].value))
+            }
+        }
+        formData.append('RoleId', data)
+        console.log(data)
+        console.log(formData.get('RoleId'))
+    }
+    function send() {
+        var MyForm = document.getElementById('MyForm1')
+
+        if (!MyForm.checkValidity()) {
+            var tmpSubmit = document.createElement('button')
+            MyForm.appendChild(tmpSubmit)
+            tmpSubmit.click()
+            MyForm.removeChild(tmpSubmit)
+        }
+        else {
+            document.getElementById('progressDiv').classList.remove('uk-hidden')
+            var data = new FormData(MyForm1);
+            $.ajax({
+                url: '/Home/File',
+                type: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                xhr: function () {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = evt.loaded / evt.total;
+                            $('.progress-bar').css({
+                                width: percentComplete * 100 + '%'
+                            });
+                            if (percentComplete === 1) {
+                                $('.progress-bar').addClass('bg-success');
+                            }
+                        }
+                    }, false);
+                    return xhr;
+                },
+                success: function (data) {
+                },
+                error: function (data) {
+                }
+            });
+        }
+    }
+
+</script>

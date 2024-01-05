@@ -1,5 +1,6 @@
 ﻿using DataLayer.Dtos.Shared;
 using Microsoft.AspNetCore.Mvc;
+using Services.Services;
 
 namespace IsnaNews.ViewComponents
 {
@@ -107,6 +108,17 @@ namespace IsnaNews.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             return View("OneBodyModal");
+        }
+    }
+
+    [ViewComponent(Name = "PermissionSelectModal")]
+    public class PermissionSelectModal : ViewComponent
+    {
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            Core core = new Core();
+            var permissions = core.Permissions.Get().ToList();
+            return View("PermissionSelectModal",permissions);
         }
     }
 }
