@@ -18,8 +18,8 @@ namespace DataLayer.Dtos.Admin.News
         public string MainImageUrl { get; set; }
         public bool IsImportantNews { get; set; } = false;
         public long ViewCount { get; set; }
-        public List<string> ImageUrls { get; set; } = new List<string>();
-        public List<string> VideoUrls { get; set; } = new List<string>();
+        public List<(string Url , long id)> ImageUrls { get; set; } = new List<(string Url, long id)>();
+        public List<(string Url, long id)> VideoUrls { get; set; } = new List<(string Url, long id)>();
         public List<string> Keyword { get; set; } = new List<string>();
         public List<(string userName, string UserProfile, long Id, string? Reply)> Comments { get; set; } = new();
     }

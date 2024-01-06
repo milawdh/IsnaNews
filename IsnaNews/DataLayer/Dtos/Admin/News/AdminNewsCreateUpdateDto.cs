@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Http;
 
 namespace DataLayer.Dtos.Admin.News
 {
@@ -21,20 +22,21 @@ namespace DataLayer.Dtos.Admin.News
         [DisplayName("خبرنگار")]
         public int ReporterId { get; set; }
 
-        [Column(TypeName = "datetime")]
-        public DateTime DatePosted { get; set; }
         [Required(ErrorMessage = "فیلد {0} خالی است", AllowEmptyStrings = false)]
         [DisplayName("بدنه خبر")]
         public string Body { get; set; } = null!;
         [Required(ErrorMessage = "فیلد {0} خالی است", AllowEmptyStrings = false)]
         [DisplayName("دسته بندی خبر")]
         public int CategoryId { get; set; }
+        public IFormFile MainImage { get; set; }
+
+        [Description("It's Used to check if Main image changed in Update")]
         [Required(ErrorMessage = "فیلد {0} خالی است", AllowEmptyStrings = false)]
         [DisplayName("عکس اصلی خبر")]
-        public string MainImageUrl { get; set; }
+        public string PerviuosMainImage { get; set; }
         public bool IsImportantNews { get; set; } = false;
-        public List<string> VideoUrls { get; set; } = new List<string>();
-        public List<string> ImageUrls { get; set; } = new List<string>();
+        public List<IFormFile> VideoUrls { get; set; } = new List<IFormFile>();
+        public List<IFormFile> ImageUrls { get; set; } = new List<IFormFile>();
         public List<string> Keyword { get; set; } = new List<string>();
 
     }

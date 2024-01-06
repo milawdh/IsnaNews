@@ -7,6 +7,7 @@ using DataLayer.Dtos.Admin.Keyword;
 using DataLayer.Dtos.Admin.News;
 using DataLayer.Dtos.Admin.User;
 using DataLayer.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,16 +18,17 @@ namespace ServiceLayer.Services.Api
 {
     internal interface IAdminService
     {
+
         AdminReadAllQueryResult<AdminUserDto> GetUsersList();
         AdminReadByIdQueryResult<AdminUserDto> GetUserById(int id);
-        AdminNoneQueryResult AddUser(AdminUserCreateUpdateDto user);
-        AdminNoneQueryResult UpdateUser(AdminUserCreateUpdateDto user, int userId);
+        Task<AdminNoneQueryResult> AddUserAsync(AdminUserCreateUpdateDto userDto);
+        Task<AdminNoneQueryResult> UpdateUserAsync(AdminUserCreateUpdateDto userDto, int userId);
         AdminNoneQueryResult DeleteUser(int userId);
         AdminReadByIdQueryResult<AdminUsersPermissionsDto> GetUsersPermissions(int userId);
         AdminReadAllQueryResult<AdminNewsDto> GetNewsList();
         AdminReadByIdQueryResult<AdminNewsDto> GetNewsById(long id);
         Task<AdminNoneQueryResult> AddNewsAsync(AdminNewsCreateUpdateDto dto);
-        AdminNoneQueryResult UpdateNews(AdminNewsCreateUpdateDto dto, long id);
+        Task<AdminNoneQueryResult> UpdateNewsAsync(AdminNewsCreateUpdateDto dto, long newsId);
         AdminNoneQueryResult DeleteNews(long id);
         AdminNoneQueryResult DeleteComment(long id);
         AdminNoneQueryResult ReplyComment(AdminCommentReplyDto replyDto, int SupporterId);
@@ -35,8 +37,8 @@ namespace ServiceLayer.Services.Api
         AdminNoneQueryResult DeleteRole(int roleId);
         AdminReadByIdQueryResult<AdminRoleDto> GetRoleById(int roleId);
         AdminReadAllQueryResult<AdminRoleDto> GetRoleList();
-        AdminNoneQueryResult AddAdvertisement(AdminAdvertisementCreateUpdateDto dto);
-        AdminNoneQueryResult UpdateAdvertisement(AdminAdvertisementCreateUpdateDto dto, int Id);
+        Task<AdminNoneQueryResult> AddAdvertisementAsync(AdminAdvertisementCreateUpdateDto dto);
+        Task<AdminNoneQueryResult> UpdateAdvertisementAsync(AdminAdvertisementCreateUpdateDto dto, int Id);
         AdminNoneQueryResult DeleteAdvertisement(int Id);
         AdminReadByIdQueryResult<AdminAdvertisementDto> GetAdvertisementById(int Id);
         AdminReadAllQueryResult<AdminAdvertisementDto> GetAdminAdvertisementList();
@@ -55,10 +57,10 @@ namespace ServiceLayer.Services.Api
         AdminNoneQueryResult DeleteKeyword(int Id);
         AdminReadByIdQueryResult<AdminKeywordDto> GetKeywordById(int Id);
         AdminReadAllQueryResult<AdminKeywordDto> GetKewordList();
-
-
-
-
+        Task<(bool Success, string? Error, long? VideoId)> AddVideo(IFormFile file);
+        Task<(bool Success, string? Error, long? ImageId)> AddImage(IFormFile file);
+        AdminNoneQueryResult DeleteImageRel(long relId);
+        AdminNoneQueryResult DeleteVideoRel(long relId);
 
 
 

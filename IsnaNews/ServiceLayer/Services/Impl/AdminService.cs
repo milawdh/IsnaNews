@@ -8,16 +8,22 @@ using DataLayer.Dtos.Admin.News;
 using DataLayer.Dtos.Admin.User;
 using DataLayer.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using ServiceLayer.Services.Api;
 using ServiceLayer.Utils;
 using Services.Services;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Net.WebRequestMethods;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ServiceLayer.Services.Impl
 {
     public class AdminService : IAdminService
     {
+        private const string ResourcePath = @"../../IsnaNews/wwwroot/Resources/";
 
         private readonly Core _core;
 
@@ -62,36 +68,42 @@ namespace ServiceLayer.Services.Impl
             }
             return new AdminReadByIdQueryResult<AdminUserDto>(MapUserDto(_core.User.GetById(id)));
         }
-        public AdminNoneQueryResult AddUser(AdminUserCreateUpdateDto user)
+        public async Task<AdminNoneQueryResult> AddUserAsync(AdminUserCreateUpdateDto userDto)
         {
-            var modelValidateResult = Extentions.ValidateModel(user);
+
+            var modelValidateResult = Extentions.ValidateModel(userDto);
             if (!modelValidateResult.IsValid)
-            {
                 return new AdminNoneQueryResult(modelValidateResult.ErrorMessages);
-            }
             var errors = new List<string>();
-            if (_core.User.Any(_ => _.Tell == user.Tell))
+            if (_core.User.Any(_ => _.Tell == userDto.Tell))
             {
                 errors.Add("این شماره تلفن از قبل وجود دارد");
             }
-            if (_core.User.Any(_ => _.UserName == user.UserName))
+            if (_core.User.Any(_ => _.UserName == userDto.UserName))
             {
                 errors.Add("این نام کاربری از قبل وجود دارد");
             }
             if (errors.Count > 0)
-            {
                 return new AdminNoneQueryResult(errors);
-            }
             try
             {
+                long profileImageId = 1;
+                if (userDto.ProfileImage != null)
+                {
+                    var addImageResult = await AddImage(userDto.ProfileImage);
+                    if (!addImageResult.Success)
+                        return new AdminNoneQueryResult(addImageResult.Error);
+                    profileImageId = addImageResult.ImageId.Value;
+                }
+
                 TblUser tblUser = new()
                 {
-                    Name = user.Name,
-                    UserName = user.UserName,
-                    Tell = user.Tell,
-                    Password = user.Password.HashData(),
-                    RoleId = user.RoleId,
-                    ProfileImageId = 1
+                    Name = userDto.Name,
+                    UserName = userDto.UserName,
+                    Tell = userDto.Tell,
+                    Password = userDto.Password.HashData(),
+                    RoleId = userDto.RoleId,
+                    ProfileImageId = profileImageId
                 };
                 _core.User.Add(tblUser);
                 _core.Save();
@@ -103,9 +115,9 @@ namespace ServiceLayer.Services.Impl
             }
         }
 
-        public AdminNoneQueryResult UpdateUser(AdminUserCreateUpdateDto user, int userId)
+        public async Task<AdminNoneQueryResult> UpdateUserAsync(AdminUserCreateUpdateDto userDto, int userId)
         {
-            var modelValidateResult = Extentions.ValidateModel(user);
+            var modelValidateResult = Extentions.ValidateModel(userDto);
             if (!modelValidateResult.IsValid)
             {
                 return new AdminNoneQueryResult(modelValidateResult.ErrorMessages);
@@ -115,11 +127,11 @@ namespace ServiceLayer.Services.Impl
                 return new AdminNoneQueryResult("کاربر یافت نشد");
             }
             var errors = new List<string>();
-            if (_core.User.Any(_ => _.Tell == user.Tell && _.Id != userId))
+            if (_core.User.Any(_ => _.Tell == userDto.Tell && _.Id != userId))
             {
                 errors.Add("این شماره تلفن از قبل وجود دارد");
             }
-            if (_core.User.Any(_ => _.UserName == user.UserName && _.Id != userId))
+            if (_core.User.Any(_ => _.UserName == userDto.UserName && _.Id != userId))
             {
                 errors.Add("این نام کاربری از قبل وجود دارد");
             }
@@ -129,16 +141,28 @@ namespace ServiceLayer.Services.Impl
             }
             try
             {
+                long profileImageId = 1;
+                if (userDto.ProfileImage != null)
+                {
+                    var addImageResult = await AddImage(userDto.ProfileImage);
+                    if (!addImageResult.Success)
+                        return new AdminNoneQueryResult(addImageResult.Error);
+                    profileImageId = addImageResult.ImageId.Value;
+
+                    var deleteImageResult = DeleteImage(_core.User.GetById(userId).ProfileImageId);
+                    if (!deleteImageResult.Success)
+                        return new AdminNoneQueryResult(deleteImageResult.Error);
+
+                }
                 TblUser tblUser = new()
                 {
                     Id = userId,
-                    Name = user.Name,
-                    UserName = user.UserName,
-                    Tell = user.Tell,
-                    Password = user.Password.HashData(),
-                    RoleId = user.RoleId,
-                    //TODO
-                    ProfileImageId = 1
+                    Name = userDto.Name,
+                    UserName = userDto.UserName,
+                    Tell = userDto.Tell,
+                    Password = userDto.Password.HashData(),
+                    RoleId = userDto.RoleId,
+                    ProfileImageId = profileImageId
                 };
                 _core.User.Update(tblUser);
                 _core.Save();
@@ -205,19 +229,19 @@ namespace ServiceLayer.Services.Impl
             if (news.Id != null)
             {
                 result.MainImageUrl = _core.Image.GetById(news.MainImageId).ImageUrl;
-                result.ImageUrls = _core.NewsImageRel.Get(includes: "Image", where: i => i.NewsId == news.Id).Select(_ => _.Image.ImageUrl).ToList();
-                result.VideoUrls = _core.NewsVideoRel.Get(includes: "Video", where: i => i.NewsId == news.Id).Select(_ => _.Video.VideoUrl).ToList();
+                result.ImageUrls = _core.NewsImageRel.Get(includes: "Image", where: i => i.NewsId == news.Id).Select(_ => (_.Image.ImageUrl, _.ImageId)).ToList();
+                result.VideoUrls = _core.NewsVideoRel.Get(includes: "Video", where: i => i.NewsId == news.Id).Select(_ => (_.Video.VideoUrl, _.VideoId)).ToList();
                 result.Keyword = _core.NewsKeywordRel.Get(includes: "KeyWord", where: i => i.NewsId == news.Id).Select(_ => _.KeyWord.Body).ToList();
                 result.Comments = _core.Comment.Get(includes: "User").Select(i =>
                 {
-                    (string userName, string UserProfile, long Id, string? Reply) r;
-                    r.userName = i.User.UserName;
-                    r.UserProfile = _core.Image.GetById(i.User.ProfileImageId).ImageUrl;
-                    r.Id = i.Id;
-                    r.Reply = null;
+                    (string userName, string UserProfile, long Id, string? Reply) comment;
+                    comment.userName = i.User.UserName;
+                    comment.UserProfile = _core.Image.GetById(i.User.ProfileImageId).ImageUrl;
+                    comment.Id = i.Id;
+                    comment.Reply = null;
                     if (i.InverseParent.Count > 0)
-                        r.Reply = i.InverseParent.First().Body;
-                    return r;
+                        comment.Reply = i.InverseParent.First().Body;
+                    return comment;
                 }).ToList();
             }
             return result;
@@ -236,14 +260,14 @@ namespace ServiceLayer.Services.Impl
             }
             return new AdminReadByIdQueryResult<AdminNewsDto>(MapNewsDto(_core.News.GetById(id)));
         }
-        //TODO Fix Images
         public async Task<AdminNoneQueryResult> AddNewsAsync(AdminNewsCreateUpdateDto dto)
         {
             var modelValidateResult = Extentions.ValidateModel(dto);
             if (!modelValidateResult.IsValid)
-            {
                 return new AdminNoneQueryResult(modelValidateResult.ErrorMessages);
-            }
+            if (dto.MainImage == null || dto.PerviuosMainImage.IsNullOrEmpty())
+                return new AdminNoneQueryResult("عکس اصلی خبر خالی است");
+
             var errors = new List<string>();
             if (_core.News.Any(_ => _.Title == dto.Title))
                 errors.Add("خبری با این تیتر وجود دارد");
@@ -264,36 +288,61 @@ namespace ServiceLayer.Services.Impl
             }
             try
             {
-                if (!dto.MainImageUrl.IsAllowedFormat(new string[] { "jpg", "png" }))
-                {
-                    return new AdminNoneQueryResult("خطا در پردازش عکس اصلی");
-                }
-                _core.Image.Add(new TblImage { ImageUrl = dto.MainImageUrl });
-                _core.Save();
-                var MainImageId = _core.Image.Get().OrderBy(x => x.Id).LastOrDefault().Id;
+                var imageAddResult = await AddImage(dto.MainImage);
+                if (!imageAddResult.Success)
+                    return new AdminNoneQueryResult(imageAddResult.Error);
+
                 TblNews tblNews = new()
                 {
                     Body = dto.Body,
-                    DatePosted = dto.DatePosted,
+                    DatePosted = DateTime.Now,
                     ReporterId = dto.ReporterId,
                     Title = dto.Title,
                     CategoryId = dto.CategoryId,
                     IsImportantNews = dto.IsImportantNews,
-                    ViewCount = 0
+                    ViewCount = 0,
+                    MainImageId = imageAddResult.ImageId.Value
                 };
                 _core.News.Add(tblNews);
                 _core.Save();
-                var newsId = _core.News.Get().OrderBy(x => x.Id).LastOrDefault().Id;
+                var newsId = _core.News.Get().OrderBy(_ => _.Id).LastOrDefault().Id;
+
                 //Media
-                var addImageResult = AddImage(dto, newsId);
-                if (!addImageResult.Success)
+                foreach (var image in dto.ImageUrls)
                 {
-                    return new AdminNoneQueryResult(addImageResult.Error);
+                    try
+                    {
+                        var addImageResult = await AddImage(image);
+                        if (!addImageResult.Success)
+                            return new AdminNoneQueryResult(addImageResult.Error);
+                        _core.NewsImageRel.Add(new TblNewsImageRel { ImageId = addImageResult.ImageId.Value, NewsId = newsId });
+                        _core.Save();
+                    }
+                    catch (Exception ex)
+                    {
+                        return new AdminNoneQueryResult("خطا در پردازش عکس فرعی" + image.FileName);
+                    }
                 }
-                var addVideoResult = AddVideo(dto, newsId);
-                if (!addVideoResult.Success)
+                foreach (var video in dto.VideoUrls)
                 {
-                    return new AdminNoneQueryResult(addVideoResult.Error);
+                    try
+                    {
+                        var addVideoResult = await AddVideo(video);
+                        if (!addVideoResult.Success)
+                            return new AdminNoneQueryResult(addVideoResult.Error);
+                        _core.NewsVideoRel.Add(new TblNewsVideoRel { NewsId = newsId, VideoId = addVideoResult.VideoId.Value });
+                    }
+                    catch (Exception ex)
+                    {
+                        return new AdminNoneQueryResult("خطا در پردازش ویدئو" + video.FileName);
+                    }
+                }
+                //KeyWord Add
+                foreach (var item in dto.Keyword)
+                {
+                    TblKeyWord tblKeyWord = _core.Keyword.Get(_ => _.Body == item).FirstOrDefault();
+                    _core.NewsKeywordRel.Add(new TblNewsKeyWordRel { KeyWordId = tblKeyWord.Id, NewsId = newsId });
+                    _core.Save();
                 }
                 return new AdminNoneQueryResult();
             }
@@ -302,16 +351,18 @@ namespace ServiceLayer.Services.Impl
                 return new AdminNoneQueryResult(ex.Message);
             }
         }
-        //TODO Fix Images
-        public AdminNoneQueryResult UpdateNews(AdminNewsCreateUpdateDto dto, long id)
+        public async Task<AdminNoneQueryResult> UpdateNewsAsync(AdminNewsCreateUpdateDto dto, long newsId)
         {
             var modelValidateResult = Extentions.ValidateModel(dto);
             if (!modelValidateResult.IsValid)
-            {
                 return new AdminNoneQueryResult(modelValidateResult.ErrorMessages);
-            }
-            if (!_core.News.Any(x => x.Id == id))
+
+            if (dto.MainImage == null && dto.PerviuosMainImage.IsNullOrEmpty())
+                return new AdminNoneQueryResult("عکس اصلی خبر خالی است");
+
+            if (!_core.News.Any(x => x.Id == newsId))
                 return new AdminNoneQueryResult("خبر مورد نظر یافت نشد");
+
             var errors = new List<string>();
             if (_core.News.Any(_ => _.Title == dto.Title))
                 errors.Add("خبری با این تیتر وجود دارد");
@@ -332,39 +383,87 @@ namespace ServiceLayer.Services.Impl
             }
             try
             {
-                if (!dto.MainImageUrl.IsAllowedFormat(new string[] { "jpg", "png" }))
+                TblNews tblNews = _core.News.Get(_ => _.Id == newsId, includes: "MainImage").FirstOrDefault();
+                if (dto.PerviuosMainImage.Trim().Split('/')[dto.PerviuosMainImage.Trim().Split('/').Length - 1] !=
+                    tblNews.MainImage.ImageUrl
+                    )
                 {
-                    return new AdminNoneQueryResult("خطا در پردازش عکس اصلی");
+                    if (dto.MainImage != null)
+                        return new AdminNoneQueryResult("عکس اصلی خبر خالی است");
+                    var imageAddResult = await AddImage(dto.MainImage);
+                    if (!imageAddResult.Success)
+                        return new AdminNoneQueryResult(imageAddResult.Error);
+                    var ImageDeleteResult = DeleteImage(tblNews.MainImageId);
+                    if (!ImageDeleteResult.Success)
+                        return new AdminNoneQueryResult(ImageDeleteResult.Error);
+
+
+                    tblNews = new TblNews()
+                    {
+                        Id = newsId,
+                        Body = dto.Body,
+                        DatePosted = DateTime.Now,
+                        ReporterId = dto.ReporterId,
+                        MainImageId = imageAddResult.ImageId.Value,
+                        Title = dto.Title,
+                        CategoryId = dto.CategoryId,
+                        IsImportantNews = dto.IsImportantNews,
+                    };
+                    _core.News.Update(tblNews);
+                    _core.Save();
                 }
-                _core.Image.Add(new TblImage { ImageUrl = dto.MainImageUrl });
-                _core.Save();
-                var MainImageId = _core.Image.Get().OrderBy(x => x.Id).LastOrDefault().Id;
-                TblNews tblNews = new()
-                {
-                    Id = id,
-                    Body = dto.Body,
-                    DatePosted = dto.DatePosted,
-                    ReporterId = dto.ReporterId,
-                    MainImageId = MainImageId,
-                    Title = dto.Title,
-                    CategoryId = dto.CategoryId,
-                    IsImportantNews = dto.IsImportantNews,
-                };
-                _core.Image.DeleteById(_core.News.GetById(id).MainImageId);
-                _core.Save();
-                _core.News.Update(tblNews);
-                _core.Save();
-                var newsId = _core.News.Get().OrderBy(x => x.Id).LastOrDefault().Id;
+
+
                 //Media
-                var addImageResult = AddImage(dto, newsId);
-                if (!addImageResult.Success)
+                foreach (var image in dto.ImageUrls)
                 {
-                    return new AdminNoneQueryResult(addImageResult.Error);
+                    try
+                    {
+                        var addImageResult = await AddImage(image);
+                        if (!addImageResult.Success)
+                            return new AdminNoneQueryResult(addImageResult.Error);
+                        _core.NewsImageRel.Add(new TblNewsImageRel { ImageId = addImageResult.ImageId.Value, NewsId = newsId });
+                        _core.Save();
+                    }
+                    catch (Exception ex)
+                    {
+                        return new AdminNoneQueryResult("خطا در پردازش عکس فرعی" + image.FileName);
+                    }
                 }
-                var addVideoResult = AddVideo(dto, newsId);
-                if (!addVideoResult.Success)
+                foreach (var video in dto.VideoUrls)
                 {
-                    return new AdminNoneQueryResult(addVideoResult.Error);
+                    try
+                    {
+                        var addVideoResult = await AddVideo(video);
+                        if (!addVideoResult.Success)
+                            return new AdminNoneQueryResult(addVideoResult.Error);
+                        _core.NewsVideoRel.Add(new TblNewsVideoRel { NewsId = newsId, VideoId = addVideoResult.VideoId.Value });
+                    }
+                    catch (Exception ex)
+                    {
+                        return new AdminNoneQueryResult("خطا در پردازش ویدئو" + video.FileName);
+                    }
+                }
+                //KeyWords Refresh
+                var perviousKeywords = _core.NewsKeywordRel.Get(_ => _.NewsId == newsId).ToList();
+                foreach (var item in perviousKeywords)
+                {
+                    try
+                    {
+                        _core.NewsKeywordRel.Delete(item);
+                        _core.Save();
+                    }
+                    catch (Exception ex)
+                    {
+                        return new AdminNoneQueryResult("خطا در رفرش کلمات کلیدی: " + ex.Message);
+                    }
+                }
+                //KeyWord Add
+                foreach (var item in dto.Keyword)
+                {
+                    TblKeyWord tblKeyWord = _core.Keyword.Get(_ => _.Body == item).FirstOrDefault();
+                    _core.NewsKeywordRel.Add(new TblNewsKeyWordRel { KeyWordId = tblKeyWord.Id, NewsId = newsId });
+                    _core.Save();
                 }
                 return new AdminNoneQueryResult();
             }
@@ -384,75 +483,234 @@ namespace ServiceLayer.Services.Impl
             return new AdminNoneQueryResult();
         }
 
-        //TODO Fix Images
+        //Images And Video
         /// <summary>
         /// Adds Non Main Images of News
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="newsId"></param>
         /// <returns></returns>
-        private (bool Success, List<string>? Error) AddImage(AdminNewsCreateUpdateDto dto, long newsId)
+        public async Task<(bool Success, string? Error, long? ImageId)> AddImage(IFormFile file)
         {
-            //Images
-            var errors = new List<string>();
-            for (int i = 0; i < dto.ImageUrls.Count; i++)
+            if (file.Headers.Any(_ => _.Key == "Content-Type"))
+                return (false, "هدر های فایل نامعتبر است", null);
+
+            else if (file.Headers["Content-Type"].ToString().EndsWith("/jpg") ||
+                file.Headers["Content-Type"].ToString().EndsWith("/jpeg") ||
+                file.Headers["Content-Type"].ToString().EndsWith("/png") ||
+                file.Headers["Content-Type"].ToString().EndsWith("/webp") ||
+                file.Headers["Content-Type"].ToString().EndsWith("/gif")
+                )
             {
-                var url = dto.ImageUrls[i];
-                if (!url.IsAllowedFormat(new string[] { "png", "jpg" }))
+                var url = Guid.NewGuid().ToString() + "." + file.ContentType.Split('/')[1];
+                var DbVideoUrls = from image in _core.Image.Get() select image.ImageUrl.ToString();
+                while (true)
                 {
-                    errors.Add($"عکس فرعی شماره {i} نا معتبر است");
+                    if (DbVideoUrls.Any(_ => _ == url))
+                    {
+                        url = Guid.NewGuid().ToString();
+                    }
+                    else { break; }
+                }
+                try
+                {
+                    _core.Image.Add(new TblImage { ImageUrl = url });
+                    _core.Save();
+                    var ImageId = _core.Video.Get().OrderBy(_ => _.Id).LastOrDefault().Id;
+
+                    if (file.Length <= 0)
+                    {
+                        return (false, "فایل عکس نامعتبر است", null);
+                    }
+                    else
+                    {
+                        string filePath = ResourcePath + url;
+                        using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await file.CopyToAsync(fileStream);
+                        }
+                    }
+                    return (true, null, ImageId);
+                }
+                catch (Exception ex)
+                {
+                    return (false, ex.Message, null);
                 }
             }
-            if (errors.Count > 0)
-            {
-                return (false, errors);
-            }
-            for (int i = 0; i < dto.ImageUrls.Count; i++)
-            {
-                var url = dto.ImageUrls[i];
-                _core.Image.Add(new TblImage { ImageUrl = url });
-                _core.Save();
-                var imageId = _core.Image.Get().OrderBy(_ => _.Id).LastOrDefault().Id;
-                _core.NewsImageRel.Add(new TblNewsImageRel { ImageId = imageId, NewsId = newsId });
-                _core.Save();
-            }
-            return (true, null);
+            return (false, "فرمت عکس نامعتبر است", null);
         }
-        //TODO Fix Videos
         /// <summary>
         /// Adds Videos of News
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="newsId"></param>
         /// <returns></returns>
-        private (bool Success, List<string>? Error) AddVideo(AdminNewsCreateUpdateDto dto, long newsId)
+        public async Task<(bool Success, string? Error, long? VideoId)> AddVideo(IFormFile file)
         {
-            var errors = new List<string>();
-            for (int i = 0; i < dto.VideoUrls.Count; i++)
+            //TODO Add to resource
+            if (file.Headers.Any(_ => _.Key == "Content-Type"))
             {
-                var url = dto.VideoUrls[i];
-                if (!url.IsAllowedFormat(new string[] { "png", "jpg" }))
-                {
-                    errors.Add($"ویدئو شماره {i} نا معتبر است");
-                }
+                return (false, "هدر های فایل نامعتبر است", null);
             }
-            if (errors.Count > 0)
+            else if (!file.Headers["Content-Type"].ToString().EndsWith("/mp4"))
             {
-                return (false, errors);
+                return (false, "فرمت فایل ویدئو فقط mp4 میتواند باشد", null);
             }
 
-            //Videos
-            for (int i = 0; i < dto.VideoUrls.Count; i++)
+            var url = Guid.NewGuid().ToString() + "." + file.ContentType.Split('/')[1];
+            var DbVideoUrls = from video in _core.Video.Get() select video.VideoUrl;
+            while (true)
             {
-                var url = dto.VideoUrls[i];
+                if (DbVideoUrls.Any(_ => _ == url))
+                {
+                    url = Guid.NewGuid().ToString();
+                }
+                else { break; }
+            }
+            try
+            {
                 _core.Video.Add(new TblVideo { VideoUrl = url });
                 _core.Save();
+
+                if (file.Length <= 0)
+                {
+                    return (false, "فایل عکس نامعتبر است", null);
+                }
+                else
+                {
+                    string filePath = ResourcePath + url;
+                    using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                }
+
+
                 var videoId = _core.Video.Get().OrderBy(_ => _.Id).LastOrDefault().Id;
-                _core.NewsVideoRel.Add(new TblNewsVideoRel { VideoId = videoId, NewsId = newsId });
-                _core.Save();
+                return (true, null, videoId);
             }
-            return (true, null);
+            catch (Exception ex)
+            {
+                return (false, ex.Message, null);
+            }
+
         }
+
+        /// <summary>
+        /// Deletes Image By Id from DataBase and Resources
+        /// </summary>
+        /// <param name="ImageId"></param>
+        /// <returns></returns>
+        private (bool Success, string? Error) DeleteImage(long ImageId)
+        {
+            try
+            {
+                TblImage tblImage = _core.Image.GetById(ImageId);
+                var imageName = tblImage.ImageUrl;
+                if (!Directory.EnumerateFiles(ResourcePath).Any(_ => _ == imageName))
+                    return (false, "فایل عکس پیدا نشد");
+
+                foreach (string file in Directory.EnumerateFiles(ResourcePath))
+                {
+                    if (file == imageName)
+                    {
+                        System.IO.File.Delete(ResourcePath + file);
+                    }
+                }
+                _core.Image.Delete(tblImage);
+                _core.Save();
+                return (true, null);
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Deletes Video By Id from DataBase and Resources
+        /// </summary>
+        /// <param name="VideoId"></param>
+        /// <returns></returns>
+        private (bool Success, string? Error) DeleteVideo(long VideoId)
+        {
+            try
+            {
+                TblVideo tblVideo = _core.Video.GetById(VideoId);
+                var videoName = tblVideo.VideoUrl;
+                if (!Directory.EnumerateFiles(ResourcePath).Any(_ => _ == videoName))
+                    return (false, "فایل عکس پیدا نشد");
+
+                foreach (string file in Directory.EnumerateFiles(ResourcePath))
+                {
+                    if (file == videoName)
+                    {
+                        System.IO.File.Delete(ResourcePath + file);
+                    }
+                }
+                _core.Video.Delete(tblVideo);
+                _core.Save();
+                return (true, null);
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
+        /// <summary>
+        /// Deletes NewsImageRel with its file
+        /// </summary>
+        /// <param name="relId"></param>
+        /// <returns></returns>
+        public AdminNoneQueryResult DeleteImageRel(long relId)
+        {
+            try
+            {
+                if (_core.NewsImageRel.Any(_ => _.Id == relId))
+                    return new AdminNoneQueryResult("خطا در پیدا کردن عکس فرعی");
+
+
+                var imagaRel = _core.NewsImageRel.GetById(relId);
+                var imageDeleteResult = DeleteImage(imagaRel.ImageId);
+                if (!imageDeleteResult.Success)
+                    return new AdminNoneQueryResult(imageDeleteResult.Error);
+                _core.NewsImageRel.Delete(imagaRel);
+                _core.Save();
+                return new AdminNoneQueryResult();
+            }
+            catch (Exception ex)
+            {
+                return new AdminNoneQueryResult(ex.Message);
+            }
+
+        }
+        /// <summary>
+        /// Deletes NewsVideoRel with its file
+        /// </summary>
+        /// <param name="relId"></param>
+        /// <returns></returns>
+        public AdminNoneQueryResult DeleteVideoRel(long relId)
+        {
+            try
+            {
+                if (_core.NewsVideoRel.Any(_ => _.Id == relId))
+                    return new AdminNoneQueryResult("خطا در پیدا کردن عکس فرعی");
+
+                var videoRel = _core.NewsVideoRel.GetById(relId);
+                var videoDeleteResult = DeleteVideo(videoRel.VideoId);
+                if (!videoDeleteResult.Success)
+                    return new AdminNoneQueryResult(videoDeleteResult.Error);
+                _core.NewsVideoRel.Delete(videoRel);
+                _core.Save();
+                return new AdminNoneQueryResult();
+            }
+            catch (Exception ex)
+            {
+                return new AdminNoneQueryResult(ex.Message);
+            }
+
+        }
+
         //-----Comments----
         public AdminNoneQueryResult DeleteComment(long id)
         {
@@ -504,10 +762,10 @@ namespace ServiceLayer.Services.Impl
             List<string> errors = new();
             foreach (var i in roleDto.PermissionIds)
             {
+                if (!ValidateRole(roleDto.PermissionIds, i))
+                    return new AdminNoneQueryResult("لطفا برای دستسرسی ها دسترسی مادر آنها انتخاب شده باشد!");
                 if (!_core.Permissions.Any(_ => _.Id == i))
-                {
                     errors.Add($"دسترسی با کد {i} پیدا نشد!");
-                }
             }
             if (errors.Count > 0)
             {
@@ -552,6 +810,8 @@ namespace ServiceLayer.Services.Impl
             }
             foreach (var i in roleDto.PermissionIds)
             {
+                if (!ValidateRole(roleDto.PermissionIds, i))
+                    return new AdminNoneQueryResult("لطفا برای دستسرسی ها دسترسی مادر آنها انتخاب شده باشد!");
                 if (!_core.Permissions.Any(_ => _.Id == i))
                 {
                     errors.Add($"دسترسی با کد {i} پیدا نشد!");
@@ -567,6 +827,12 @@ namespace ServiceLayer.Services.Impl
                 TblRole role = new TblRole { Name = roleDto.Name, Id = roleId };
                 _core.Role.Update(role);
                 _core.Save();
+                //Refresh Roles
+                foreach (var item in _core.RolePermissionsRel.Get().Where(_ => _.RoleId == roleId).ToList())
+                {
+                    _core.RolePermissionsRel.Delete(item);
+                    _core.Save();
+                }
                 foreach (var i in roleDto.PermissionIds)
                 {
                     TblRoleRolePermissionsRel permissionsRel = new TblRoleRolePermissionsRel() { PermissionId = i, RoleId = roleId };
@@ -646,20 +912,44 @@ namespace ServiceLayer.Services.Impl
             return new AdminReadAllQueryResult<AdminRoleDto>(result);
         }
 
+        /// <summary>
+        /// Validates Roles Permission Sent By
+        /// </summary>
+        /// <param name="allPermissionIds">All PermissionIds Sent</param>
+        /// <param name="permissionId">PermissionId we need Validate</param>
+        /// <returns></returns>
+        private bool ValidateRole(List<int> allPermissionIds, int permissionId)
+        {
+            TblRolePermissions permission = _core.Permissions.GetById(permissionId);
+            if (permission.ParentId == null)
+            {
+                foreach (var i in permission.InverseParent)
+                {
+                    if (!allPermissionIds.Any(_ => _ == i.Id))
+                        return false;
+                }
+                return true;
+            }
+            return allPermissionIds.Any(_ => _ == permission.ParentId);
+        }
+
         //---Advertisement
-        public AdminNoneQueryResult AddAdvertisement(AdminAdvertisementCreateUpdateDto dto)
+        public async Task<AdminNoneQueryResult> AddAdvertisementAsync(AdminAdvertisementCreateUpdateDto dto)
         {
             var modelValidateResult = Extentions.ValidateModel(dto);
             if (!modelValidateResult.IsValid)
                 return new AdminNoneQueryResult(modelValidateResult.ErrorMessages);
-
+            if (dto.MainBaner != null || dto.PerviuosMainBaner.Trim().IsNullOrEmpty())
+                return new AdminNoneQueryResult("عکس اصلی خالی است");
             try
             {
-                //TODO Fix Images
-                _core.Image.Add(new TblImage() { ImageUrl = dto.MainBaner });
-                _core.Save();
-                var imageId = _core.Image.Get().OrderBy(x => x.Id).LastOrDefault().Id;
-                TblAdvertisement tblAdvertisement = new TblAdvertisement() { MainBanerId = imageId, Link = dto.Link };
+                var ImageAddResult = await AddImage(dto.MainBaner);
+                if (!ImageAddResult.Success)
+                {
+                    return new AdminNoneQueryResult(ImageAddResult.Error);
+                }
+
+                TblAdvertisement tblAdvertisement = new TblAdvertisement() { MainBanerId = ImageAddResult.ImageId.Value, Link = dto.Link };
                 _core.Advertisement.Add(tblAdvertisement);
                 _core.Save();
                 return new AdminNoneQueryResult();
@@ -671,26 +961,32 @@ namespace ServiceLayer.Services.Impl
 
         }
 
-        public AdminNoneQueryResult UpdateAdvertisement(AdminAdvertisementCreateUpdateDto dto, int Id)
+        public async Task<AdminNoneQueryResult> UpdateAdvertisementAsync(AdminAdvertisementCreateUpdateDto dto, int Id)
         {
             var modelValidateResult = Extentions.ValidateModel(dto);
             if (!modelValidateResult.IsValid)
                 return new AdminNoneQueryResult(modelValidateResult.ErrorMessages);
 
+            if (dto.MainBaner != null && dto.PerviuosMainBaner.Trim().IsNullOrEmpty())
+                return new AdminNoneQueryResult("عکس اصلی خالی است");
             if (_core.Advertisement.Any(_ => _.Id == Id))
                 return new AdminNoneQueryResult("تبلیغ مورد نظر یافت نشد");
             try
             {
-                TblAdvertisement tblAdvertisement = _core.Advertisement.GetById(Id);
-                //TODO Fix Images
-                _core.Image.DeleteById(tblAdvertisement.MainBanerId);
-                _core.Save();
-                _core.Image.Add(new TblImage() { ImageUrl = dto.MainBaner });
-                _core.Save();
-
-                var imageId = _core.Image.Get().OrderBy(x => x.Id).LastOrDefault().Id;
-                tblAdvertisement.Link = dto.Link;
-                tblAdvertisement.MainBanerId = imageId;
+                TblAdvertisement tblAdvertisement = _core.Advertisement.Get(_ => _.Id == Id, includes: "MainBaner").FirstOrDefault();
+                if (dto.PerviuosMainBaner.Split("/")[dto.PerviuosMainBaner.Split("/").Length - 1] !=
+                    tblAdvertisement.MainBaner.ImageUrl.ToString())
+                {
+                    if (dto.MainBaner == null)
+                        return new AdminNoneQueryResult("عکس اصلی خالی است");
+                    var ImageAddResult = await AddImage(dto.MainBaner);
+                    if (!ImageAddResult.Success)
+                    {
+                        return new AdminNoneQueryResult(ImageAddResult.Error);
+                    }
+                    tblAdvertisement.Link = dto.Link;
+                    tblAdvertisement.MainBanerId = ImageAddResult.ImageId.Value;
+                }
 
                 _core.Advertisement.Update(tblAdvertisement);
                 _core.Save();

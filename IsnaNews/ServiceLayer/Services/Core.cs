@@ -26,7 +26,6 @@ namespace Services.Services
         private MainRepo<TblVideo> _video;
         private MainRepo<TblAboutUs> _aboutUs;
         private MainRepo<TblContactUs> _contactUs;
-
         public MainRepo<TblAdvertisement> Advertisement => _advertisement ?? new MainRepo<TblAdvertisement>(_context);
         public MainRepo<TblCategory> Category => _category ??= new MainRepo<TblCategory>(_context);
         public MainRepo<TblImage> Image => _image ??= new MainRepo<TblImage>(_context);

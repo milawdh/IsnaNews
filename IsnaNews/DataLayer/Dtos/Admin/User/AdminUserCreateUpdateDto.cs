@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace DataLayer.Dtos.Admin.User
 {
@@ -35,9 +36,10 @@ namespace DataLayer.Dtos.Admin.User
         [DisplayName("رمز")]
         public string? Password { get; set; }
         public int RoleId { get; set; }
+        public IFormFile ProfileImage { get; set; }
+        [Description("It's Used to check if profile image changed in Update")]
         [Required(ErrorMessage = "فیلد {0} خالی است", AllowEmptyStrings = false)]
         [DisplayName("عکس کاربر")]
-        public string ProfileImageUrl { get; set; }
-
+        public string PerviuosProfileImage { get; set; }
     }
 }
