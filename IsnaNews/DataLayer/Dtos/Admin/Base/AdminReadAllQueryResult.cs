@@ -18,8 +18,8 @@ namespace DataLayer.Dtos.Admin.Base
             this.Result = Result;
         }
 
-        bool Success { get; set; } = true;
-        List<T> Result { get; set; } = new List<T>();
+        public bool Success { get; set; } = true;
+        public List<T> Result { get; set; } = new List<T>();
 
     }
 }

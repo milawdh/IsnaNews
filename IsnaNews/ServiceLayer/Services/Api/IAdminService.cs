@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Services.Api
 {
-    internal interface IAdminService
+    public interface IAdminService
     {
 
         AdminReadAllQueryResult<AdminUserDto> GetUsersList();

@@ -1,16 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataLayer.Dtos.Admin.User;
+using Microsoft.AspNetCore.Mvc;
+using ServiceLayer.Services.Api;
+using ServiceLayer.Utils;
 
 namespace IsnaNews.Controllers
 {
     public class AdminController : Controller
     {
+        private readonly IAdminService _adminService;
+        public AdminController(IAdminService adminService)
+        {
+            _adminService = adminService;
+        }
+
+
+
+
+
         public IActionResult NewsList()
         {
-            return PartialView();
+            return PartialView("NewsDataTable");
         }
         public IActionResult UsersList()
         {
-            return PartialView();
+            var model = _adminService.GetUsersList();
+            var dataTable = Extentions.BuildDataTable<AdminUserDto>(model.Result);
+            return PartialView("UserDataTable",dataTable);
         }
         public IActionResult Settings()
         {
@@ -18,7 +33,7 @@ namespace IsnaNews.Controllers
         }
         public IActionResult AdvertisemntsList()
         {
-            return PartialView();
+            return PartialView("AdvertisemntsDataTable");
         }
     }
 }

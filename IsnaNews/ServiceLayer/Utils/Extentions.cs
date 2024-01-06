@@ -200,8 +200,6 @@ namespace ServiceLayer.Utils
 
             return allowedFormats.Any(_ => _ == FileFormat);
         }
-
-
         /// <summary>
         /// Builds DataTable With Given List and T type DisplayNameAttributes
         /// </summary>

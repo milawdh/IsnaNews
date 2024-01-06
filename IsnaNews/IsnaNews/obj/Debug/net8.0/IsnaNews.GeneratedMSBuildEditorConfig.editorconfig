@@ -26,8 +26,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = E:\MyIsnaNews\IsnaNews\IsnaNews\IsnaNews
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Admin/AdvertisemntsDataTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWR2ZXJ0aXNlbW50c0RhdGFUYWJsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Admin/AdvertisemntsList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWR2ZXJ0aXNlbW50c0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Admin/NewsDataTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTmV3c0RhdGFUYWJsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Admin/NewsList.cshtml]
@@ -40,6 +48,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Admin/Settings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2V0dGluZ3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Admin/UserDataTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlckRhdGFUYWJsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/MyIsnaNews/IsnaNews/IsnaNews/IsnaNews/Views/Admin/UserModal.cshtml]

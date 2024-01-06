@@ -5,10 +5,13 @@ using System.Text;
 using ServiceLayer.MiddleWares;
 using ServiceLayer.Middlewares;
 using Microsoft.AspNetCore.Antiforgery;
+using ServiceLayer.Services.Api;
+using ServiceLayer.Services.Impl;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<Core>();
 builder.Services.AddScoped<IApplicationBuilder, ApplicationBuilder>();
+builder.Services.AddSingleton<IAdminService, AdminService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession(options =>
