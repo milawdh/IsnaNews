@@ -1,1 +1,28 @@
-﻿
+﻿@using System.Data
+@model DataTable
+@{
+    Layout = "AdminLayout";
+    //TODO
+    Tuple<DataTable, int, int> dataTableModel = new(Model, ViewBag.skipCount, ViewBag.pageCount);
+}
+<div class="d-flex h-100">
+    <!--Body start-->
+    <section class="flex-fill _scrollBar h-100">
+        <div class="text-center">
+            <div class="mx-4 uk-card uk-card-body shadow p-3 rounded-3"
+                 style="background-color: white; margin-top: 100px;" dir="rtl">
+                <div class="d-flex justify-content-between">
+                    <h5 class="_MyFont fw-bold">لیست اخبار</h5>
+                    <button class="btn btn-sm btn-primary _MyFont">
+                        <span uk-icon="plus-circle"></span>
+                        <span class="_MyFont">افزودن خبر جدید</span>
+                    </button>
+                </div>
+
+                @await Component.InvokeAsync("AdminDataTable", dataTableModel)
+            </div>
+    </section>
+    <!--Body End-->
+
+</div>
+

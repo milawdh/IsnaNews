@@ -1,0 +1,88 @@
+﻿@using System.Data
+@model (DataTable data , int skipCount,int pageCount)
+@{
+    var DataCount = Model.data.Rows.Count - 1;
+    var skipcount = Model.skipCount > DataCount && Model.skipCount >= 10 ? Model.skipCount : DataCount;
+    var paginationsCount = Convert.ToInt32(Math.Ceiling(a: DataCount / skipcount));
+}
+<div class="overflow-x-auto">
+    <table id="adminTable" class="uk-table uk-table-divider uk-table-striped uk-table-hover">
+        @if (Model.data.Rows.Count > 1)
+        {
+            <thead class="text-muted">
+                <tr class="">
+                    @foreach (var item in Model.data.Rows[0].ItemArray)
+                    {
+                        <td class="_MyFont">@item.ToString()</td>
+                    }
+                    <td>ویرایش</td>
+                </tr>
+            </thead>
+            <tbody class="_MyFont fw-bold">
+                @for (int i = 1; i < skipcount + 1; i++)
+                {
+                    <tr>
+                        @foreach (var item in Model.data.Rows[i].ItemArray)
+                        {
+                            if (item.ToString() == "False")
+                            {
+                                <td>خیر</td>
+                            }
+                            else if (item.ToString() == "True")
+                            {
+                                <td>بله</td>
+                            }
+                            else
+                            {
+                                <td>@item.ToString()</td>
+                            }
+                        }
+                        <td>
+                            <button class="btn btn-primary _MyFont">
+                                <span uk-icon="cog"></span>
+                                تنظیمات
+                            </button>
+                            <div uk-dropdown="mode:click;pos: bottom-center;" class="rounded-3">
+                                <ul class="uk-nav uk-dropdown-nav">
+                                    <li><a href="#">ویرایش</a></li>
+                                    <li><a href="#">حذف</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        }
+        else
+        {
+            <h3 class="fw-bold _MyFont text-primary text-center">داده ای وجود ندارد</h3>
+        }
+    </table>
+
+</div>
+<div class="d-flex justify-content-between p-2">
+    <span dir="ltr">
+        <ul class="pagination pagination-sm">
+            <li class="page-item"><a class="page-link text-decoration-none" href="#">Previous</a></li>
+            @for (int i = 1; i < paginationsCount + 1; i++)
+            {
+                <li class="page-item"><a class="page-link text-decoration-none " href="#">@i</a></li>
+            }
+            <li class="page-item"><a class="page-link text-decoration-none" href="#">Next</a></li>
+        </ul>
+    </span>
+    <span class="text-muted _MyFont"> تعداد <strong class="text-danger">@DataCount</strong> نتیجه</span>
+    <span class="_MyFont d-flex">
+        نمایش
+        <span class="mx-2">
+            <select class=" form-select" id="skipCount">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </span>
+        تعداد
+    </span>
+</div>
+    </div>

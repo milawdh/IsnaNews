@@ -205,14 +205,15 @@ namespace ServiceLayer.Utils
         /// </summary>
         /// <typeparam name="T">To Get Class Properties DisplayeName</typeparam>
         /// <param name="data">Data List</param>
+        /// <param name="TableName">The Table Name</param>
         /// <returns></returns>
-        public static DataTable BuildDataTable<T>(IList<T> data)
+        public static DataTable BuildDataTable<T>(IList<T> data,string TableName)
         {
             //Get properties
-            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-
+            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
             //Hiding virtual properties
-            //.Where(p => !p.GetGetMethod().IsVirtual && !p.GetGetMethod().IsFinal).ToArray(); 
+            .Where(p => !p.GetGetMethod().IsVirtual && !p.GetGetMethod().IsFinal && Attribute.IsDefined(p, typeof(DisplayNameAttribute))).ToArray();
+
 
             //Get column headers
             bool isDisplayNameAttributeDefined = false;
@@ -220,16 +221,10 @@ namespace ServiceLayer.Utils
             int colCount = 0;
             foreach (PropertyInfo prop in Props)
             {
-                isDisplayNameAttributeDefined = Attribute.IsDefined(prop, typeof(DisplayNameAttribute));
 
-                if (isDisplayNameAttributeDefined)
-                {
-                    DisplayNameAttribute dna = (DisplayNameAttribute)Attribute.GetCustomAttribute(prop, typeof(DisplayNameAttribute));
-                    if (dna != null)
-                        headers[colCount] = dna.DisplayName;
-                }
-                else
-                    headers[colCount] = prop.Name;
+                DisplayNameAttribute dna = (DisplayNameAttribute)Attribute.GetCustomAttribute(prop, typeof(DisplayNameAttribute));
+                if (dna != null)
+                    headers[colCount] = dna.DisplayName;
 
                 colCount++;
                 isDisplayNameAttributeDefined = false;
@@ -249,10 +244,10 @@ namespace ServiceLayer.Utils
                 object[] values = new object[Props.Length];
                 for (int col = 0; col < Props.Length; col++)
                     values[col] = Props[col].GetValue(item, null);
-
                 dataTable.Rows.Add(values);
             }
 
+            dataTable.TableName = TableName;
             return dataTable;
         }
     }

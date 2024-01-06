@@ -12,6 +12,7 @@ namespace DataLayer.Dtos.Admin.Advertisement
     public class AdminAdvertisementDto
     {
         public string MainBaner { get; set; }
+        [DisplayName("لینک تبلیغ")]
         public string Link { get; set; }
     }
 }

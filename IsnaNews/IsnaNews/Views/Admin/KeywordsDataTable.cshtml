@@ -1,0 +1,25 @@
+﻿@using System.Data
+@model DataTable
+@{
+    Layout = "AdminLayout";
+}
+<div class="d-flex h-100">
+    <!--Body start-->
+    <section class="flex-fill _scrollBar h-100">
+        <div class="text-center">
+            <div class="mx-4 uk-card uk-card-body shadow p-3 rounded-3"
+                 style="background-color: white; margin-top: 100px;" dir="rtl">
+                <div class="d-flex justify-content-between">
+                    <h5 class="_MyFont fw-bold">@Model.TableName</h5>
+                    <button class="btn btn-sm btn-primary _MyFont">
+                        <span uk-icon="plus-circle"></span>
+                        <span class="_MyFont">افزودن کلمه کلیدی جدید</span>
+                    </button>
+                </div>
+
+                @await Component.InvokeAsync("AdminDataTable", Model)
+            </div>
+    </section>
+    <!--Body End-->
+
+</div>

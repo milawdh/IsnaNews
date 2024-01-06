@@ -1,6 +1,7 @@
 ﻿using DataLayer.Dtos.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Services.Services;
+using System.Data;
 
 namespace IsnaNews.ViewComponents
 {
@@ -53,7 +54,7 @@ namespace IsnaNews.ViewComponents
             return View("Keywords", keywords);
         }
     }
-    [ViewComponent(Name ="FileAttach")]
+    [ViewComponent(Name = "FileAttach")]
     public class FileAttach : ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync(List<(string Title, string Url)> fileNames)
@@ -61,7 +62,7 @@ namespace IsnaNews.ViewComponents
             return View("FileAttach", fileNames);
         }
     }
-    [ViewComponent(Name ="CommentsBar")]
+    [ViewComponent(Name = "CommentsBar")]
     public class CommentsBar : ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync(List<CommentPublicDto> comments)
@@ -69,31 +70,31 @@ namespace IsnaNews.ViewComponents
             return View("CommentsBar", comments);
         }
     }
-    [ViewComponent(Name ="ValidationModal")]
+    [ViewComponent(Name = "ValidationModal")]
     public class ValidationModal : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync((List<string> validationErrors,string Title) titles)
+        public async Task<IViewComponentResult> InvokeAsync((List<string> validationErrors, string Title) titles)
         {
-            return View("ValidationModal",titles);
+            return View("ValidationModal", titles);
         }
     }
-    [ViewComponent(Name ="MyComments")]
+    [ViewComponent(Name = "MyComments")]
     public class MyComments : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(List<(string newsTitle , string Body,string DatePosted)> model)
+        public async Task<IViewComponentResult> InvokeAsync(List<(string newsTitle, string Body, string DatePosted)> model)
         {
             return View("MyComments", model);
         }
     }
-    [ViewComponent(Name ="AdminList")]
+    [ViewComponent(Name = "AdminList")]
     public class AdminList : ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync(List<string> permissions)
         {
-            return View("AdminList",permissions);
+            return View("AdminList", permissions);
         }
     }
-    [ViewComponent(Name ="AdminAdvertisementModal")]
+    [ViewComponent(Name = "AdminAdvertisementModal")]
     public class AdminAdvertisementModal : ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync()
@@ -118,7 +119,16 @@ namespace IsnaNews.ViewComponents
         {
             Core core = new Core();
             var permissions = core.Permissions.Get().ToList();
-            return View("PermissionSelectModal",permissions);
+            return View("PermissionSelectModal", permissions);
+        }
+    }
+    [ViewComponent(Name = "AdminDataTable")]
+    public class AdminDataTable : ViewComponent
+    {
+        public async Task<IViewComponentResult> InvokeAsync(Tuple<DataTable,int,int> data)
+        {
+            (DataTable data, int skipCount, int pageCount) model = (data.Item1,data.Item2,data.Item3);
+            return View("AdminDataTable", model);
         }
     }
 }
