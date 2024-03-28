@@ -50,20 +50,3 @@ E:\New folder (2)\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\refint\ServiceLaye
 E:\New folder (2)\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.pdb
 E:\New folder (2)\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.genruntimeconfig.cache
 E:\New folder (2)\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ref\ServiceLayer.dll
-E:\CurrentProject\back\IsnaNews\ServiceLayer\bin\Debug\net8.0\ServiceLayer.deps.json
-E:\CurrentProject\back\IsnaNews\ServiceLayer\bin\Debug\net8.0\ServiceLayer.runtimeconfig.json
-E:\CurrentProject\back\IsnaNews\ServiceLayer\bin\Debug\net8.0\ServiceLayer.dll
-E:\CurrentProject\back\IsnaNews\ServiceLayer\bin\Debug\net8.0\ServiceLayer.pdb
-E:\CurrentProject\back\IsnaNews\ServiceLayer\bin\Debug\net8.0\DataLayer.dll
-E:\CurrentProject\back\IsnaNews\ServiceLayer\bin\Debug\net8.0\DataLayer.pdb
-E:\CurrentProject\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.csproj.AssemblyReference.cache
-E:\CurrentProject\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.GeneratedMSBuildEditorConfig.editorconfig
-E:\CurrentProject\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.AssemblyInfoInputs.cache
-E:\CurrentProject\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.AssemblyInfo.cs
-E:\CurrentProject\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.csproj.CoreCompileInputs.cache
-E:\CurrentProject\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.csproj.CopyComplete
-E:\CurrentProject\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.dll
-E:\CurrentProject\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\refint\ServiceLayer.dll
-E:\CurrentProject\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.pdb
-E:\CurrentProject\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ServiceLayer.genruntimeconfig.cache
-E:\CurrentProject\back\IsnaNews\ServiceLayer\obj\Debug\net8.0\ref\ServiceLayer.dll

@@ -10,3 +10,10 @@ IsnaNews/.vs/IsnaNews/v17/.suo
 IsnaNews/.vs/IsnaNews/v17/HierarchyCache.v1.txt
 IsnaNews/.vs/ProjectEvaluation/isnanews.metadata.v7.bin
 IsnaNews/.vs/ProjectEvaluation/isnanews.projects.v7.bin
+/IsnaNews/ServiceLayer/bin
+/IsnaNews/ServiceLayer/obj
+/IsnaNews/DataLayer/bin
+/IsnaNews/.vs
+/IsnaNews/DataLayer/bin/Debug
+/IsnaNews/DataLayer/bin/Debug/net8.0
+/IsnaNews/DataLayer/bin

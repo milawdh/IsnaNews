@@ -590,7 +590,6 @@ namespace ServiceLayer.Services.Impl
         /// <returns></returns>
         public async Task<(bool Success, string? Error, long? VideoId)> AddVideo(IFormFile file)
         {
-            //TODO Add to resource
             if (!file.Headers.Any(_ => _.Key == "Content-Type"))
             {
                 return (false, "هدر های فایل نامعتبر است", null);
@@ -651,17 +650,18 @@ namespace ServiceLayer.Services.Impl
             {
                 TblImage tblImage = _core.Image.GetById(ImageId);
                 var imageName = tblImage.ImageUrl;
-                if (!Directory.EnumerateFiles(ResourcePath).Any(_ => _ == ResourcePath + imageName))
-                    return (false, "فایل عکس پیدا نشد");
-
-                foreach (string file in Directory.EnumerateFiles(ResourcePath))
+                if (Directory.EnumerateFiles(ResourcePath).Any(_ => _ == ResourcePath + imageName))
                 {
-                    if (file == ResourcePath + imageName)
+                    foreach (string file in Directory.EnumerateFiles(ResourcePath))
                     {
-                        System.IO.File.Delete(file);
-                        break;
+                        if (file == ResourcePath + imageName)
+                        {
+                            System.IO.File.Delete(file);
+                            break;
+                        }
                     }
                 }
+
                 _core.Image.Delete(tblImage);
                 _core.Save();
                 return (true, null);
@@ -1389,7 +1389,7 @@ namespace ServiceLayer.Services.Impl
                 return new AdminNoneQueryResult("دسته بندی مورد نظر یافت نشد");
             if (_core.Category.Any(_ => _.Name == dto.Name && _.Id != id))
                 return new AdminNoneQueryResult("دسته بندی دیگری با این نام وجود دارد");
-            if(dto.ParentId==id)
+            if (dto.ParentId == id)
                 return new AdminNoneQueryResult("دسته بندی نمیتواند مادر خود باشد");
 
             try
