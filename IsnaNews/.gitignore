@@ -1,1 +1,8 @@
 /IsnaNews/DataLayer
+/IsnaNews/DataLayer/obj
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
