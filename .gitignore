@@ -21,3 +21,10 @@ IsnaNews/.vs/ProjectEvaluation/isnanews.projects.v7.bin
 /IsnaNews/IsnaNews/bin/Debug/net8.0
 /IsnaNews/IsnaNews/obj/Debug/net8.0
 /IsnaNews/IsnaNews/obj/project.nuget.cache
+/IsnaNews/IsnaNews/obj/
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
