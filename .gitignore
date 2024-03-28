@@ -17,3 +17,7 @@ IsnaNews/.vs/ProjectEvaluation/isnanews.projects.v7.bin
 /IsnaNews/DataLayer/bin/Debug
 /IsnaNews/DataLayer/bin/Debug/net8.0
 /IsnaNews/DataLayer/bin
+/IsnaNews/DataLayer/obj
+/IsnaNews/IsnaNews/bin/Debug/net8.0
+/IsnaNews/IsnaNews/obj/Debug/net8.0
+/IsnaNews/IsnaNews/obj/project.nuget.cache
