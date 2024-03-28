@@ -1,0 +1,19 @@
+﻿@model (List<DataLayer.Models.TblCategory> Cateogories,int SelectedCategory,int CurrentCategoryId)
+@foreach (var item in Model.Cateogories)
+{
+    if (item.Id != Model.CurrentCategoryId || Model.CurrentCategoryId == 0)
+    {
+        @if (item.Id != Model.SelectedCategory || Model.SelectedCategory == 0)
+        {
+            <option value="@item.Id">@item.Name</option>
+        }
+        else
+        {
+            <option selected value="@item.Id">@item.Name</option>
+        }
+    }
+
+}
+
+
+

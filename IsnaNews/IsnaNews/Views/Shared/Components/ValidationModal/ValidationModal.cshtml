@@ -1,0 +1,15 @@
+﻿@model (List<string> validationErrors,string Title)
+<div uk-modal dir="rtl">
+    <div class="uk-modal-dialog uk-modal-body">
+        <h4 class="_MyFont text-danger my-2 fw-bold">@Model.Title</h4>
+        @foreach (var i in Model.validationErrors)
+        {
+            <p class=" _MyFont">
+                @i.ToString()
+            </p>
+        }
+        <div class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close _MyFont" type="button">بستن</button>
+        </div>
+    </div>
+</div>

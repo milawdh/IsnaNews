@@ -1,0 +1,110 @@
+﻿@using DataLayer.Dtos.Admin.Category
+@model AdminCategoryDto?
+@if (Model != null)
+{
+    <div id="EditModal" class="" uk-modal dir="rtl">
+        <div class="uk-modal-dialog">
+            <!--Header Start-->
+            <div class="uk-modal-header _MyFont" dir="rtl">
+                <button class="uk-modal-close-outside" type="button" uk-close></button>
+
+                <h2 class="mt-2 _MyFont">
+                    <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                    <span class="uk-modal-title">
+                        ویرایش دسته بندی
+                    </span>
+                </h2>
+            </div>
+            <!--Header End-->
+            <!--Body Start-->
+            <div class="uk-modal-body _MyFont">
+                <h3 class="fw-bold _MyFont text-dark" dir="rtl">تیتر</h3>
+                <!--BodyForm Start-->
+                <form class="_MyFont my-2" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+                    @Html.AntiForgeryToken()
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">نام</label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-textarea" name="Name" id="Body" value="@Model.Name" required placeholder="متن ...." />
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">دسته بندی مادر</label>
+                        <div class="uk-form-controls">
+                            <select class="_MyFont uk-select" name="ParentId">
+                                <option value="0">بدون دسته بندی مادر</option>
+                                @await Component.InvokeAsync("ParentCategoryOptions", new Tuple<int, int>(Model.ParentId ?? 0, Model.Id))
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <!--BodyForm End-->
+            </div>
+            <!--Body End-->
+            <!--Footer Start-->
+            <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+                <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+                <button class="uk-button uk-button-primary" type="submit" onclick="Update(@Model.Id)">ثبت</button>
+            </div>
+            <div class="progress uk-hidden" id="progressDiv">
+                <div class="progress-bar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <!--Footer End-->
+        </div>
+    </div>
+}
+else
+{
+    <div id="AddModal" class="" uk-modal dir="rtl">
+        <div class="uk-modal-dialog">
+            <!--Header Start-->
+            <div class="uk-modal-header _MyFont" dir="rtl">
+                <button class="uk-modal-close-outside" type="button" uk-close></button>
+
+                <h2 class="mt-2 _MyFont">
+                    <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                    <span class="uk-modal-title">
+                        افزودن دسته بندی جدید
+                    </span>
+                </h2>
+            </div>
+            <!--Header End-->
+            <!--Body Start-->
+            <div class="uk-modal-body _MyFont">
+                <h3 class="fw-bold _MyFont text-dark" dir="rtl">تیتر</h3>
+                <!--BodyForm Start-->
+                <form class="_MyFont my-2" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+                    @Html.AntiForgeryToken()
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">نام</label>
+                        <div class="uk-form-controls">
+                            <input type="text" class="uk-textarea" name="Name" id="Body" required placeholder="متن ...." />
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">دسته بندی مادر</label>
+                        <div class="uk-form-controls">
+                            <select class="_MyFont uk-select" name="ParentId">
+                                <option value="0">بدون دسته بندی مادر</option>
+                                @await Component.InvokeAsync("ParentCategoryOptions", new Tuple<int, int>(0, 0))
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <!--BodyForm End-->
+            </div>
+            <!--Body End-->
+            <!--Footer Start-->
+            <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+                <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+                <button class="uk-button uk-button-primary" type="submit" onclick="Add()">ثبت</button>
+            </div>
+            <div class="progress uk-hidden" id="progressDiv">
+                <div class="progress-bar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <!--Footer End-->
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,172 @@
+﻿@{
+    Layout = "ProfileLayout";
+}
+@model (string Name, string UserName, string Tell, List<(string newsTitle, string Body, string DatePosted)> comments)
+<div uk-scrollspy="target: > div; cls: uk-animation-scale-up; delay: 300;">
+    <!--Infos Start-->
+    <div class="uk-card uk-card-body mx-auto" id="personInfoCard">
+        <h3 class="text-center _MyFont">اطلاعات فردی</h3>
+        <div class="d-flex text-lg-center uk-child-width-1-2 mt-5 container-sm p-0 _MyFont" dir="rtl">
+            <div>
+                <div class="mt-3">
+                    <span uk-icon="icon:user"></span>
+                    <span>نام</span>
+                    :
+                    <span class="text-primary">@Model.Name</span>
+                </div>
+                <div class="mt-3">
+                    <span uk-icon="icon:receiver"></span>
+                    <span>تلفن</span>
+                    :
+                    <span class="text-primary">@Model.Tell</span>
+                </div>
+            </div>
+            <div>
+                <div class="mt-3">
+                    <span uk-icon="icon:lock"></span>
+                    <span>رمز عبور</span>
+                    :
+                    <span class="text-primary">*******</span>
+                </div>
+                <div class="mt-3">
+                    <span class="fw-bold fs-3 uk-icon">@@</span>
+                    <span>نام کاربری</span>
+                    :
+                    <span class="text-primary">@Model.UserName</span>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <button class="_btnlogin _MyFont" onclick="GetEditByIdModal()">ویرایش</button>
+        </div>
+    </div>
+    <!--Infos End-->
+    <!--My Comments Start-->
+    @await Component.InvokeAsync("MyComments", Model.comments)
+    <!--My Comments End-->
+</div>
+<script>
+
+    function ShowErrors(errors) {
+        for (var i = 0; i < errors.length; i++) {
+            UIkit.notification({
+                message: `<span class="_MyFont" dir="rtl">${errors[i]}</span>`,
+                status: 'danger',
+                timeout: 7000,
+                pos: 'top-right'
+            })
+        }
+    }
+    function SetSuccess() {
+        UIkit.notification({
+            message: `<span class="_MyFont" dir="rtl">با موفقیت ثبت شد</span>`,
+            status: 'success',
+            timeout: 3000,
+            pos: 'top-right'
+        })
+        setTimeout(function () {
+            window.location.reload()
+        }, 3000)
+    }
+
+    function refreshModals() {
+        var AddModal = document.getElementById('AddModal')
+        var EditModal = document.getElementById('EditModal')
+        if (EditModal != null) {
+            EditModal.remove()
+        }
+        if (AddModal != null) {
+            AddModal.remove()
+        }
+    }
+    function ProfileChange() {
+        var fileInput = document.getElementById('ProfileImageUrlInput');
+        var preview = document.getElementById('ProfileImageUrlPreview');
+
+
+        preview.innerHTML = ''
+        var file = event.target.files[0];
+
+        if (file.type.endsWith('png') ||
+            file.type.endsWith('jpeg') ||
+            file.type.endsWith('jpg') ||
+            file.type.endsWith('gif') ||
+            file.type.endsWith('webp')) {
+            IsFileValid = true;
+            var reader = new FileReader();
+            reader.addEventListener('load', function (event) {
+                var img = document.createElement('img');
+                img.src = event.target.result;
+                img.width = 240;
+                img.height = 240;
+                img.classList.add('d-inline-block', 'rounded-3', 'm-2')
+                preview.appendChild(img);
+            });
+
+            reader.readAsDataURL(file);
+        }
+        else {
+            event.target.value = ''
+            UIkit.notification({
+                message: '<span class="_MyFont">فرمت فایل مورد نظر فقط عکس میتواند باشد</span>',
+                status: 'danger',
+                pos: 'top-right',
+                timeout: 5000
+            });
+
+        }
+    }
+
+</script>
+
+<script>
+    function GetEditByIdModal() {
+        $.ajax({
+            url: '/UserProfile/GetEditModalUser',
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                refreshModals()
+                UIkit.modal(data).show()
+            },
+            error: function (data) {
+                console.log(data.responseText)
+                ShowErrors(data.responseJSON.error)
+            }
+        })
+    }
+    function Update() {
+        var BodyForm = document.getElementById('BodyForm')
+        var BodyFormData = new FormData(BodyForm);
+
+        document.getElementById('progressDiv').classList.remove('uk-hidden')
+        $.ajax({
+            url: '/UserProfile/UpdateUser',
+            type: 'POST',
+            data: BodyFormData,
+            processData: false,
+            contentType: false,
+            xhr: function () {
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function (evt) {
+                    if (evt.lengthComputable) {
+                        var percentComplete = evt.loaded / evt.total;
+                        $('.progress-bar').css({
+                            width: percentComplete * 100 + '%'
+                        });
+                        if (percentComplete === 1) {
+                            $('.progress-bar').addClass('bg-success');
+                        }
+                    }
+                }, false);
+                return xhr;
+            },
+            success: function (data) {
+                SetSuccess()
+            },
+            error: function (data) {
+                ShowErrors(data.responseJSON.error)
+            }
+        });
+    }
+</script>

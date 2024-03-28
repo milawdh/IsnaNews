@@ -1,0 +1,13 @@
+﻿@using DataLayer.Models
+@model (List<TblRole> Roles,string SelectedRole)
+@foreach (var item in Model.Roles)
+{
+    if (item.Name == Model.SelectedRole)
+    {
+        <option selected value="@item.Id">@item.Name</option>
+    }
+    else
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+}

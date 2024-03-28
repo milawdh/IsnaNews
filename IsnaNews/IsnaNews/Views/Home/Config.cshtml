@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "HomeLayout";
+}
+@model List<string>
+<div>
+    <div dir="rtl" class="uk-card uk-card-body uk-card-default mx-5 my-5 rounded-4">
+        <h1 class="_MyFont fw-bold text-center text-dark">@ViewBag.Title</h1>
+        <ul class="text-dark">
+            @foreach (var i in Model)
+            {
+                <li class="_MyFont my-2 fs-5">@i</li>
+            }
+        </ul>
+
+    </div>
+</div>

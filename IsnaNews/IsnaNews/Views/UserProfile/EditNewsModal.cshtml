@@ -1,0 +1,179 @@
+﻿@using DataLayer.Dtos.Admin.News
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model AdminNewsDto
+
+<div id="EditModal" class="" uk-modal dir="rtl">
+    <div class="uk-modal-dialog">
+        <!--Header Start-->
+        <div class="uk-modal-header _MyFont" dir="rtl">
+            <button class="uk-modal-close-outside" type="button" uk-close></button>
+
+            <h2 class="mt-2 _MyFont">
+                <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                <span class="uk-modal-title">
+                    ویرایش خبر
+                </span>
+            </h2>
+        </div>
+        <!--Header End-->
+        <!--Body Start-->
+        <div class="uk-modal-body _MyFont">
+            <ul uk-tab="animation: uk-animation-fade">
+                <li><a href="#" class="text-decoration-none">متن خبر</a></li>
+                <li><a href="#" class="text-decoration-none">ویدئو ها</a></li>
+                <li><a href="#" class="text-decoration-none">عکس های فرعی</a></li>
+                <li><a href="#" class="text-decoration-none">کلمات کلیدی</a></li>
+            </ul>
+            <ul class="uk-switcher uk-margin">
+                <!--BodyForm Start-->
+                <li>
+                    <form class="_MyFont" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+                        @Html.AntiForgeryToken()
+                        <div class="uk-margin">
+                            <div class="uk-form-controls">
+                                <div uk-form-custom class="text-end">
+                                    <input onchange="ChangeMainImage()" type="file" name="MainImage" accept="image/png,image/jpeg,image/webp" id="MainImageUrlInput">
+                                    <button class="uk-button uk-button-default" type="button">انتخاب عکس اصلی</button>
+                                </div>
+                                <div class="my-2 text-center" id="MainImageUrlPreview">
+                                    <img width="240" class="rounded-1" src="@Url.Content("~/Resources/"+Model.MainImageUrl)" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-horizontal-text">تیتر خبر</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" required name="Title" id="Title" value="@Model.Title" type="text">
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="CategoryId">کد دسته بندی</label>
+                            <div class="uk-form-controls">
+                                <select class="uk-select" id="CategoryId" name="CategoryId">
+                                    @await Component.InvokeAsync("CategoryOptions", Model.CategoryId)
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="_MyFont fw-bold my-1">متن خبر</label>
+                            <div class="uk-form-controls">
+                                <textarea class="uk-textarea" required name="Body" rows="5" value="@Model.Body" cols="20">@Model.Body</textarea>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <div class="uk-form-label">نوع خبر</div>
+                            @if (Model.IsImportantNews)
+                            {
+                                <label class="_MyFont" uk-tooltip="درصورت فعال سازی خبر در کرسل صفحه اصلی نمایش داده خواهد شد">
+                                    <input id="IsImportantNews" class="uk-checkbox" type="checkbox" checked name="IsImportantNews"> خبر مهم
+                                </label>
+                            }
+                            else
+                            {
+                                <label class="_MyFont" uk-tooltip="درصورت فعال سازی خبر در کرسل صفحه اصلی نمایش داده خواهد شد">
+                                    <input id="IsImportantNews" class="uk-checkbox" type="checkbox" name="IsImportantNews"> خبر مهم
+                                </label>
+                            }
+                        </div>
+                    </form>
+                </li>
+                <!--BodyForm End-->
+                <!--VideoForm Start-->
+                <li>
+                    @if (Model.VideoUrls.Count > 0)
+                    {
+                        <strong class="text-warning">ویدئو های قبلی</strong>
+                        <div style="border:solid 2px yellow" class="p-2 my-2 rounded-2" id="PerviousVideoRelsDiv">
+                            @foreach (var item in Model.VideoUrls)
+                            {
+                                string DivId = "VideoRelId" + item.id;
+                                <div class="my-2" id="@DivId">
+                                    <a class="bg-danger btn-close btn" onclick="DeleteVideoRel('@DivId',@item.id)" uk-tooltip="حذف ویدئو"></a>
+                                    <video class="p-2 rounded-2 m-2" src="@Url.Content("~/Resources/"+@item.Url)" controls></video>
+                                </div>
+                            }
+                        </div>
+                    }
+                    <form enctype="multipart/form-data" id="VideoForm">
+                        <div uk-form-custom class="text-end">
+                            <input onchange="InitVideoInputPreview()" type="file" accept="video/mp4" multiple id="VideoUrls" name="VideoUrls" />
+                            <button class="uk-button uk-button-default" type="button">افزودن ویدئو جدید</button>
+                        </div>
+                    </form>
+
+                    <div id="VideoUrlsPreview">
+                    </div>
+
+                </li>
+                <!--VideoForm End-->
+                <!--ImageForm Start-->
+                <li>
+                    @if (Model.ImageUrls.Count > 0)
+                    {
+                        <strong class="text-warning">عکس های فرعی قبلی</strong>
+                        <div style="border:solid 2px yellow" class="p-2 text-center my-2 rounded-2" id="PerviousImageRelsDiv">
+                            @foreach (var item in Model.ImageUrls)
+                            {
+                                string DivId = "ImageRelId" + item.id;
+                                <div class="m-2 rounded-2 d-inline-block p-2" style="border:solid 2px #2d1ed2" id="@DivId">
+                                    <a class="bg-danger btn-close btn" onclick="DeleteImageRel('@DivId',@item.id)" uk-tooltip="حذف عکس"></a>
+                                    <img class="rounded-3" src="@Url.Content("~/Resources/"+item.Url)" width="120" height="120"></img>
+                                </div>
+                            }
+                        </div>
+                    }
+                    <form enctype="multipart/form-data" id="ImagesForm">
+                        <div uk-form-custom class="text-end">
+                            <input onchange="ImageUrlsInit()" type="file" accept="image/png,image/jpeg,image/webp" multiple id="ImagUrls" name="ImageUrls" />
+                            <button class="uk-button uk-button-default" type="button">افزودن عکس جدید</button>
+                        </div>
+                    </form>
+                    <div id="ImagUrlsPreview">
+                    </div>
+                </li>
+                <!--ImageForm End-->
+                <li dir="rtl">
+                    <h5 class="_MyFont fw-bold text-secondary">کلمات کلیدی</h5>
+                    <div class="my-2 border-secondary border border-3 rounded-2 p-2 d-flex justify-content-center flex-wrap" id="keywordsDiv">
+                        @foreach (var item in Model.Keyword)
+                        {
+                            <a onclick="DeleteKeyword(this)" class="m-1 text-dark text-decoration-none btn-sm btn btn-outline-secondary" uk-tooltip="حذف">@item</a>
+                        }
+                    </div>
+                    <div class="my-2 text-center _MyFont">
+                        <button class="uk-button uk-button-default">افزودن کلمه کلیدی جدید</button>
+                        <div class="rounded-3"
+                             uk-dropdown="stretch: x;offset:-10; boundary: !.uk-modal-dialog; mode:click; animation: reveal-top; animate-out: true; duration: 350;pos: bottom-center;flip:false">
+                            <ul class="my-2 p-2 list-unstyled _scrollBar">
+                                <li>
+                                    <h3 class="_MyFont text-center text-primary">افزودن کلمه کلیدی</h3>
+                                </li>
+                                <li class="d-flex justify-content-center flex-wrap" id="NewKeywords">
+                                    @await Component.InvokeAsync("AllKeywords", Model.Keyword)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--Body End-->
+        <!--Footer Start-->
+        <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+            <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+            <button class="uk-button uk-button-primary" type="submit" id="ActionButton" onclick="Update(@Model.Id)">ثبت</button>
+        </div>
+        <div class="progress uk-hidden" id="progressDiv">
+            <div class="progress-bar"></div>
+        </div>
+        <!--Footer End-->
+    </div>
+</div>
+

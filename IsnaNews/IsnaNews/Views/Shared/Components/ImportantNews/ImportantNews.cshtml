@@ -1,0 +1,64 @@
+﻿@using DataLayer.Models
+@using ServiceLayer.Utils;
+@model List<TblNews>
+
+@if (Model.Count > 0)
+{
+    <div class="carousel-inner">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            @if (i == 0)
+            {
+                <div class="carousel-item active _MyFont">
+                    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+                        <div class="d-none d-sm-block uk-flex-last@s uk-card-media-right uk-cover-container">
+                            <a asp-controller="Single" asp-action="Index" asp-route-id="@Model[i].Id" class="text-decoration-none">
+                                <img src="~/Resources/@Model[i].MainImage.ImageUrl" class="w-100" uk-cover>
+                                <canvas width="600" height="400"></canvas>
+                            </a>
+                        </div>
+                        <div>
+                            <div class="uk-card-body">
+                                <a asp-controller="Single" asp-action="Index" asp-route-id="@Model[i].Id" class="text-decoration-none">
+                                    <h3 class="uk-card-title _MyFont">@Model[i].Title</h3>
+                                </a>
+                                <p class="_MyFont">
+                                    @Model[i].Body.ToShortBody(15)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="carousel-item _MyFont">
+                    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+                        <div class="d-none d-sm-block uk-flex-last@s uk-card-media-right uk-cover-container">
+                            <a asp-controller="Single" asp-action="Index" asp-route-id="@Model[i].Id" class="text-decoration-none">
+                                <img src="~/Resources/@Model[i].MainImage.ImageUrl" class="w-100" uk-cover>
+                                <canvas width="600" height="400"></canvas>
+                            </a>
+                        </div>
+                        <div>
+                            <div class="uk-card-body">
+                                <a asp-controller="Single" asp-action="Index" asp-route-id="@Model[i].Id" class="text-decoration-none">
+                                    <h3 class="uk-card-title _MyFont">@Model[i].Title</h3>
+                                </a>
+                                <p class="_MyFont">
+                                    @Model[i].Body.ToShortBody(15)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <button class="carousel-control-prev" type="button" data-bs-target="#ImportantNewsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-primary"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#ImportantNewsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-primary"></span>
+        </button>
+    </div>
+}

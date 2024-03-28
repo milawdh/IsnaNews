@@ -1,0 +1,40 @@
+﻿@using DataLayer.Models
+@using ServiceLayer.Utils
+@model List<TblNews>
+@if (Model.Count > 0)
+{
+    <section dir="rtl" class="lastNewsSec mx-auto">
+        <span uk-icon="icon:file-text;ratio:1.4" class="m-2"></span>
+        <h4 class="text-danger d-inline _MyFont fw-bold">اخرین اخبار ارسالی</h4>
+        <div class="lastNewsSecBody" uk-scrollspy="target: > div; cls: uk-animation-slide-right; delay: 300;"
+             dir="rtl">
+            <!--Each Item start-->
+           @foreach (var i in Model)
+            {
+                <div class="uk-child-width-1-1">
+                    <header class="d-flex">
+                        <img style="width:200px!important;" class="rounded d-inline-block" src="~/Resources/@i.MainImage.ImageUrl">
+                        <span class="d-inline-block flex-fill">
+                            <h6 class="w-100 d-flex">
+                                <a asp-action="Index" asp-controller="Single" asp-route-id="@i.Id"  class="text-decoration-none text-break">
+                                   @i.Title
+                                </a>
+                            </h6>
+                            <p class="_MyFont">
+                                @i.Body.ToShortBody(15)
+                            </p>
+                        </span>
+                    </header>
+                    <div class="mt-2 _MyFont p-0 pt-1 d-flex _MyFont justify-content-between">
+                        <span class="text-danger">تاریخ انتشار:</span>
+                        <span class="me-auto d-flex">
+                            <span class="_hover-green _cursor-pointor _MyFont">@i.DatePosted.ToPersianDate()</span>
+                            <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                        </span>
+                    </div>
+                </div>
+            }
+            <!--Each Item end-->
+        </div>
+    </section>
+}

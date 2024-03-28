@@ -1,0 +1,81 @@
+﻿@model (string Body,int Id)?
+@if (Model != null)
+{
+    <div id="EditModal" class="" uk-modal dir="rtl">
+        <div class="uk-modal-dialog">
+            <!--Header Start-->
+            <div class="uk-modal-header _MyFont" dir="rtl">
+                <button class="uk-modal-close-outside" type="button" uk-close></button>
+
+                <h2 class="mt-2 _MyFont">
+                    <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                    <span class="uk-modal-title">
+                        @ViewBag.Title
+                    </span>
+                </h2>
+            </div>
+            <!--Header End-->
+            <!--Body Start-->
+            <div class="uk-modal-body _MyFont">
+                <h3 class="fw-bold _MyFont text-dark" dir="rtl">تیتر</h3>
+                <!--BodyForm Start-->
+                <form class="_MyFont my-2" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+                    @Html.AntiForgeryToken()
+                    <textarea class="uk-textarea" name="Body" id="Body" cols="25" value="@Model.Value.Body" required rows="10" placeholder="متن ....">@Model.Value.Body</textarea>
+                </form>
+                <!--BodyForm End-->
+            </div>
+            <!--Body End-->
+            <!--Footer Start-->
+            <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+                <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+                <button class="uk-button uk-button-primary" type="submit" onclick="Update(@Model.Value.Id)">ثبت</button>
+            </div>
+            <div class="progress uk-hidden" id="progressDiv">
+                <div class="progress-bar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <!--Footer End-->
+        </div>
+    </div>
+}
+else
+{
+    <div id="AddModal" class="" uk-modal dir="rtl">
+        <div class="uk-modal-dialog">
+            <!--Header Start-->
+            <div class="uk-modal-header _MyFont" dir="rtl">
+                <button class="uk-modal-close-outside" type="button" uk-close></button>
+
+                <h2 class="mt-2 _MyFont">
+                    <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                    <span class="uk-modal-title">
+                        @ViewBag.Title
+                    </span>
+                </h2>
+            </div>
+            <!--Header End-->
+            <!--Body Start-->
+            <div class="uk-modal-body _MyFont">
+                <h3 class="fw-bold _MyFont text-dark" dir="rtl">تیتر</h3>
+                <!--BodyForm Start-->
+                <form class="_MyFont my-2" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+                    @Html.AntiForgeryToken()
+                    <textarea class="uk-textarea" name="Body" id="Body" cols="25" rows="10" required placeholder="متن ...."></textarea>
+                </form>
+                <!--BodyForm End-->
+            </div>
+            <!--Body End-->
+            <!--Footer Start-->
+            <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+                <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+                <button class="uk-button uk-button-primary" type="submit" onclick="Add()">ثبت</button>
+            </div>
+            <div class="progress uk-hidden" id="progressDiv">
+                <div class="progress-bar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <!--Footer End-->
+        </div>
+    </div>
+}
+
+

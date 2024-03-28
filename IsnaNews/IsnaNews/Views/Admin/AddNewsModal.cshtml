@@ -1,0 +1,143 @@
+﻿@using DataLayer.Dtos.Admin.News
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div id="AddModal" class="" uk-modal dir="rtl">
+    <div class="uk-modal-dialog">
+        <!--Header Start-->
+        <div class="uk-modal-header _MyFont" dir="rtl">
+            <button class="uk-modal-close-outside" type="button" uk-close></button>
+
+            <h2 class="mt-2 _MyFont">
+                <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                <span class="uk-modal-title">
+                    خبر جدید
+                </span>
+            </h2>
+        </div>
+        <!--Header End-->
+        <!--Body Start-->
+        <div class="uk-modal-body _MyFont">
+            <ul uk-tab="animation: uk-animation-fade">
+                <li><a href="#" class="text-decoration-none">متن خبر</a></li>
+                <li><a href="#" class="text-decoration-none">ویدئو ها</a></li>
+                <li><a href="#" class="text-decoration-none">عکس های فرعی</a></li>
+                <li><a href="#" class="text-decoration-none">کلمات کلیدی</a></li>
+            </ul>
+            <ul class="uk-switcher uk-margin">
+                <!--BodyForm Start-->
+                <li>
+                    <form class="_MyFont" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+                        @Html.AntiForgeryToken()
+                        <div class="uk-margin">
+                            <div class="uk-form-controls">
+                                <div uk-form-custom class="text-end">
+                                    <input onchange="ChangeMainImage()" required type="file" name="MainImage" accept="image/png,image/jpeg,image/webp" id="MainImageUrlInput">
+                                    <button class="uk-button uk-button-default" type="button">انتخاب عکس اصلی</button>
+                                </div>
+                                <div class="my-2 text-center" id="MainImageUrlPreview">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-horizontal-text">تیتر خبر</label>
+                            <div class="uk-form-controls">
+                                <input required class="uk-input" value="" name="Title" id="Title" type="text">
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="ReporterId">خبرنگار</label>
+                            <div class="uk-form-controls">
+                                <select class="uk-select" id="ReporterId" name="ReporterId">
+                                    @await Component.InvokeAsync("UsersOptions")
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="CategoryId">دسته بندی</label>
+                            <div class="uk-form-controls">
+                                <select class="uk-select" id="CategoryId" value="" name="CategoryId">
+                                    @await Component.InvokeAsync("CategoryOptions")
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="_MyFont fw-bold my-1">متن خبر</label>
+                            <div class="uk-form-controls">
+                                <textarea required class="uk-textarea" name="Body" rows="5" cols="20"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <div class="uk-form-label">نوع خبر</div>
+                            <label class="_MyFont" uk-tooltip="درصورت فعال سازی خبر در کرسل صفحه اصلی نمایش داده خواهد شد">
+                                <input class="uk-checkbox" type="checkbox" id="IsImportantNews" name="IsImportantNews"> خبر مهم
+                            </label>
+                        </div>
+                    </form>
+                </li>
+                <!--BodyForm End-->
+                <!--VideoForm Start-->
+                <li>
+                    <form enctype="multipart/form-data" id="VideoForm">
+                        <div uk-form-custom class="text-end">
+                            <input onchange="InitVideoInputPreview()" type="file" accept="video/mp4" multiple id="VideoUrls" name="VideoUrls" />
+                            <button class="uk-button uk-button-default" type="button">افزودن ویدئو</button>
+                        </div>
+                    </form>
+                    <div id="VideoUrlsPreview">
+                    </div>
+
+                </li>
+                <!--VideoForm End-->
+                <!--ImageForm Start-->
+                <li>
+                    <form enctype="multipart/form-data" id="ImagesForm">
+                        <div uk-form-custom class="text-end">
+                            <input onchange="ImageUrlsInit()" type="file" accept="image/png,image/jpeg,image/webp" multiple id="ImagUrls" name="ImageUrls" />
+                            <button class="uk-button uk-button-default" type="button">افزودن عکس فرعی</button>
+                        </div>
+                    </form>
+                    <div id="ImagUrlsPreview">
+                    </div>
+                </li>
+                <!--ImageForm End-->
+                <li dir="rtl">
+                    <h5 class="_MyFont fw-bold text-secondary">کلمات کلیدی</h5>
+                    <div class="my-2 border-secondary border border-3 rounded-2 p-2 d-flex justify-content-center flex-wrap" id="keywordsDiv">
+                    </div>
+                    <div class="my-2 text-center _MyFont">
+                        <button class="uk-button uk-button-default">افزودن کلمه کلیدی جدید</button>
+                        <div class="rounded-3"
+                             uk-dropdown="stretch: x;offset:-10; boundary: !.uk-modal-dialog; mode:click; animation: reveal-top; animate-out: true; duration: 350;pos: bottom-center;flip:false">
+                            <ul class="my-2 p-2 list-unstyled _scrollBar">
+                                <li>
+                                    <h3 class="_MyFont text-center text-primary">افزودن کلمه کلیدی</h3>
+                                </li>
+                                <li class="d-flex justify-content-center flex-wrap" id="NewKeywords">
+                                    @await Component.InvokeAsync("AllKeywords")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--Body End-->
+        <!--Footer Start-->
+        <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+            <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+            <button class="uk-button uk-button-primary" type="submit" id="ActionButton" onclick="Add()">ثبت</button>
+        </div>
+        <div class="progress" hidden id="progressDiv">
+            <div class="progress-bar"></div>
+        </div>
+        <!--Footer End-->
+    </div>
+</div>

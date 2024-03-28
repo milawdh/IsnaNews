@@ -1,0 +1,14 @@
+﻿@model List<string>
+<div class="text-center my-2">
+    @{
+        foreach (var i in Model)
+        {
+            <!--Each Item Start-->
+            <a href="#" class="my-1 text-decoration-none btn-sm mx-1 btn btn-outline-secondary">
+                #
+                @i
+            </a>
+            <!--Each Item End-->
+        }
+    }
+</div>

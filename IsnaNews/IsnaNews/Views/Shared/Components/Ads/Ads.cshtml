@@ -1,0 +1,25 @@
+﻿@using DataLayer.Models
+@model List<TblAdvertisement>
+
+@if (Model.Count > 0)
+{
+    <section uk-scrollspy="target: > div; cls: uk-animation-scale-up; delay: 500;repeat: true" dir="rtl"
+             class="text-center w-100 my-2 uk-child-width-1-1 d-grid mx-auto">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            List<TblAdvertisement> ads = Model.Skip(i * 2).Take(2).ToList();
+            if (ads.Count > 0)
+            {
+                string childHeights = "uk-child-width-1-" + ads.Count;
+                <div class="my-1 childHeights d-flex d-md-block">
+                    @foreach (var item in ads)
+                    {
+                        <a class="mx-1 text-decoration-none" href="@item.Link">
+                            <img height="120" class="rounded-4 my-1" src="~/Resources/@item.MainBaner.ImageUrl">
+                        </a>
+                    }
+                </div>
+            }
+        }
+    </section>
+}

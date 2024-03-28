@@ -1,0 +1,638 @@
+﻿@using System.Data
+@using DataLayer.Types
+@model DataTable
+@{
+    var userAdminPermissions = (List<string>)TempData["AdminPermissions"];
+    Layout = "AdminLayout";
+    Tuple<DataTable, int, int, bool, bool> dataTableModel = new(Model, ViewBag.pageCount, ViewBag.AllPageCount,
+        userAdminPermissions.Any(_ => _ == AdminPermissions.NewsPermission.Update),
+        userAdminPermissions.Any(_ => _ == AdminPermissions.NewsPermission.Delete));
+}
+<div class="d-flex h-100">
+    <!--Body start-->
+    <section class="flex-fill _scrollBar h-100">
+        <div class="text-center">
+            <div class="mx-4 uk-card uk-card-body shadow p-3 rounded-3"
+                 style="background-color: white; margin-top: 100px;" dir="rtl">
+                <div class="d-flex justify-content-between">
+                    <h5 class="_MyFont fw-bold">لیست اخبار</h5>
+                    @if (userAdminPermissions.Any(_ => _ == AdminPermissions.NewsPermission.Add))
+                    {
+                        <button class="btn btn-sm btn-primary _MyFont" onclick="ShowAddModal()">
+                            <span uk-icon="plus-circle"></span>
+                            <span class="_MyFont">افزودن خبر جدید</span>
+                        </button>
+                    }
+                </div>
+                @await Component.InvokeAsync("AdminDataTable", dataTableModel)
+            </div>
+    </section>
+    <!--Body End-->
+
+</div>
+
+<div id="ReplyModal" class="" uk-modal dir="rtl">
+    <div class="uk-modal-dialog">
+        <!--Header Start-->
+        <div class="uk-modal-header _MyFont" dir="rtl">
+            <button class="uk-modal-close-outside" type="button" uk-close></button>
+
+            <h2 class="mt-2 _MyFont">
+                <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                <span class="uk-modal-title">
+                    @ViewBag.Title
+                </span>
+            </h2>
+        </div>
+        <!--Header End-->
+        <!--Body Start-->
+        <div class="uk-modal-body _MyFont">
+            <h3 class="fw-bold _MyFont text-dark" dir="rtl">تیتر</h3>
+            <!--BodyForm Start-->
+            <form class="_MyFont my-2" enctype="multipart/form-data" id="ReplyCommentBodyForm" dir="rtl">
+                @Html.AntiForgeryToken()
+                <textarea class="uk-textarea" name="Body" id="Body" cols="25" value="" rows="10" placeholder="متن ...."></textarea>
+            </form>
+            <!--BodyForm End-->
+        </div>
+        <!--Body End-->
+        <!--Footer Start-->
+        <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+            <button class="uk-button uk-button-danger uk-modal-close" uk-toggle="target:#EditModal" type="button">خروج</button>
+            <button class="uk-button uk-button-primary" type="submit" id="BtnSetReplyComment">ثبت</button>
+        </div>
+        <div class="progress uk-hidden" id="progressDiv">
+            <div class="progress-bar" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <!--Footer End-->
+    </div>
+</div>
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.NewsPermission.Delete))
+{
+    <script>
+
+        function SetDelete(id) {
+            $.ajax({
+                url: '/Admin/DeleteNews?id=' + id,
+                type: 'Delete',
+                contentType: 'application/json',
+                success: function (data) {
+                    SetSuccess()
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+    </script>
+}
+
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.NewsPermission.Update) ||
+userAdminPermissions.Any(_ => _ == AdminPermissions.NewsPermission.Delete))
+{
+    <script>
+        function collect() {
+            var BodyForm = new FormData(document.getElementById('BodyForm'))
+            var VideoForm = new FormData(document.getElementById('VideoForm'))
+            var ImagesForm = new FormData(document.getElementById('ImagesForm'))
+            var KeywordsForm = new FormData()
+            var keywordsDiv = document.getElementById('keywordsDiv')
+            for (var i = 0; i < keywordsDiv.children.length; i++) {
+                KeywordsForm.append('Keyword', keywordsDiv.children[i].innerHTML)
+            }
+
+            var data = new FormData();
+            for (var pair of BodyForm.entries()) {
+                if (pair[0] == "IsImportantNews") {
+                    data.append(pair[0], document.getElementById('IsImportantNews').checked)
+                }
+                else {
+                    data.append(pair[0], pair[1])
+                }
+            }
+            for (var pair of VideoForm.entries()) {
+                data.append(pair[0], pair[1])
+            }
+            for (var pair of ImagesForm.entries()) {
+                data.append(pair[0], pair[1])
+                console.log(pair[0] + ';' + pair[1])
+            }
+            for (var pair of KeywordsForm.entries()) {
+                data.append(pair[0], pair[1])
+            }
+
+            return data
+        }
+        function ChangeMainImage() {
+            var fileInput = document.getElementById('MainImageUrlInput');
+            var preview = document.getElementById('MainImageUrlPreview');
+
+            preview.innerHTML = ''
+            var file = fileInput.files[0];
+
+            if (file.type.endsWith('png') ||
+                file.type.endsWith('jpeg') ||
+                file.type.endsWith('jpg') ||
+                file.type.endsWith('gif') ||
+                file.type.endsWith('webp')) {
+                IsFileValid = true;
+                var reader = new FileReader();
+                reader.addEventListener('load', function (event) {
+                    var img = document.createElement('img');
+                    img.src = event.target.result;
+                    img.width = 240;
+                    img.height = 240;
+                    img.classList.add('d-inline-block', 'rounded-3', 'm-2')
+                    preview.appendChild(img);
+                });
+
+                reader.readAsDataURL(file);
+            }
+            else {
+                event.target.value = ''
+                UIkit.notification({
+                    message: '<span class="_MyFont">فرمت فایل مورد نظر فقط عکس میتواند باشد</span>',
+                    status: 'danger',
+                    pos: 'top-right',
+                    timeout: 5000
+                });
+
+            }
+        }
+        function InitVideoInputPreview() {
+            const VideoUrlsInput = document.getElementById('VideoUrls');
+            var VideoUrlsPreview = document.getElementById('VideoUrlsPreview')
+            var files = VideoUrlsInput.files;
+            var allowedFilesCount = 0;
+            var hasInvalidFile = false
+
+            //Refresh
+            VideoUrlsPreview.innerHTML = ''
+            VideoUrlsPreview.style.border = ''
+            VideoUrlsPreview.classList.remove('p-2', 'my-2', 'rounded-2')
+
+            //Init
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i]
+
+                if (!file.type.endsWith('mp4')) {
+                    hasInvalidFile = true;
+                    removeFileFromFileList(i)
+                    i--;
+                    files = VideoUrlsInput.files;
+                    UIkit.notification({
+                        message: `<span class="_MyFont" dir="rtl">
+                                                                                                                                                                                                                      فرمت فایل با نام
+                                                                                                                                                                                                                        <strong class="text-primary">${file.name}</strong>
+                                                                                                                                                                                                                        معتبر
+                                                                                                                                                                                                                       نمیباشد
+                                                                                                                                                                                                                      </span>`,
+                        status: 'danger',
+                        pos: 'top-right',
+                        timeout: 7000
+                    });
+
+                }
+                else {
+                    allowedFilesCount++;
+                    var videoDiv = document.createElement('div')
+                    video = document.createElement('video')
+                    var url = URL.createObjectURL(file)
+                    video.src = url
+                    video.classList.add('p-2', 'rounded-2', 'm-2')
+                    video.setAttribute('controls', '')
+
+                    var btnVideoDelete = document.createElement('span')
+                    btnVideoDelete.innerHTML = `<a class="bg-danger btn-close btn" onclick="removeFileFromFileList(${i},document.getElementById('VideoUrls'),this.parentElement.parentElement)" uk-tooltip="حذف عکس"></a>`
+                    videoDiv.appendChild(btnVideoDelete)
+                    videoDiv.appendChild(video)
+                    VideoUrlsPreview.appendChild(videoDiv)
+                }
+            }
+            //Check AllowedFiles
+            if (allowedFilesCount != 0) {
+                VideoUrlsPreview.style.border = 'solid 2px green'
+                VideoUrlsPreview.classList.add('p-2', 'my-2', 'rounded-2')
+            }
+            if (hasInvalidFile) {
+                UIkit.notification({
+                    message: `<span class="_MyFont" dir="rtl">
+                                                                                                                                                                                                                    فقط فرمت mp4 برای ویدئو ها معتبر میباشد
+                                                                                                                                                                                                                 </span>`,
+                    status: 'danger',
+                    pos: 'top-right',
+                    timeout: 7000
+                });
+            }
+        }
+        function removeFileFromFileList(index,
+            input = document.getElementById('VideoUrls'),
+            element = null, previewSectionId = 'VideoUrlsPreview',
+            IntitDelegate = InitVideoInputPreview) {
+            const dt = new DataTransfer
+            const { files } = input;
+
+            for (let i = 0; i < files.length; i++) {
+                if (i !== index) {
+                    const file = files[i];
+                    dt.items.add(file);
+                }
+            }
+            input.files = dt.files;
+            if (element != null) {
+                element.remove()
+                if (document.getElementById(previewSectionId).children.length == 0) {
+                    document.getElementById(previewSectionId).removeAttribute('style')
+                }
+                IntitDelegate()
+            }
+        }
+        function ImageUrlsInit() {
+            var ImagUrlsInput = document.getElementById('ImagUrls')
+            var ImageUrlPreview = document.getElementById('ImagUrlsPreview')
+            var files = ImagUrlsInput.files;
+            var allowedFilesCount = 0;
+            var hasInvalidFile = false;
+
+            //Refresh
+            ImageUrlPreview.innerHTML = ''
+            ImageUrlPreview.style.border = ''
+            ImageUrlPreview.classList.remove('p-2', 'my-2', 'rounded-2')
+
+            //Init
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i]
+
+                if (file.type.endsWith('jpg')
+                    || file.type.endsWith('jpeg')
+                    || file.type.endsWith('png')
+                    || file.type.endsWith('webp')) {
+                    allowedFilesCount++;
+                    var ImageDiv = document.createElement('div')
+                    ImageDiv.classList.add('m-2', 'rounded-2', 'd-inline-block', 'p-2')
+                    ImageDiv.style.border = 'solid 2px #2d1ed2'
+                    var img = document.createElement('img')
+                    var url = URL.createObjectURL(file)
+                    img.src = url;
+                    img.classList.add('rounded-3')
+                    img.width = 120
+                    img.height = 120
+                    var btnImageDelete = document.createElement('span')
+                    btnImageDelete.innerHTML =
+                        `<a class="bg-danger btn-close btn" uk-tooltip="حذف عکس"
+                                                            onclick="removeFileFromFileList(
+                                                                ${i},document.getElementById('ImagUrls'),this.parentElement.parentElement,'ImagUrlsPreview',ImageUrlsInit
+                                                            )"></a>`
+                    ImageDiv.appendChild(btnImageDelete)
+                    ImageDiv.appendChild(img)
+                    ImageUrlPreview.appendChild(ImageDiv)
+                }
+                else {
+                    var hasInvalidFile = true;
+                    removeFileFromFileList(i, document.getElementById('ImagUrls'), null, 'ImagUrlsPreview', mageUrlsInit)
+                    i--;
+                    files = ImagUrlsInput.files;
+                    UIkit.notification({
+                        message: `<span cass="_MyFont" dir="rtl">
+                                                        فرمت فایل با نام
+                                                        <strong class="text-primary">${file.name}</strong>
+                                                               معتبر
+                                                               نمیباشد
+                                                        </span>`,
+                        status: 'danger',
+                        pos: 'top-right',
+                        timeout: 7000
+                    });
+
+                }
+
+                //Check AllowedFiles
+                if (allowedFilesCount != 0) {
+                    ImageUrlPreview.border = 'solid 2px green'
+                    ImageUrlPreview.classList.add('p-2', 'my-2', 'rounded-2')
+                    if (hasInvalidFile) {
+                        UIkit.notificaon({
+                            message: `<span clMyFont" dir="rtl">
+                                                                لطفا فقط عکس انتخاب کنید
+                                                                </span>`,
+                            status: 'danger',
+                            pos: 'top-right',
+                            timeout: 7000
+                        });
+                    }
+                }
+            }
+        }
+        function DeleteKeyword(element) {
+            var Keyword = document.createElement('a')
+            Keyword.classList.add('m-1', 'text-dark', 'text-decorion-none', 'btn-sm', 'btn', 'btn-outline-secondary')
+            Keyword.innerHTML = element.innerHTML
+            Keyword.setAttribute('onclick', 'Addkeyword(this)')
+            Keyword.setAttribute('uk-tooltip', 'افزودن')
+            if (document.getElementById('NewKeywords').innerHTML.toString().includes('h5')) {
+                document.getElementById('NewKeywords').innerHTML = ''
+            }
+            document.getElementById('NewKeywords').appendChild(Keyword)
+            element.remove()
+        }
+        function Addkeyword(element) {
+            if (element.parentElement.children.length == 1) {
+                element.parentElement.innerHTML = '<h5 class="text-danger text-center _MyFont">کلمه کلیدی جدیدی وجود ندارد</h5>'
+            }
+            var Keyword = document.createElement('a')
+            Keyword.classList.add('m-1', 'text-decoration-none', 'btn-sm', 'btn', 'btn-outline-primary')
+            Keyword.innerHTML = element.innerHTML
+            Keyword.setAttribute('uk-tooltip', 'حذف')
+            Keyword.setAttribute('onclick', 'DeleteKeyword(this)')
+            document.getElementById('keywordsDiv').appendChild(Keyword)
+            element.remove();
+        }
+    </script>
+}
+
+<script>
+    function ValidateDelete(id,
+        onclick = `SetDelete(${id})`,
+        backModal = null) {
+        var MyModal = `<div id="ValidateDeleteModal" uk-modal>
+                             <div class="uk-modal-dialog">
+                                 <button class="uk-modal-close-default" type="button" uk-close></button>
+                                 <div class="uk-modal-body">
+                                     <h3 class="_MyFont fw-bold text-danger">آیا از حذف مطمئنید؟</h3>
+                                 </div>
+                                 <div class="d-flex justify-content-center _MyFont uk-modal-footer">
+                               <button class="uk-button uk-button-default mx-1 uk-modal-close" ${backModal == null ? '' : 'uk-toggle="target:#' + backModal + '"'}>خیر</button>
+                                  <button ${backModal == null ? '' : 'uk-toggle="target:#' + backModal + '"'} class="uk-button uk-button-danger mx-1" onclick="${onclick}">بله</button>
+                                 </div>
+                             </div>
+                         </div>`
+        UIkit.modal(MyModal).show()
+    }
+    function ShowErrors(errors) {
+        for (var i = 0; i < errors.length; i++) {
+            UIkit.notification({
+                message: `<span class="_MyFont" dir="rtl">${errors[i]}</span>`,
+                status: 'danger',
+                timeout: 7000,
+                pos: 'top-right'
+            })
+        }
+    }
+    function SetSuccess() {
+        UIkit.notification({
+            message: `<span class="_MyFont" dir="rtl">با موفقیت انجام شد</span>`,
+            status: 'success',
+            timeout: 3000,
+            pos: 'top-right'
+        })
+        setTimeout(function () {
+            window.location.reload()
+        }, 3000)
+    }
+    function refreshModals() {
+        var AddModal = document.getElementById('AddModal')
+        var EditModal = document.getElementById('EditModal')
+        if (EditModal != null) {
+            EditModal.remove()
+        }
+        if (AddModal != null) {
+            AddModal.remove()
+        }
+    }
+</script>
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.NewsPermission.Add))
+{
+    <script>
+        function ShowAddModal() {
+            $.ajax({
+                url: '/Admin/GetAddModalNews',
+                type: 'GET',
+                contentType: 'application/json',
+                success: function (data) {
+                    refreshModals()
+                    UIkit.modal(data).show()
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+        function Add() {
+
+            var MyData = collect();
+            document.getElementById('ActionButton').removeAttribute('onclick')
+            document.getElementById('progressDiv').removeAttribute('hidden')
+            UIkit.notification({
+                message: `<span class="_MyFont" dir="rtl">درحال انجام لطفا صبر کنید</span>`,
+                status: 'primary',
+                timeout: 3000,
+                pos: 'top-right'
+            })
+            $.ajax({
+                url: '/Admin/AddNews',
+                type: 'POST',
+                data: MyData,
+                async: true,
+                enctype: 'multipart/form-data',
+                contentType: false,
+                processData: false,
+                xhr: function () {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = evt.loaded / evt.total;
+                            $('.progress-bar').css({
+                                width: percentComplete * 100 + '%'
+                            });
+                            if (percentComplete === 1) {
+                                $('.progress-bar').addClass('bg-success');
+                            }
+                        }
+                    }, false);
+                    return xhr;
+                },
+                success: function (data) {
+                    SetSuccess()
+                },
+                error: function (data) {
+                    document.getElementById('ActionButton').setAttribute('onclick', 'Add()')
+                    ShowErrors(data.responseJSON.error)
+                }
+            });
+        }
+    </script>
+}
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.NewsPermission.Update))
+{
+    <script>
+        function GetEditByIdModal(id) {
+            $.ajax({
+                url: '/Admin/GetEditModalNews?id=' + id,
+                type: 'GET',
+                contentType: 'application/json',
+                success: function (data) {
+                    refreshModals()
+                    UIkit.modal(data).show()
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+        function Update(modelId) {
+            var data = collect()
+            data.append('Id', modelId)
+            UIkit.notification({
+                message: `<span class="_MyFont" dir="rtl">درحال انجام لطفا صبر کنید</span>`,
+                status: 'primary',
+                timeout: 3000,
+                pos: 'top-right'
+            })
+            document.getElementById('ActionButton').removeAttribute('onclick')
+            $.ajax({
+                url: '/Admin/UpdateNews',
+                type: 'POST',
+                data: data,
+                async: true,
+                enctype: 'multipart/form-data',
+                contentType: false,
+                processData: false,
+                xhr: function () {
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = evt.loaded / evt.total;
+                            $('.progress-bar').css({
+                                width: percentComplete * 100 + '%'
+                            });
+                            if (percentComplete === 1) {
+                                $('.progress-bar').addClass('bg-success');
+                            }
+                        }
+                    }, false);
+                    return xhr;
+                },
+                success: function (data) {
+                    SetSuccess()
+                },
+                error: function (data) {
+                    document.getElementById('ActionButton').setAttribute('onclick', `Update(${modelId})`)
+                    ShowErrors(data.responseJSON.error)
+
+                }
+            });
+        }
+
+        //Rels
+        function DeleteImageRel(elementId, id) {
+            ValidateDelete(id, `SetDeleteImageRel('${elementId}',${id})`, 'EditModal')
+        }
+        function DeleteVideoRel(elementId, id) {
+            ValidateDelete(id, `SetDeleteVideoRel('${elementId}',${id})`, 'EditModal')
+        }
+        function SetDeleteImageRel(elementId, id) {
+            $.ajax({
+                url: '/Admin/DeleteNewsImageRel?id=' + id,
+                type: 'Delete',
+                contentType: 'application/json',
+                success: function (data) {
+                    DeleteImageRelElement(elementId)
+                    UIkit.notification({
+                        message: `<span class="_MyFont" dir="rtl">با موفقیت انجام شد</span>`,
+                        status: 'success',
+                        timeout: 3000,
+                        pos: 'top-right'
+                    })
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+        function SetDeleteVideoRel(elementId, id) {
+            $.ajax({
+                url: '/Admin/DeleteNewsVideoRel?id=' + id,
+                type: 'Delete',
+                contentType: 'application/json',
+                success: function (data) {
+                    DeleteVideoRelElement(elementId)
+                    UIkit.notification({
+                        message: `<span class="_MyFont" dir="rtl">با موفقیت انجام شد</span>`,
+                        status: 'success',
+                        timeout: 3000,
+                        pos: 'top-right'
+                    })
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+        function DeleteImageRelElement(elementId) {
+            document.getElementById(elementId).remove()
+            var ImageBoxDiv = document.getElementById('PerviousImageRelsDiv')
+            if (ImageBoxDiv.children.length == 0) {
+                ImageBoxDiv.innerHTML = '<h5 class="fw-bold _MyFont text-secondary text-center">همه عکس های فرعی قبلی حذف شده است</h5>'
+            }
+        }
+        function DeleteVideoRelElement(elementId) {
+            document.getElementById(elementId).remove()
+            var VideoBoxDiv = document.getElementById('PerviousVideoRelsDiv')
+            if (VideoBoxDiv.children.length == 0) {
+                VideoBoxDiv.innerHTML = '<h5 class="fw-bold _MyFont text-secondary text-center">همه ویدئو های قبلی حذف شده است</h5>'
+            }
+        }
+    </script>
+}
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.CommentPermission.Delete))
+{
+    <script>
+        function DeleteComment(commentId) {
+            $.ajax({
+                url: '/Admin/DeleteComment?id=' + commentId,
+                type: 'Delete',
+                contentType: 'application/json',
+                success: function (data) {
+                    SetSuccess()
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+    </script>
+}
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.CommentPermission.Reply))
+{
+    <script>
+        function ReplyComment(commentId) {
+            document.getElementById('BtnSetReplyComment').setAttribute('onclick', `SetReply(${commentId})`)
+            UIkit.modal(document.getElementById('ReplyModal')).show();
+        }
+        function SetReply(commentId) {
+            var formData = new FormData(document.getElementById('ReplyCommentBodyForm'))
+            formData.append('ReplyingCommentId', commentId)
+            $.ajax({
+                url: '/Admin/ReplyComment',
+                type: 'POST',
+                data: formData,
+                async: true,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    SetSuccess()
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+    </script>
+}

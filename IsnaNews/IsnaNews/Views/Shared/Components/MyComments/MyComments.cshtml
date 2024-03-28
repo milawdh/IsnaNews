@@ -1,0 +1,37 @@
+﻿@model List<(string newsTitle , string Body,string DatePosted)>
+
+<div class="uk-card uk-card-body mx-auto" id="MyCommentsCard">
+    <div>
+        <h3 class="text-center _MyFont">نظرات من</h3>
+        <div class="p-1 d-grid _scrollBar">
+            @foreach (var i in Model)
+            {
+                <!--Each Item Start-->
+                <div dir="rtl" class="alert mx-auto w-100 alert-warning _MyFont">
+                    <div class="d-flex flex-column">
+                        <div>
+                            <strong class="text-black h5 d-inline _MyFont fw-bold">به خبر</strong>
+                            :
+                            <h6 class="d-inline _MyFont fw-bold uk-text-truncate"
+                                style="color: rgb(13, 74, 131);">
+                                @i.newsTitle
+                            </h6>
+                        </div>
+                    </div>
+                    <p>
+                        @i.Body
+                    </p>
+                    <div dir="ltr" class=" text-black me-auto">
+                        <span uk-icon="calendar"></span>
+                        <span>@i.DatePosted</span>
+                    </div>
+                </div>
+                <!--Each Item End-->
+            }
+            @if (Model.Count <= 0)
+            {
+                <h3 class="_MyFont text-center mt-3 text-danger fw-bold">نظری وجود ندارد</h3>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,392 @@
+@font-face {
+    font-family: "MyFont";
+    src: url("../Site/Font/Yekan.eot");
+    src: url("../Site/Font/Yekan.eot?#iefix") format("embedded-opentype"), url("../Site/Font/Yekan.woff2") format("woff2"), url("../Site/Font/Yekan.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    background: #fff;
+    color: #666;
+}
+
+._MyFont {
+    font-family: MyFont;
+}
+
+._indexNavbar {
+    background-color: #446fb4;
+}
+
+._IndexSubNav {
+    margin-top: -17px;
+    height: 35px;
+    background-color: rgb(13, 74, 131);
+}
+
+._btnlogin {
+    border: 2px solid rgb(0, 251, 255);
+    padding: 4px;
+    height: 40px;
+    width: 120px;
+    text-align: center;
+    background-color: transparent;
+    margin-top: 15px;
+    border-radius: 15px;
+    transition: all ease 0.5s;
+}
+
+    ._btnlogin:hover {
+        background-color: rgb(21, 206, 209);
+        border-color: rgb(21, 206, 209);
+    }
+
+._scaleHover {
+    transition: 0.2s all ease;
+}
+
+    ._scaleHover:hover {
+        transform: scaleY(1.05);
+    }
+
+.w-80 {
+    width: 80%;
+}
+
+._hover-red {
+    transition: 0.3s all ease;
+    color: black;
+}
+
+    ._hover-red:hover {
+        color: red;
+    }
+
+.lastNewsSec {
+    border: solid 1px #dfdfdf;
+    width: 85%;
+}
+
+.lastNewsSecBody {
+    padding: 0;
+}
+
+    .lastNewsSecBody div {
+        padding: 0;
+    }
+
+    .lastNewsSecBody div {
+        display: grid;
+        padding: 2%;
+        border-top: solid 1px #dfdfdf;
+    }
+
+        .lastNewsSecBody div header span {
+            padding: 1%;
+        }
+
+            .lastNewsSecBody div header span a {
+                text-decoration: none;
+                color: #7a7979;
+                font-family: MyFont;
+                font-weight: 700;
+            }
+
+                .lastNewsSecBody div header span a:hover {
+                    color: rgb(13, 74, 131);
+                }
+
+        .lastNewsSecBody div header img {
+            width: 200px!important;
+            height: 160px;
+            display: block;
+        }
+
+._hover-green:hover {
+    color: green;
+}
+
+._cursor-pointor {
+    cursor: pointer;
+}
+
+footer {
+    border-top: solid 3px rgb(13, 74, 131);
+    background-color: #446fb4;
+    margin-top: 5%;
+    color: rgb(13, 74, 131);
+}
+
+    footer div ul li a {
+        color: white;
+        text-decoration: none;
+        transition: 0.3s all ease;
+    }
+
+        footer div ul li a:hover {
+            margin-right: 12px;
+            color: rgb(13, 74, 131);
+            text-decoration: none;
+        }
+
+._SingleHeader {
+    border: solid 2px #dfdfdf;
+    padding: 8px;
+    font-family: MyFont;
+    margin: 0 10px 0 10px;
+    border-radius: 6px;
+    width: 75%;
+}
+
+._SingleBody {
+    border: solid 2px #dfdfdf;
+    padding: 8px;
+    display: grid;
+    font-family: MyFont;
+    margin: 0 10px 0 10px;
+    border-radius: 6px;
+    width: 75%;
+    line-height: 23px;
+    text-align: justify;
+    color: #6b6a6a;
+}
+
+    ._SingleBody h5 {
+        font-family: MyFont;
+        color: black;
+        font-weight: bold;
+    }
+
+._loginForm {
+    width: 70%;
+    border-radius: 25px;
+}
+
+#ProfileSideBar {
+    width: 80px;
+    height: 100%;
+    background-color: #161616;
+}
+
+    #ProfileSideBar ul li {
+        margin-top: 25px;
+        margin-left: 12px;
+    }
+
+        #ProfileSideBar ul li a {
+            text-decoration: none;
+            font-family: MyFont;
+            color: #dfdfdf;
+            width: 100%;
+            transition: 0.3s all ease;
+        }
+
+            #ProfileSideBar ul li a ._sidebarTitle {
+                margin-left: 8px;
+                color: #dfdfdf;
+                transition: 0.2s all ease;
+            }
+
+            #ProfileSideBar ul li a:hover ._sidebarTitle {
+                color: white;
+                font-weight: 500;
+                font-family: MyFont;
+                text-decoration: none;
+                margin-left: 16px;
+            }
+
+            #ProfileSideBar ul li a:hover ._sidebarStrokedIcon path {
+                stroke: #446fb4;
+            }
+
+            #ProfileSideBar ul li a:hover ._sidebarFilledIcon path {
+                fill: #446fb4;
+            }
+
+            #ProfileSideBar ul li a ._sidebarStrokedIcon path {
+                transition: 0.2s all ease;
+            }
+
+            #ProfileSideBar ul li a ._sidebarFilledIcon path {
+                transition: 0.2s all ease;
+            }
+
+    #ProfileSideBar:hover {
+        width: 230px;
+    }
+
+    #ProfileSideBar:not(:hover) ul li a ._sidebarTitle {
+        display: none;
+    }
+
+#personInfoCard {
+    background-color: rgba(79, 115, 191, 0.3);
+    width: 90%;
+    margin-top: 50px;
+    border: 2px solid rgba(79, 115, 191, 0.3);
+    border-radius: 20px;
+    padding: 25px;
+}
+
+#MyCommentsCard {
+    background-color: rgba(227, 217, 28, 0.3);
+    width: 90%;
+    margin-top: 50px;
+    border: 2px solid rgba(227, 217, 28, 0.3);
+    border-radius: 20px;
+    padding: 25px;
+}
+
+._scrollBar {
+    overflow-y: scroll;
+    height: 240px;
+}
+
+    ._scrollBar::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    ._scrollBar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ._scrollBar::-webkit-scrollbar-thumb {
+        background-color: #2d1ed2;
+        border-radius: 10px;
+    }
+
+#MyActionsCard {
+    background-color: rgba(28, 227, 68, 0.3);
+    width: 90%;
+    margin-top: 50px;
+    border: 2px solid rgba(28, 227, 68, 0.3);
+    border-radius: 20px;
+    padding: 25px;
+}
+
+    #MyActionsCard .alert {
+        height: 65px;
+    }
+
+#OnMobileNavbar {
+    display: none;
+}
+
+._hover-blue {
+    transition: 0.2s all ease;
+}
+
+    ._hover-blue:hover {
+        color: #2d1ed2;
+    }
+
+.CommentsSec {
+    border: solid 1px #dfdfdf;
+    width: 85%;
+    height: 500px;
+}
+
+.CommentsSecBody {
+    padding: 0;
+}
+
+    .CommentsSecBody div {
+        padding: 0;
+    }
+
+    .CommentsSecBody div {
+        display: grid;
+        padding: 2%;
+        border-top: solid 1px #dfdfdf;
+    }
+
+        .CommentsSecBody div header span {
+            padding: 1%;
+        }
+
+            .CommentsSecBody div header span a {
+                text-decoration: none;
+                color: #7a7979;
+                font-family: MyFont;
+                font-weight: 700;
+            }
+
+                .CommentsSecBody div header span a:hover {
+                    color: rgb(13, 74, 131);
+                }
+
+        .CommentsSecBody div header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            display: block;
+        }
+
+.AddCommentSec {
+    border: solid 1px #e1f127;
+    width: 85%;
+    height: 400px;
+}
+
+    .AddCommentSec div {
+        margin-top: 12px;
+    }
+
+._logo {
+    height: 85px;
+    margin: 5px 0 5px 0;
+}
+
+@media screen and (max-width: 560px) {
+
+    ._SingleBodyHeadersDiv {
+        flex-direction: column;
+    }
+
+    #personInfoCard div div span {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    #personInfoCard {
+        padding: 8px !important;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    #ProfileSideBar {
+        display: none;
+    }
+
+    ._logo {
+        height: 65px;
+    }
+
+    #OnMobileNavbar {
+        display: block;
+    }
+
+    .lastNewsSecBody div header img {
+        width: 80px !important;
+        height: 80px !important;
+        margin: 8px 5px 0 5px;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    #ProfileSideBar:hover {
+        width: 280px;
+    }
+}
+
+@media screen and (min-width: 780px) {
+    ._loginForm {
+        width: 50%;
+    }
+}

@@ -1,0 +1,12 @@
+﻿@model (List<DataLayer.Models.TblUser> Users,int SelectedUser)
+@foreach (var item in Model.Users)
+{
+    @if (item.Id != Model.SelectedUser || Model.SelectedUser == 0)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+    else
+    {
+        <option selected value="@item.Id">@item.Name</option>
+    }
+}

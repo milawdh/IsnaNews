@@ -1,0 +1,55 @@
+﻿@using DataLayer.Models
+@model List<TblNews>
+@using ServiceLayer.Utils;
+
+
+@if (Model.Count > 0)
+{
+    <section uk-scrollspy="target: > div; cls: uk-animation-scale-up; delay: 300;repeat: true" dir="rtl"
+             uk-match-height class="uk-width-1-5@l uk-width-1-1 ms-auto d-flex flex-column">
+        <div class="d-flex justify-content-between">
+            <hr class="w-25">
+            <h6 style="font-weight: 700;" uk-scrollspy-class="cls:;" class="_hover-red _MyFont text-center">
+                پربازدیدترین اخبار
+            </h6>
+            <hr class="w-25">
+        </div>
+
+
+        <!--each item start-->
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            List<TblNews> news = Model.Skip(i * 2).Take(2).ToList();
+            @if (news.Count > 0)
+            {
+                string childHeights = "uk-child-width-1-" + news.Count;
+                <div class="d-flex d-xl-grid @childHeights uk-child-width-1-1@l">
+                    @foreach (var item in news)
+                    {
+                        <div class="my-1 mx-1 uk-card uk-card-default uk-box-shadow-large uk-box-shadow-hover-xlarge
+                         _scaleHover rounded">
+                            <div class="uk-text-right d-flex">
+                                <h5 class="h6 pt-2 _MyFont fw-bold text-dark mx-2 uk-text-break">
+                                    <a class="text-decoration-none _hover-red" asp-controller="Single" asp-action="Index" asp-route-id="@item.Id">
+                                        @item.Title
+                                    </a>
+                                </h5>
+                            </div>
+                            <hr class="mt-1 p-0">
+                            <div class="uk-card-body d-flex justify-content-between m-0 pt-0 px-1 pb-1">
+                                <span class="pb-0 m-0 me-auto d-flex" dir="rtl">
+                                    <span class="_hover-green _cursor-pointor _MyFont">@item.DatePosted.ToPersianDate().Split()[0]</span>
+                                    <span uk-icon="icon:calendar;ratio:1.2;"></span>
+                                </span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+        <!--each item end-->
+        <!--Ads Start-->
+        @await Component.InvokeAsync("Ads")
+        <!--Ads End-->
+    </section>
+}

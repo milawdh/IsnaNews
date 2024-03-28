@@ -1,0 +1,231 @@
+﻿@using System.Data
+@using DataLayer.Types
+@model DataTable
+@{
+    var userAdminPermissions = (List<string>)TempData["AdminPermissions"];
+    Layout = "AdminLayout";
+    Tuple<DataTable, int, int, bool, bool> dataTableModel = new(Model, ViewBag.pageCount, ViewBag.AllPageCount,
+    userAdminPermissions.Any(_ => _ == AdminPermissions.CategoryPermission.Update),
+        userAdminPermissions.Any(_ => _ == AdminPermissions.CategoryPermission.Delete));
+}
+<div class="d-flex h-100">
+    <!--Body start-->
+    <section class="flex-fill _scrollBar h-100">
+        <div class="text-center">
+            <div class="mx-4 uk-card uk-card-body shadow p-3 rounded-3"
+                 style="background-color: white; margin-top: 100px;" dir="rtl">
+                <div class="d-flex justify-content-between">
+                    <h5 class="_MyFont fw-bold">لیست دسته بندی ها</h5>
+                    @if (userAdminPermissions.Any(_ => _ == AdminPermissions.CategoryPermission.Add))
+                    {
+                        <button class="btn btn-sm btn-primary _MyFont" onclick="ShowAddModal()">
+                            <span uk-icon="plus-circle"></span>
+                            <span class="_MyFont">افزودن دسته بندی جدید</span>
+                        </button>
+                    }
+                </div>
+                @await Component.InvokeAsync("AdminDataTable", dataTableModel)
+            </div>
+    </section>
+    <!--Body End-->
+</div>
+
+
+<script>
+    function refreshModals() {
+        var AddModal = document.getElementById('AddModal')
+        var EditModal = document.getElementById('EditModal')
+        if (EditModal != null) {
+            EditModal.remove()
+        }
+        if (AddModal != null) {
+            AddModal.remove()
+        }
+    }
+    function ShowErrors(errors) {
+        for (var i = 0; i < errors.length; i++) {
+            UIkit.notification({
+                message: `<span class="_MyFont" dir="rtl">${errors[i]}</span>`,
+                status: 'danger',
+                timeout: 7000,
+                pos: 'top-right'
+            })
+        }
+    }
+    function SetSuccess() {
+        UIkit.notification({
+            message: `<span class="_MyFont" dir="rtl">با موفقیت ثبت شد</span>`,
+            status: 'success',
+            timeout: 3000,
+            pos: 'top-right'
+        })
+        setTimeout(function () {
+            window.location.reload()
+        }, 3000)
+    }
+</script>
+
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.CategoryPermission.Delete))
+{
+    <script>
+        function ValidateDelete(id) {
+            var MyModal = `<div id="ValidateDeleteModal" uk-modal>
+                 <div class="uk-modal-dialog">
+                     <button class="uk-modal-close-default" type="button" uk-close></button>
+                     <div class="uk-modal-body">
+                         <h3 class="_MyFont fw-bold text-danger" dir="rtl">آیا از حذف مطمئنید؟</h3>
+                         <p class="_MyFont" dir="rtl">
+                             در صورت حذف همه خبر ها و زیر مجموعه های این دسته بندی نیز حذف خواهد شد 
+                         </p>
+                     </div>
+                     <div class="d-flex justify-content-center _MyFont uk-modal-footer">
+                         <button class="uk-button uk-button-default mx-1 uk-modal-close">خیر</button>
+                         <button class="uk-button uk-button-danger mx-1" onclick="SetDelete(${id})">بله</button>
+                     </div>
+                 </div>
+             </div>`
+            UIkit.modal(MyModal).show()
+        }
+        function SetDelete(id) {
+            $.ajax({
+                url: '/Admin/DeleteCategory?id=' + id,
+                type: 'Delete',
+                contentType: 'application/json',
+                success: function (data) {
+                    SetSuccess()
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+    </script>
+}
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.CategoryPermission.Update))
+{
+    <script>
+        function Update(modelId) {
+            var MyForm = document.getElementById('BodyForm')
+
+            if (!MyForm.checkValidity()) {
+                var tmpSubmit = document.createElement('button')
+                MyForm.appendChild(tmpSubmit)
+                tmpSubmit.click()
+                MyForm.removeChild(tmpSubmit)
+            }
+            else {
+                document.getElementById('progressDiv').classList.remove('uk-hidden')
+                var data = new FormData(MyForm);
+                data.append('Id', modelId)
+                $.ajax({
+                    url: '/Admin/UpdateCategory',
+                    type: 'POST',
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+                                $('.progress-bar').css({
+                                    width: percentComplete * 100 + '%'
+                                });
+                                if (percentComplete === 1) {
+                                    $('.progress-bar').addClass('bg-success');
+                                }
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    success: function (data) {
+                        SetSuccess()
+                    },
+                    error: function (data) {
+                        ShowErrors(data.responseJSON.error)
+                    }
+                });
+            }
+        }
+        function GetEditByIdModal(id) {
+
+            $.ajax({
+                url: '/Admin/GetEditModalCategory?id=' + id,
+                type: 'GET',
+                contentType: 'application/json',
+                success: function (data) {
+                    refreshModals()
+                    UIkit.modal(data).show()
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+    </script>
+}
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.CategoryPermission.Add))
+{
+    <script>
+        function ShowAddModal() {
+            $.ajax({
+                url: '/Admin/GetAddModalCategory',
+                type: 'GET',
+                contentType: 'application/json',
+                success: function (data) {
+                    refreshModals()
+                    UIkit.modal(data).show()
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+        function Add() {
+            var MyForm = document.getElementById('BodyForm')
+
+            if (!MyForm.checkValidity()) {
+                var tmpSubmit = document.createElement('button')
+                MyForm.appendChild(tmpSubmit)
+                tmpSubmit.click()
+                MyForm.removeChild(tmpSubmit)
+            }
+            else {
+                document.getElementById('progressDiv').classList.remove('uk-hidden')
+                var data = new FormData(MyForm);
+                $.ajax({
+                    url: '/Admin/AddCategory',
+                    type: 'POST',
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+                                $('.progress-bar').css({
+                                    width: percentComplete * 100 + '%'
+                                });
+                                if (percentComplete === 1) {
+                                    $('.progress-bar').addClass('bg-success');
+                                }
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    success: function (data) {
+                        SetSuccess()
+                    },
+                    error: function (data) {
+                        ShowErrors(data.responseJSON.error)
+                    }
+                });
+            }
+        }
+    </script>
+}

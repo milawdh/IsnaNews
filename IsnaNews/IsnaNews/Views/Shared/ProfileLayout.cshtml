@@ -1,0 +1,222 @@
+﻿@using DataLayer.Types
+<html lang="en">
+@{
+    var userAdminPermissions = (List<string>)TempData["AdminPermissions"];
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isna News</title>
+    <link rel="stylesheet" href="@Href("~/lib/Css/UIKit/uikit.min.css")">
+    <script src="@Url.Content("~/lib/Js/UIKit/uikit.min.js")"></script>
+    <script src="@Url.Content("~/lib/Js/UIKit/uikit-icons.min.js")"></script>
+    <link rel="stylesheet" href="@Href("~/lib/Css/Site/Style.css")">
+    <link href="@Href("~/lib/Css/Bootstrap/dist/css/bootstrap.min.css")" rel="stylesheet">
+    <script src="@Url.Content("~/lib/Css/Bootstrap/dist/js/bootstrap.bundle.min.js")"></script>
+    <title>Profile</title>
+    <script src="~/lib/Js/jquery/dist/jquery.min.js"></script>
+    @{
+        if (userAdminPermissions.Any(_ => _ == AdminPermissions.GroupName))
+        {
+            <style>
+                #adminList {
+                    list-style: none;
+                    color: white;
+                    padding-left: 25px;
+                    display: none;
+                }
+
+                    #adminList li {
+                        margin-left: 25px;
+                    }
+
+                        #adminList li a .uk-icon {
+                            transition: 0.2s all ease;
+                            margin-right: 8px;
+                        }
+
+                        #adminList li a:hover .uk-icon {
+                            color: #d92577;
+                            margin-right: 14px;
+                        }
+
+                        #adminList li a ._adminListTitle {
+                            transition: 0.2s all ease;
+                        }
+
+                        #adminList li a:hover ._adminListTitle {
+                            color: #d92577;
+                        }
+            </style>
+        }
+    }
+</head>
+
+<body style="background-color: #f5f5f7;">
+    <div class="d-flex h-100">
+        <!--SideBar Start-->
+        <section id="ProfileSideBar">
+            <a asp-action="Index" asp-controller="UserProfile" class="d-flex justify-content-center my-2">
+                <img src="@Url.Content("~/Resources/"+TempData["UserProfileImage"].ToString())" style="width: 45px;" class=" rounded-circle">
+            </a>
+            <ul class=" d-grid p-0" style="list-style: none;">
+                <li>
+                    <a asp-action="Index" asp-controller="UserProfile" class="text-decoration-none">
+                        <span class="_sidebarStrokedIcon _sidebarFilledIcon">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="32px" width="32px"
+                                 viewBox="0 0 448 512">
+                                <path fill="#ffffff"
+                                      d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                            </svg>
+                        </span>
+                        <span class="_sidebarTitle">
+                            اطلاعات فردی
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a asp-action="MyNews" asp-controller="UserProfile">
+                        <span class="_sidebarStrokedIcon">
+                            <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 fill="#ffffff" stroke="#ffffff">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g id="icomoon-ignore"> </g>
+                                    <path d="M9.069 2.672v14.928h-6.397c0 0 0 6.589 0 8.718s1.983 3.010 3.452 3.010c1.469 0 16.26 0 20.006 0 1.616 0 3.199-1.572 3.199-3.199 0-1.175 0-23.457 0-23.457h-20.259zM6.124 28.262c-0.664 0-2.385-0.349-2.385-1.944v-7.652h5.331v7.192c0 0.714-0.933 2.404-2.404 2.404h-0.542zM28.262 26.129c0 1.036-1.096 2.133-2.133 2.133h-17.113c0.718-0.748 1.119-1.731 1.119-2.404v-22.12h18.126v22.391z"
+                                          fill="#000000"> </path>
+                                    <path d="M12.268 5.871h13.861v1.066h-13.861v-1.066z" fill="#000000"> </path>
+                                    <path d="M12.268 20.265h13.861v1.066h-13.861v-1.066z" fill="#000000"> </path>
+                                    <path d="M12.268 23.997h13.861v1.066h-13.861v-1.066z" fill="#000000"> </path>
+                                    <path d="M26.129 9.602h-13.861v7.997h13.861v-7.997zM25.063 16.533h-11.729v-5.864h11.729v5.864z"
+                                          fill="#000000"> </path>
+                                </g>
+                            </svg>
+                        </span>
+                        <span class="_sidebarTitle">
+                            اخبار من
+                        </span>
+                    </a>
+                </li>
+                @if (userAdminPermissions.Any(_ => _ == DataLayer.Types.AdminPermissions.GroupName))
+                {
+                    @await Component.InvokeAsync("AdminList", userAdminPermissions)
+                }
+            </ul>
+        </section>
+        <!--SideBar End-->
+        <!--Body start-->
+        <section class="flex-fill _scrollBar h-100">
+
+            <!--On Mobile Nav Start-->
+            <nav class="navbar bg-dark navbar-dark" id="OnMobileNavbar">
+                <div class="container-fluid">
+                    <img src="@Url.Content("~/Resources/"+TempData["UserProfileImage"].ToString())" width="60px" class="navbar-brand rounded-circle">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#OnMobileNavbarList">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="OnMobileNavbarList" dir="rtl">
+                        <ul class="_MyFont navbar-nav d-grid p-0" style="list-style: none;">
+                            <li class="my-2">
+                                <a asp-action="Index" asp-controller="UserProfile" class="text-light text-decoration-none">
+                                    <span class="_sidebarStrokedIcon _sidebarFilledIcon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="32px" width="32px"
+                                             viewBox="0 0 448 512">
+                                            <path fill="#ffffff"
+                                                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                                        </svg>
+                                    </span>
+                                    <span class="_sidebarTitle">
+                                        اطلاعات فردی
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="my-2">
+                                <a asp-action="MyNews" asp-controller="UserProfile" class="text-light text-decoration-none">
+                                    <span class="_sidebarStrokedIcon">
+                                        <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff" stroke="#ffffff">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                               stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <g id="icomoon-ignore"> </g>
+                                                <path d="M9.069 2.672v14.928h-6.397c0 0 0 6.589 0 8.718s1.983 3.010 3.452 3.010c1.469 0 16.26 0 20.006 0 1.616 0 3.199-1.572 3.199-3.199 0-1.175 0-23.457 0-23.457h-20.259zM6.124 28.262c-0.664 0-2.385-0.349-2.385-1.944v-7.652h5.331v7.192c0 0.714-0.933 2.404-2.404 2.404h-0.542zM28.262 26.129c0 1.036-1.096 2.133-2.133 2.133h-17.113c0.718-0.748 1.119-1.731 1.119-2.404v-22.12h18.126v22.391z"
+                                                      fill="#000000"> </path>
+                                                <path d="M12.268 5.871h13.861v1.066h-13.861v-1.066z" fill="#000000">
+                                                </path>
+                                                <path d="M12.268 20.265h13.861v1.066h-13.861v-1.066z" fill="#000000">
+                                                </path>
+                                                <path d="M12.268 23.997h13.861v1.066h-13.861v-1.066z" fill="#000000">
+                                                </path>
+                                                <path d="M26.129 9.602h-13.861v7.997h13.861v-7.997zM25.063 16.533h-11.729v-5.864h11.729v5.864z"
+                                                      fill="#000000"> </path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="_sidebarTitle">
+                                        اخبار من
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!--On Mobile Nav End-->
+            <!--Body nav Start-->
+            <nav style="background-color: gray;" class="rounded-bottom-3 p-1 navbar navbar-expand">
+                <ul class="navbar-nav">
+                    <li uk-tooltip="صفحه اصلی">
+                        <a uk-icon="icon:home" class="_hover-blue" asp-action="Index" asp-controller="Home"></a>
+                    </li>
+                    <li uk-tooltip="خروج از حساب کاربری">
+                        <a asp-action="LogOut" asp-controller="UserProfile" class="ms-1 _hover-red text-decoration-none _cursor-pointor" uk-icon="icon:sign-out"></a>
+                    </li>
+                </ul>
+            </nav>
+            <!--Body nav End-->
+            @RenderBody()
+
+            @await Component.InvokeAsync("Footer")
+        </section>
+        <!--Body End-->
+
+    </div>
+
+    @if (userAdminPermissions.Count > 0)
+    {
+        <!--AdminPanelToggle Script Start-->
+        <script>
+            var Flag = true
+            function adminListToggle(Toggler) {
+                var adminList = document.getElementById('adminList')
+                if (Flag) {
+                    adminList.style.display = 'block'
+                    Flag = false
+                    Toggler.setAttribute('uk-icon', 'chevron-up')
+                }
+                else {
+                    adminList.style.display = 'none'
+                    Flag = true
+                    Toggler.setAttribute('uk-icon', 'chevron-down')
+                }
+
+            }
+            var ProfileSideBar = document.getElementById('ProfileSideBar')
+            ProfileSideBar.addEventListener('mouseleave', function () {
+                document.getElementById('adminList').style.display = 'none'
+                adminListToggler.setAttribute('uk-icon', 'chevron-down')
+                Flag = true
+            })
+        </script>
+        <!--AdminPanelToggle Script End-->
+    }
+</body>
+
+</html>

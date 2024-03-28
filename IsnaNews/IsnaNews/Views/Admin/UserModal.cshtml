@@ -1,0 +1,205 @@
+﻿@using DataLayer.Dtos.Admin.User
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model AdminUserDto?
+@if (Model != null)
+{
+    <div id="EditModal" uk-modal dir="rtl">
+        <div class="uk-modal-dialog">
+            <!--Header Start-->
+            <div class="uk-modal-header _MyFont" dir="rtl">
+                <button class="uk-modal-close-outside" type="button" uk-close></button>
+                <h2 class="mt-2 _MyFont">
+                    <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                    <span class="uk-modal-title">
+                        ویرایش کاربر
+                    </span>
+                </h2>
+            </div>
+            <!--Header End-->
+            <!--Body Start-->
+            <div class="uk-modal-body _MyFont">
+                <ul uk-tab="animation: uk-animation-fade">
+                    <li><a href="#" class="text-decoration-none">مشخصات کاربر</a></li>
+                    <li><a href="#" class="text-decoration-none">دسترسی های کاربر</a></li>
+                </ul>
+                <ul class="uk-switcher uk-margin">
+                    <!--BodyForm Start-->
+                    <li>
+                        <form class="_MyFont" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+                            @Html.AntiForgeryToken()
+                            <div class="uk-margin">
+                                <div class="uk-form-controls">
+                                    <div uk-form-custom class="text-end">
+                                        <input onchange="ProfileChange()" type="file" name="ProfileImage" accept="image/png,image/jpeg,image/webp" id="ProfileImageUrlInput">
+                                        <button class="uk-button uk-button-default" type="button">انتخاب عکس پروفایل</button>
+                                    </div>
+                                    <div class="my-2 text-center" id="ProfileImageUrlPreview">
+                                        <img width="160" src="~/Resources/@Model.ProfileImageUrl"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-horizontal-text">نام</label>
+                                <div class="uk-form-controls">
+                                    <input value="@Model.Name" required class="uk-input" name="Name" id="Name" type="text" placeholder="نام کاربر...">
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-horizontal-text"> شماره تلفن کاربر</label>
+                                <div class="uk-form-controls">
+                                    <input required value="@Model.Tell" class="uk-input" name="Tell" id="Tell" type="text" placeholder="شماره تلفن ...">
+                                </div>
+                            </div>
+
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-horizontal-text">نام کاربری</label>
+                                <div class="uk-form-controls">
+                                    <input value="@Model.UserName" required class="uk-input" name="UserName" id="UserName" type="text" placeholder="نام کاربری...">
+                                </div>
+                            </div>
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-horizontal-text">رمز کاربر</label>
+                                <div class="uk-form-controls">
+                                    <input required class="uk-input" name="Password" id="Password" type="text" placeholder="رمز جدید کاربر...">
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <!--BodyForm End-->
+                    <li>
+                        <h3 class="_MyFont text-danger fw-bold my-2 text-end" dir="rtl">در حال فعلی نقش کاربر @Model.RoleName است</h3>
+                        <form class="_MyFont" enctype="multipart/form-data" id="RoleForm" dir="rtl">
+                            <label class="_MyFont fw-bold my-2">ویرایش نقش کاربر</label>
+                            <select name="RoleId" class="uk-select uk-form-controls" id="RoleId">
+                                @await Component.InvokeAsync("RolesOptions",Model.RoleName)
+                            </select>
+                        </form>
+                        <label class="uk-form-label text-primary fw-bold _MyFont mt-3">دسترسی های کاربر</label>
+                        <div class="uk-panel _scrollBar my-2 border border-2 rounded-1 border-secondary p-2">
+                            <ul class="uk-list disabled">
+                                @foreach (var item in Model.permissions)
+                                {
+                                    <li><label><input disabled class="uk-checkbox" type="checkbox">@item</label></li>
+                                }
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--Body End-->
+            <!--Footer Start-->
+            <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+                <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+                <button class="uk-button uk-button-primary" type="submit" onclick="Update(@Model.Id)">ثبت</button>
+            </div>
+            <div class="progress uk-hidden" id="progressDiv">
+                <div class="progress-bar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <!--Footer End-->
+        </div>
+
+    </div>
+
+}
+else
+{
+    <div id="AddModal" uk-modal dir="rtl">
+        <div class="uk-modal-dialog">
+            <!--Header Start-->
+            <div class="uk-modal-header _MyFont" dir="rtl">
+                <button class="uk-modal-close-outside" type="button" uk-close></button>
+                <h2 class="mt-2 _MyFont">
+                    <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                    <span class="uk-modal-title">
+                        کاربر جدید
+                    </span>
+                </h2>
+            </div>
+            <!--Header End-->
+            <!--Body Start-->
+            <div class="uk-modal-body _MyFont">
+                <ul uk-tab="animation: uk-animation-fade">
+                    <li><a href="#" class="text-decoration-none">مشخصات کاربر</a></li>
+                    <li><a href="#" class="text-decoration-none">دسترسی های کاربر</a></li>
+                </ul>
+                <ul class="uk-switcher uk-margin">
+                    <!--BodyForm Start-->
+                    <li>
+                        <form class="_MyFont" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+                            @Html.AntiForgeryToken()
+                            <div class="uk-margin">
+                                <div class="uk-form-controls">
+                                    <div uk-form-custom class="text-end">
+                                        <input required onchange="ProfileChange()" type="file" name="ProfileImage" accept="image/png,image/jpeg,image/webp" id="ProfileImageUrlInput">
+                                        <button class="uk-button uk-button-default" type="button">انتخاب عکس پروفایل</button>
+                                    </div>
+                                    <div class="my-2 text-center" id="ProfileImageUrlPreview">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-horizontal-text">نام</label>
+                                <div class="uk-form-controls">
+                                    <input class="uk-input" name="Name" id="Name" type="text" placeholder="نام کاربر...">
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-horizontal-text">شماره تلفن کاربر</label>
+                                <div class="uk-form-controls">
+                                    <input required class="uk-input" name="Tell" id="Tell" type="text" placeholder="شماره تلفن ...">
+                                </div>
+                            </div>
+
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-horizontal-text">نام کاربری</label>
+                                <div class="uk-form-controls">
+                                    <input required class="uk-input" name="UserName" id="UserName" type="text" placeholder="نام کاربری...">
+                                </div>
+                            </div>
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-horizontal-text">رمز کاربر</label>
+                                <div class="uk-form-controls">
+                                    <input required class="uk-input" name="Password" id="Password" type="text" placeholder="رمز جدید کاربر...">
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <!--BodyForm End-->
+                    <li>
+                        <h3 class="_MyFont text-danger fw-bold my-2 text-end" dir="rtl">در حال فعلی نقش کاربر NormalUser است</h3>
+                        <form class="_MyFont" enctype="multipart/form-data" id="RoleForm" dir="rtl">
+                            <label class="_MyFont fw-bold my-2">ویرایش نقش کاربر</label>
+                            <select name="RoleId" class="uk-select uk-form-controls" id="RoleId">
+                                @await Component.InvokeAsync("RolesOptions")
+                            </select>
+                        </form>
+                        <label class="uk-form-label text-primary fw-bold _MyFont mt-3">دسترسی های کاربر</label>
+                        <div class="uk-panel _scrollBar my-2 border border-2 rounded-1 border-secondary p-2">
+                            <h3 class="text-primary _MyFont fw-bold text-center">بدون دسترسی</h3>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--Body End-->
+            <!--Footer Start-->
+            <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+                <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+                <button class="uk-button uk-button-primary" type="submit" onclick="Add()">ثبت</button>
+            </div>
+            <div class="progress uk-hidden" id="progressDiv">
+                <div class="progress-bar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <!--Footer End-->
+        </div>
+
+    </div>
+}
+

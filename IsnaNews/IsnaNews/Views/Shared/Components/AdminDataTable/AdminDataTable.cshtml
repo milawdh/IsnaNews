@@ -1,0 +1,108 @@
+﻿@using System.Data
+@model (DataTable data, int pageCount,int AllPageCount,bool HasUpdate,bool HasDelete)
+@{
+
+}
+<div class="overflow-x-auto">
+    <table id="adminTable" class="uk-table uk-table-divider uk-table-striped uk-table-hover">
+        @if (Model.data.Rows.Count > 1)
+        {
+            <thead class="text-muted">
+                <tr>
+                    @foreach (var item in Model.data.Rows[0].ItemArray)
+                    {
+                        <td class="_MyFont">@item.ToString()</td>
+                    }
+                    @if (Model.HasUpdate || Model.HasDelete)
+                    {
+                        <td>ویرایش</td>
+                    }
+                </tr>
+            </thead>
+            <tbody class="_MyFont fw-bold">
+                @for (int i = 1; i < Model.data.Rows.Count; i++)
+                {
+                    <tr>
+                        @foreach (var item in Model.data.Rows[i].ItemArray)
+                        {
+                            if (item.ToString() == "False")
+                            {
+                                <td>خیر</td>
+                            }
+                            else if (item.ToString() == "True")
+                            {
+                                <td>بله</td>
+                            }
+                            else
+                            {
+                                <td>@item.ToString()</td>
+                            }
+                        }
+                        @if (Model.HasUpdate || Model.HasDelete)
+                        {
+                            <td>
+                                <button class="btn btn-primary _MyFont">
+                                    <span uk-icon="cog"></span>
+                                    تنظیمات
+                                </button>
+                                <div uk-dropdown="mode:click;pos: bottom-center;" id="TableDropDown" class="rounded-3">
+                                    <ul class="uk-nav uk-dropdown-nav">
+                                        @{
+                                            var ModelId = Model.data.Rows[i].ItemArray[0];
+                                        }
+                                        @if (Model.HasUpdate)
+                                        {
+                                            <li><a class="text-decoration-none" onclick="UIkit.dropdown(document.getElementById('TableDropDown')).hide(0); GetEditByIdModal(@ModelId)">ویرایش</a></li>
+                                        }
+                                        @if (Model.HasDelete)
+                                        {
+                                            <li><a class="text-decoration-none" onclick="UIkit.dropdown(document.getElementById('TableDropDown')).hide(0); ValidateDelete(@ModelId)">حذف</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        }
+        else
+        {
+            <h3 class="fw-bold _MyFont text-primary text-center">داده ای وجود ندارد</h3>
+        }
+    </table>
+
+</div>
+<div class="d-flex justify-content-between p-2">
+    <span dir="ltr">
+        <ul class="pagination pagination-sm">
+            @if (Model.AllPageCount == 1 || Model.pageCount == 1)
+            {
+                <li class="page-item"><a class="page-link text-decoration-none disabled">Previous</a></li>
+            }
+            else
+            {
+                int perviousPage = Model.pageCount - 1;
+                <li class="page-item"><a class="page-link text-decoration-none" asp-route-p="@perviousPage">Previous</a></li>
+            }
+
+            @for (int i = 0; i < Model.AllPageCount * 10; i += 10)
+            {
+                var index = (i / 10) + 1;
+                <li class="page-item"><a class="page-link text-decoration-none" asp-route-p="@index">@index</a></li>
+            }
+            @if (Model.AllPageCount == Model.pageCount)
+            {
+                <li class="page-item"><a class="page-link text-decoration-none disabled">Next</a></li>
+            }
+            else
+            {
+                int nextPage = Model.pageCount + 1;
+                <li class="page-item"><a class="page-link text-decoration-none" asp-route-p="@nextPage">Next</a></li>
+            }
+        </ul>
+    </span>
+</div>
+<script>
+
+</script>

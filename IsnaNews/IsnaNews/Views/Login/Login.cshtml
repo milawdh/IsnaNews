@@ -1,0 +1,86 @@
+﻿@using IsnaNews.Controllers
+@{
+    Layout = null;
+}
+@model List<string>
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isna News</title>
+    <link rel="stylesheet" href="~/lib/Css/UIKit/uikit.min.css">
+    <script src="~/lib/Js/UIKit/uikit.min.js"></script>
+    <script src="~/lib/Js/UIKit/uikit-icons.min.js"></script>
+    <link href="~/lib/Css/Bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="~/lib/Css/Bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/Js/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="~/lib/Css/Site/Style.css">
+</head>
+
+<body style="background-color: #446fb4;">
+    <!--Logo Start-->
+    <div class="text-center p-5" uk-scrollspy="target: > a; cls: uk-animation-scale-down; delay: 300">
+        <a class="text-decoration-none" asp-action="Index" asp-controller="Home">
+            <img src="~/Resources/logo.png" class="" width="300px" alt="">
+        </a>
+    </div>
+    <!--Logo End-->
+    <!--LoginForm Start-->
+    <div uk-scrollspy="target: > form; cls: uk-animation-slide-right; delay: 900">
+        <form action="~/Login/UserLogin" method="post"
+              class="text-center
+        _loginForm rounded-3 shadow-lg uk-card uk-card-body uk-card-default mx-auto">
+            @Html.AntiForgeryToken()
+            <div class="uk-margin">
+                <div class="uk-inline my-2 w-75 _loginFormInputs" dir="rtl">
+                    <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: user"></span>
+                    <input class="uk-input rounded-1 _MyFont"
+                           id="loginUserName" name="UserName" type="text" placeholder="نام کاربری ...">
+                </div>
+                <div class="uk-inline my-2 w-75 _loginFormInputs" dir="rtl">
+                    <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+                    <input class="uk-input rounded-1 _MyFont"
+                           id="loginPass" name="Password" type="password" placeholder="رمز عبور ...">
+                    <a class="uk-form-icon" uk-icon="icon: eye" onclick="ShowPassWord()">
+                    </a>
+                </div>
+            </div>
+            <div class="">
+                <p class="_MyFont fw-bold">
+                    آیا حساب کاربری ندارید؟!
+                    <a asp-controller="Login" asp-action="Register" class="uk-button-text text-primary text-decoration-none">حساب جدیدی</a>
+                    باز کنید
+                </p>
+            </div>
+            <button type="submit"
+                    class="uk-button uk-button-primary rounded-1 _MyFont fw-bold">
+                ورود
+            </button>
+        </form>
+    </div>
+    <!--LoginForm End-->
+    @{
+
+        if (TempData["Errors"] != null)
+        {
+            var Err = new List<string>((IEnumerable<string>)TempData["Errors"]);
+                <script>
+                    UIkit.modal(`@await Component.InvokeAsync("ValidationModal", (Err, TempData["ErrorTitle"].ToString()))`).show()
+                </script>
+        }
+
+       
+    }
+    <script>
+        function ShowPassWord() {
+            if (document.getElementById('loginPass').type == 'password')
+                    loginPass.type = 'text'
+                else
+                loginPass.type = 'password'
+        }
+    </script>
+</body>
+
+</html>

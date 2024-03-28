@@ -1,0 +1,184 @@
+﻿@using DataLayer.Models
+@model (List<(int Id, string Name)> RolePermission, List<TblRolePermissions> AllPermissions)
+
+@*Add*@
+@if (Model.RolePermission == null)
+{
+    <div id="AddModal" class="" uk-modal dir="rtl">
+        <div class="uk-modal-dialog">
+            <!--Header Start-->
+            <div class="uk-modal-header _MyFont" dir="rtl">
+                <button class="uk-modal-close-outside" type="button" uk-close></button>
+
+                <h2 class="mt-2 _MyFont">
+                    <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                    <span class="uk-modal-title">
+                        نقش جدید
+                    </span>
+                </h2>
+            </div>
+            <!--Header End-->
+            <!--Body Start-->
+            <div class="uk-modal-body _MyFont">
+                <!--BodyForm Start-->
+                <form class="_MyFont my-2" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+                    @Html.AntiForgeryToken()
+                    <label class="my-1 fw-bold _MyFont">نام نقش</label>
+                    <input required class="uk-input" name="Name" value="" id="Name" />
+                </form>
+                <!--BodyForm End-->
+                <label class="uk-form-label text-primary fw-bold _MyFont mt-3">دسترسی ها</label>
+                <div class="uk-panel _scrollBar my-2 border border-2 rounded-1 border-secondary p-2" style="height:400px;">
+                    <ul class="uk-list">
+                        @{
+                            string MainGroupName = "";
+                        }
+                        @foreach (var i in Model.AllPermissions)
+                        {
+                            @if (i.ParentId == null)
+                            {
+                                MainGroupName = "Gr" + i.Name;
+                                <li class="d-flex flex-column"><label data-groupName="@i.Name"><input id="@i.Name" class="uk-checkbox @MainGroupName" onclick="SetPermission(this,true)" type="checkbox" value="@i.Id"> @i.Name</label></li>
+                            }
+                            else
+                            {
+                                @if (i.InverseParent.Count > 0)
+                                {
+                                    var ParentGroupName = "Gr" + @i.Name;
+                                    <ul class="my-1">
+                                        <li class="d-flex flex-column">
+                                            <label data-groupName="@i.Name"><input id="@i.Name" data-parent="@MainGroupName.Replace("Gr", "")" class="uk-checkbox @MainGroupName" onclick="SetPermission(this,true)" type="checkbox" value="@i.Id"> @i.Name.Replace("Admin.", "").Replace("Permission", " Permission")</label>
+                                            <ul class="d-flex flex-column my-1 ">
+                                                @foreach (var j in i.InverseParent)
+                                                {
+                                                    <li>
+                                                        <label data-groupName="@j.Name"><input id="@j.Name" data-parent="@i.Name" class="uk-checkbox @ParentGroupName @MainGroupName" onclick="SetPermission(this)" type="checkbox" value="@j.Id"> @j.Name.Replace(i.Name + ".", "")</label>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+            <!--Body End-->
+            <!--Footer Start-->
+            <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+                <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+                <button onclick="AddRole()" class="uk-button uk-button-primary" type="button">ثبت</button>
+            </div>
+            <div class="progress uk-hidden" id="progressDiv">
+                <div class="progress-bar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <!--Footer End-->
+        </div>
+
+    </div>
+}
+//Edit
+else
+{
+    <div id="EditModal" class="" uk-modal dir="rtl">
+        <div class="uk-modal-dialog">
+            <!--Header Start-->
+            <div class="uk-modal-header _MyFont" dir="rtl">
+                <button class="uk-modal-close-outside" type="button" uk-close></button>
+
+                <h2 class="mt-2 _MyFont">
+                    <span uk-icon="icon:plus-circle;ratio:1.5"></span>
+                    <span class="uk-modal-title">
+                        ویرایش نقش
+                    </span>
+                </h2>
+            </div>
+            <!--Header End-->
+            <!--Body Start-->
+            <div class="uk-modal-body _MyFont">
+                <!--BodyForm Start-->
+                <form class="_MyFont my-2" enctype="multipart/form-data" id="BodyForm" dir="rtl">
+                    @Html.AntiForgeryToken()
+                    <label class="my-1 fw-bold _MyFont">نام نقش</label>
+                    <input required class="uk-input" name="Name" id="Name" value="@ViewBag.RoleName" />
+                </form>
+                <!--BodyForm End-->
+                <label class="uk-form-label text-primary fw-bold _MyFont mt-3">دسترسی ها</label>
+                <div class="uk-panel _scrollBar my-2 border border-2 rounded-1 border-secondary p-2" style="height:400px;">
+                    <ul class="uk-list">
+                        @{
+                            string MainGroupName = "";
+                        }
+                        @foreach (var i in Model.AllPermissions)
+                        {
+                            @if (i.ParentId == null)
+                            {
+                                MainGroupName = "Gr" + i.Name;
+                                @if (Model.RolePermission.Any(_ => _.Id == i.Id))
+                                {
+                                    <li class="d-flex flex-column"><label data-groupName="@i.Name"><input id="@i.Name" class="uk-checkbox @MainGroupName" checked onclick="SetPermission(this,true)" type="checkbox" value="@i.Id"> @i.Name</label></li>
+
+                                }
+                                else
+                                {
+                                    <li class="d-flex flex-column"><label data-groupName="@i.Name"><input id="@i.Name" class="uk-checkbox @MainGroupName" onclick="SetPermission(this,true)" type="checkbox" value="@i.Id"> @i.Name</label></li>
+
+                                }
+                            }
+                            else
+                            {
+                                @if (i.InverseParent.Count > 0)
+                                {
+                                    var ParentGroupName = "Gr" + @i.Name;
+                                    <ul class="my-1">
+                                        <li class="d-flex flex-column">
+                                            @if (Model.RolePermission.Any(_ => _.Id == i.Id))
+                                            {
+                                                <label data-groupName="@i.Name"><input checked id="@i.Name" data-parent="@MainGroupName.Replace("Gr", "")" class="uk-checkbox @MainGroupName" onclick="SetPermission(this,true)" type="checkbox" value="@i.Id"> @i.Name.Replace("Admin.", "").Replace("Permission", " Permission")</label>
+                                            }
+                                            else
+                                            {
+                                                <label data-groupName="@i.Name"><input id="@i.Name" data-parent="@MainGroupName.Replace("Gr", "")" class="uk-checkbox @MainGroupName" onclick="SetPermission(this,true)" type="checkbox" value="@i.Id"> @i.Name.Replace("Admin.", "").Replace("Permission", " Permission")</label>
+
+                                            }
+                                            <ul class="d-flex flex-column my-1 ">
+                                                @foreach (var j in i.InverseParent)
+                                                {
+                                                    @if (Model.RolePermission.Any(_ => _.Id == j.Id))
+                                                    {
+                                                        <li>
+                                                            <label data-groupName="@j.Name"><input id="@j.Name" data-parent="@i.Name" checked class="uk-checkbox @ParentGroupName @MainGroupName" onclick="SetPermission(this)" type="checkbox" value="@j.Id"> @j.Name.Replace(i.Name + ".", "")</label>
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li>
+                                                            <label data-groupName="@j.Name"><input id="@j.Name" data-parent="@i.Name" class="uk-checkbox @ParentGroupName @MainGroupName" onclick="SetPermission(this)" type="checkbox" value="@j.Id"> @j.Name.Replace(i.Name + ".", "")</label>
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+            <!--Body End-->
+            <!--Footer Start-->
+            <div class="uk-modal-footer uk-text-left _MyFont fw-bold">
+                <button class="uk-button uk-button-danger uk-modal-close" type="button">خروج</button>
+                <button class="uk-button uk-button-primary" type="submit" onclick="Update(@ViewBag.RoleId)">ثبت</button>
+            </div>
+            <div class="progress uk-hidden" id="progressDiv">
+                <div class="progress-bar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <!--Footer End-->
+        </div>
+
+    </div>
+
+}

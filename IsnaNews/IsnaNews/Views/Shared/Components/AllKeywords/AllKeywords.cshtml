@@ -1,0 +1,8 @@
+﻿@model (List<DataLayer.Models.TblKeyWord> AllKeywords,List<string> selectedKeywords)
+@foreach (var item in Model.AllKeywords)
+{
+    @if (!Model.selectedKeywords.Any(_ => _ == item.Body))
+    {
+        <a onclick="Addkeyword(this)" class="m-1 text-dark text-decoration-none btn-sm btn btn-outline-secondary" uk-tooltip="افزودن">@item.Body</a>
+    }
+}

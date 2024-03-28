@@ -1,0 +1,28 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using DataLayer.Dtos.Admin.User
+@using ServiceLayer.Utils
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "HomeLayout";
+}
+
+<div uk-grid class="uk-grid">
+    <div uk-scrollspy="target: > div; cls: uk-animation-slide-right; delay: 300;offset:450;" dir="rtl"
+         style="height: 40%;" data-bs-ride="carousel" id="ImportantNewsCarousel" class="carousel
+         uk-width-4-5@l uk-margin-remove my-2 slide">
+
+        <!--slideshow Inner Start -->
+        @await Component.InvokeAsync("ImportantNews")
+        <!--slideshow Inner End -->
+        <!--LastNews start-->
+        @await Component.InvokeAsync("LatestNews")
+        <!--LastNews End-->
+    </div>
+    <!--MostViewdNews Start-->
+    @await Component.InvokeAsync("MostViewedNews")
+    <!--MostViewdNews End-->
+
+
+</div>
+
+

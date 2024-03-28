@@ -1,0 +1,302 @@
+﻿@using System.Data
+@using DataLayer.Types
+@model DataTable
+@{
+    var userAdminPermissions = (List<string>)TempData["AdminPermissions"];
+    Layout = "AdminLayout";
+    Tuple<DataTable, int, int, bool, bool> dataTableModel = new(Model, ViewBag.pageCount, ViewBag.AllPageCount,
+    userAdminPermissions.Any(_ => _ == AdminPermissions.RolesPermission.Update),
+        userAdminPermissions.Any(_ => _ == AdminPermissions.RolesPermission.Delete));
+
+}
+
+<div class="d-flex h-100">
+    <!--Body start-->
+    <section class="flex-fill _scrollBar h-100">
+        <div class="text-center">
+            <div class="mx-4 uk-card uk-card-body shadow p-3 rounded-3"
+                 style="background-color: white; margin-top: 100px;" dir="rtl">
+                <div class="d-flex justify-content-between">
+                    <h5 class="_MyFont fw-bold">@Model.TableName</h5>
+                    @if (userAdminPermissions.Any(_ => _ == AdminPermissions.RolesPermission.Add))
+                    {
+                        <button class="btn btn-sm btn-primary _MyFont" onclick="ShowAddModal()">
+                            <span uk-icon="plus-circle"></span>
+                            <span class="_MyFont">افزودن نقش جدید</span>
+                        </button>
+                    }
+                </div>
+                @await Component.InvokeAsync("AdminDataTable", dataTableModel)
+            </div>
+    </section>
+    <!--Body End-->
+
+</div>
+<div id="ModalsDiv">
+</div>
+
+
+
+
+
+<script>
+    function ShowErrors(errors) {
+        for (var i = 0; i < errors.length; i++) {
+            UIkit.notification({
+                message: `<span class="_MyFont" dir="rtl">${errors[i]}</span>`,
+                status: 'danger',
+                timeout: 7000,
+                pos: 'top-right'
+            })
+        }
+    }
+    function SetSuccess() {
+        UIkit.notification({
+            message: `<span class="_MyFont" dir="rtl">با موفقیت ثبت شد</span>`,
+            status: 'success',
+            timeout: 3000,
+            pos: 'top-right'
+        })
+        setTimeout(function () {
+            window.location.reload()
+        }, 3000)
+    }
+    function refreshModals() {
+        var AddModal = document.getElementById('AddModal')
+        var EditModal = document.getElementById('EditModal')
+        if (EditModal != null) {
+            EditModal.remove()
+        }
+        if (AddModal != null) {
+            AddModal.remove()
+        }
+    }
+</script>
+
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.RolesPermission.Update))
+{
+    <script>
+        function GetEditByIdModal(id) {
+
+            $.ajax({
+                url: '/Admin/GetEditModalRole?id=' + id,
+                type: 'GET',
+                contentType: 'application/json',
+                success: function (data) {
+                    refreshModals()
+                    UIkit.modal(data).show()
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+        function Update(id) {
+            var MyForm = document.getElementById('BodyForm')
+
+            if (!MyForm.checkValidity()) {
+                var tmpSubmit = document.createElement('button')
+                MyForm.appendChild(tmpSubmit)
+                tmpSubmit.click()
+                MyForm.removeChild(tmpSubmit)
+            }
+            else {
+
+                document.getElementById('progressDiv').classList.remove('uk-hidden')
+                var data = new FormData(MyForm);
+                var permissions = collect()
+                for (var i = 0; i < permissions.length; i++) {
+                    data.append('PermissionIds', permissions[i])
+                }
+                data.append('Id', id)
+                $.ajax({
+                    url: '/Admin/UpdateRole',
+                    type: 'POST',
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+                                $('.progress-bar').css({
+                                    width: percentComplete * 100 + '%'
+                                });
+                                if (percentComplete === 1) {
+                                    $('.progress-bar').addClass('bg-success');
+                                }
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    success: function (data) {
+                        SetSuccess()
+                    },
+                    error: function (data) {
+                        ShowErrors(data.responseJSON.error)
+                    }
+                });
+            }
+        }
+    </script>
+}
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.RolesPermission.Delete))
+{
+    <script>
+        function ValidateDelete(id) {
+            var MyModal = `<div id="ValidateDeleteModal" uk-modal>
+                                <div class="uk-modal-dialog">
+                                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                                    <div class="uk-modal-body">
+                                        <h3 class="_MyFont fw-bold text-danger">آیا از حذف مطمئنید؟</h3>
+                                    </div>
+                                    <div class="d-flex justify-content-center _MyFont uk-modal-footer">
+                                        <button class="uk-button uk-button-default mx-1 uk-modal-close">خیر</button>
+                                        <button class="uk-button uk-button-danger mx-1" onclick="SetDelete(${id})">بله</button>
+                                    </div>
+                                </div>
+                            </div>`
+            UIkit.modal(MyModal).show()
+        }
+        function SetDelete(id) {
+            $.ajax({
+                url: '/Admin/DeleteRole?id=' + id,
+                type: 'GET',
+                contentType: 'application/json',
+                success: function (data) {
+                    SetSuccess()
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+    </script>
+}
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.RolesPermission.Add) ||
+userAdminPermissions.Any(_ => _ == AdminPermissions.RolesPermission.Update))
+{
+    <script>
+        function SetPermission(element, isGropName = false) {
+
+            if (isGropName) {
+                disablePermission(element.parentElement.getAttribute('data-groupName'), element.checked)
+                var parentId = element.getAttribute('data-parent')
+                if (parentId != null) {
+                    document.getElementById(parentId).checked = true;
+                }
+            }
+            else {
+                if (element.checked) {
+                    var parent = document.getElementById(element.getAttribute('data-parent'))
+                    parent.checked = true
+                    document.getElementById('Admin').checked = true
+                }
+            }
+            var inputs = document.getElementsByClassName('GrAdmin')
+            var checkedInputsCount = 0;
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].checked) {
+                    checkedInputsCount++
+                }
+            }
+            if (checkedInputsCount <= 1 && !element.checked) {
+                disablePermission('Admin', false)
+                return;
+            }
+        }
+        function disablePermission(groupName, checkedOrNot) {
+            var groups = document.getElementsByClassName('Gr' + groupName)
+            for (var i = 0; i < groups.length; i++) {
+                var input = groups[i]
+                input.checked = checkedOrNot
+            }
+        }
+        function collect() {
+            var inputs = document.getElementsByClassName('GrAdmin')
+            var data = []
+            var formData = new FormData();
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].checked) {
+                    data.push(Number.parseInt(inputs[i].value))
+                }
+            }
+            console.log(data)
+            console.log(formData.get('RoleId'))
+            return data
+        }
+    </script>
+}
+@if (userAdminPermissions.Any(_ => _ == AdminPermissions.RolesPermission.Add))
+{
+
+    <script>
+        function ShowAddModal() {
+            $.ajax({
+                url: '/Admin/GetAddModalRole',
+                type: 'GET',
+                contentType: 'application/json',
+                success: function (data) {
+                    refreshModals()
+                    UIkit.modal(data).show()
+                },
+                error: function (data) {
+                    console.log(data.responseText)
+                    ShowErrors(data.responseJSON.error)
+                }
+            })
+        }
+        function AddRole() {
+            var MyForm = document.getElementById('BodyForm')
+
+            if (!MyForm.checkValidity()) {
+                var tmpSubmit = document.createElement('button')
+                MyForm.appendChild(tmpSubmit)
+                tmpSubmit.click()
+                MyForm.removeChild(tmpSubmit)
+            }
+            else {
+
+                document.getElementById('progressDiv').classList.remove('uk-hidden')
+                var data = new FormData(MyForm);
+                var permissions = collect()
+                for (var i = 0; i < permissions.length; i++) {
+                    data.append('PermissionIds', permissions[i])
+                }
+                $.ajax({
+                    url: '/Admin/AddRole',
+                    type: 'POST',
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+                                $('.progress-bar').css({
+                                    width: percentComplete * 100 + '%'
+                                });
+                                if (percentComplete === 1) {
+                                    $('.progress-bar').addClass('bg-success');
+                                }
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    success: function (data) {
+                        SetSuccess()
+                    },
+                    error: function (data) {
+                        ShowErrors(data.responseJSON.error)
+                    }
+                });
+            }
+        }
+    </script>
+
+}
