@@ -1,0 +1,208 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isna News</title>
+    <link rel="stylesheet" href="Css/uikit.css">
+    <script src="Js/uikit.min.js"></script>
+    <script src="Js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="Css/Style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body class="_MyFont" style="background-color: #f5f5f7;">
+    <header>
+        <!--Navbar Start-->
+        <nav class="uk-navbar navbar-expand-md d-grid
+        d-md-block w-100 _indexNavbar" dir="rtl">
+            <div class="d-flex w-100">
+                <button class="navbar-toggler border-light me-1 ms-3 mt-4 text-light
+                rounded-3" style="width: 12%;height: 5%;">
+                    <span uk-icon="icon:menu;ratio:1.5" data-bs-toggle="offcanvas" data-bs-target="#IndexCanvas"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="d-md-none navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-light text-decoration-none" href="index.html">
+                                صفحه اصلی
+                            </a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-light text-decoration-none" href="">
+                                گروه های خبری
+                            </a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a class="nav-link text-light text-decoration-none" href="">
+                                ورود به سایت
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="w-100 d-flex justify-content-between">
+                    <a href="#" style="margin: 0px 0 0 5px;" class="">
+                        <img src="Resources/logo.png" height="55px" alt="">
+                    </a>
+                    <a hidden href="#" style="margin: 0px 0 0 5px;" class="">
+                        <img src="Resources/NoPofile.jpg" width="60px" height="60px" class="rounded-circle mt-2 me-auto"
+                            alt="">
+                    </a>
+                    <a href="#" class="text-decoration-none _btnlogin
+                     ms-1 text-light">
+                        ورود به سایت
+                    </a>
+                </div>
+            </div>
+            <div class="mt-1">
+                <form action="" class=" pb-md-1 d-flex justify-content-center">
+                    <button class="btn btn-sm ms-1">
+                        <span uk-icon="search"></span>
+                    </button>
+                    <input placeholder="جست و جو..." type="text" class="form-control w-50 mt-2">
+                    <button hidden class="btn btn-close bg-danger mt-3 me-2"></button>
+                </form>
+            </div>
+        </nav>
+        <!--Navbar End-->
+
+        <!---->
+        <ul dir="rtl" class="d-none d-md-flex
+         p-0 _IndexSubNav w-auto px-2 uk-subnav">
+            <li class="">
+                <a class="text-decoration-none text-light uk-button-text me-1" href="#">صفحه اصلی</a>
+            </li>
+            <li class="">
+                <a class="text-decoration-none uk-button-text text-light me-3" href="#">گروه های خبری</a>
+            </li>
+            <li class="">
+                <a class="text-decoration-none uk-button-text text-light me-3" href="#">خط مشی</a>
+            </li>
+        </ul>
+        <!---->
+
+        <!-- Canvas Start-->
+        <div dir="rtl" id="IndexCanvas" class="offcanvas offcanvas-end">
+            <div class="offcanvas-header">
+                <h1 class="h2">خبرگزاری ایسنا</h1>
+                <button class="btn btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body uk-flex uk-flex-column">
+                <ul class="uk-nav uk-nav-primary">
+                    <li class="uk-active"><a href="index.html">
+                            <span uk-icon="icon:bookmark;ratio:1.5"></span>
+                            صفحه اصلی</a></li>
+                    <li>
+                        <a class="d-inline h4 text-dark">
+                            <span uk-icon="icon:thumbnails;ratio:1.5"></span>
+                            گروه های خبری
+                        </a>
+                        <div uk-dropdown>
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li class="uk-active"><a href="#">Active</a></li>
+                                <li><a href="#">Item</a></li>
+                                <li class="uk-nav-header">Header</li>
+                                <li><a href="#">Item</a></li>
+                                <li><a href="#">Item</a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li><a href="#">Item</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <!-- Canvas End-->
+
+    </header>
+
+    <div>
+        <div dir="rtl" class="uk-card uk-card-body uk-card-default mx-5 my-5 rounded-4">
+            <h1 class="_MyFont fw-bold text-center text-dark">درباره با ما</h1>
+            <h5 class="_MyFont fw-bold text-end text-muted">راه های ارتباطی</h5>
+            <ul class="text-dark">
+                <li>شهر : تهران</li>
+                <li> ادرس: تهران پاسداران نواب جنوبی ک حسن غریب پ 16</li>
+                <li>شماره تماس : 09214121204</li>
+            </ul>
+            <hr style="border-color: aqua !important;">
+            <h5 class="_MyFont fw-bold text-end text-muted">با ما بیشتر اشنا شوید</h5>
+            <p class="text-end text-break">
+                ثخسثتیخهلتسبتیهستکب ستکتبخلهیتسمب عخکهیبتلخلهیسلتمیتب میسهت خهتخه یسیتلخهسیتبخلهتست
+                ثخسثتیخهلتسبتیهستکب ستکتبخلهیتسمب عخکهیبتلخلهیسلتمیتب میسهت خهتخه یسیتلخهسیتبخلهتست
+                ثخسثتیخهلتسبتیهستکب ستکتبخلهیتسمب عخکهیبتلخلهیسلتمیتب میسهت خهتخه یسیتلخهسیتبخلهتست
+                ثخسثتیخهلتسبتیهستکب ستکتبخلهیتسمب عخکهیبتلخلهیسلتمیتب میسهت خهتخه یسیتلخهسیتبخلهتست
+                ثخسثتیخهلتسبتیهستکب ستکتبخلهیتسمب عخکهیبتلخلهیسلتمیتب میسهت خهتخه یسیتلخهسیتبخلهتست
+                ثخسثتیخهلتسبتیهستکب ستکتبخلهیتسمب عخکهیبتلخلهیسلتمیتب میسهت خهتخه یسیتلخهسیتبخلهتست
+                ثخسثتیخهلتسبتیهستکب ستکتبخلهیتسمب عخکهیبتلخلهیسلتمیتب میسهت خهتخه یسیتلخهسیتبخلهتست
+                ثخسثتیخهلتسبتیهستکب ستکتبخلهیتسمب عخکهیبتلخلهیسلتمیتب میسهت خهتخه یسیتلخهسیتبخلهتست
+                ثخسثتیخهلتسبتیهستکب ستکتبخلهیتسمب عخکهیبتلخلهیسلتمیتب میسهت خهتخه یسیتلخهسیتبخلهتست
+                ثخسثتیخهلتسبتیهستکب ستکتبخلهیتسمب عخکهیبتلخلهیسلتمیتب میسهت خهتخه یسیتلخهسیتبخلهتست
+            </p>
+
+        </div>
+    </div>
+
+   
+
+    <!--Ads Start-->
+    <section uk-scrollspy="target: > div; cls: uk-animation-scale-up; delay: 300;repeat: true" dir="rtl"
+        class="text-center w-100 my-2 uk-child-width-1-1 d-grid mx-auto">
+        <div class="my-1 uk-child-width-1-2 d-flex d-md-block">
+            <a class="mx-1" href="">
+                <img class="rounded-4 my-1" src="Resources/62812665.gif" alt="">
+            </a>
+            <a href="" class="mx-1">
+                <img class="rounded-4 my-1" src="Resources/62812665.gif" alt="">
+            </a>
+        </div>
+        <div class="my-1 uk-child-width-1-2 d-flex d-md-block">
+            <a class="mx-1" href="">
+                <img class="rounded-4 my-1" src="Resources/62812665.gif" alt="">
+            </a>
+            <a href="" class="mx-1">
+                <img class="rounded-4 my-1" src="Resources/62812665.gif" alt="">
+            </a>
+        </div>
+    </section>
+    <!--Ads End-->
+
+    <footer dir="rtl" class="p-3">
+        <div class="container uk-child-width-1-1 d-grid" uk-grid>
+            <section>
+                <h4 class="text-light _MyFont mt-1">دسترسی سریع</h4>
+                <hr class="text-light uk-divider-icon mt-0 mb-1">
+                <div class="d-flex justify-content-around">
+                    <ul>
+                        <li><a href="#">صفحه اصلی</a></li>
+                        <li><a href="#">آرشیو اخبار</a></li>
+                        <li><a href="#">تماس با ما</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#">ورود به سایت</a></li>
+                        <li><a href="#">خط مشی</a></li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <div class="d-flex justify-content-between">
+                    <h5 class="_MyFont d-inline text-light">شبکه های اجتماعی</h5>
+                    <span>
+                        <a class=" _hover-red" uk-icon="icon:instagram;ratio:1.3;"></a>
+                        <a class=" _hover-red" uk-icon="icon:whatsapp;ratio:1.3;"></a>
+                        <a class=" _hover-red" uk-icon="icon:twitter;ratio:1.3;"></a>
+                    </span>
+                </div>
+                <p class="text-light">تمامی حقوق مادی و معنوی این طرح متعلق به میلاد هاشمی می باشد و کپی برداری از این
+                    طرح غیر اخلاقی می باشد.</p>
+            </section>
+        </div>
+    </footer>
+
+</body>
+
+</html>
